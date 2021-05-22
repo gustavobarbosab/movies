@@ -25,7 +25,8 @@ android {
 
     dynamicFeatures = [
             ":features:home",
-            ":features:movies_list"
+            ":features:movies_list",
+            ":features:favorite_movies"
     ]
 }
 
