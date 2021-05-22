@@ -3,16 +3,14 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 29
-    
+    compileSdkVersion movieConfigVersions.compileSdk
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion movieConfigVersions.minSdk
+        targetSdkVersion movieConfigVersions.targetSdk
         versionCode 1
         versionName "1.0"
     }
-
 }
 
 dependencies {
@@ -27,7 +25,4 @@ dependencies {
     implementation kotlinDependencies.jdk7
 
     testImplementation unitTestDependencies.junit
-}
-repositories {
-    mavenCentral()
 }
