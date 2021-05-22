@@ -17,9 +17,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
     implementation project(":app")
-    implementation "androidx.core:core-ktx:+"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.coreKtx
+    implementation androidxDependencies.constraintLayout
+
+    implementation kotlinDependencies.jdk7
+
+    testImplementation unitTestDependencies.junit
 }
 repositories {
     mavenCentral()

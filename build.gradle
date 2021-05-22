@@ -1,18 +1,41 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.4.10'
+    ext {
+        // App Configs
+        movieConfigVersions = [
+                minSdk    : 21,
+                targetSdk : 29,
+                compileSdk: 29,
+                buildTools: "20.0.1",
+                testInstrumentation: "androidx.test.runner.AndroidJUnitRunner"
+        ]
+
+        // Dependencies
+        kotlin_version = '1.4.10'
+
+        kotlinDependencies = [
+                jdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        ]
+
+        androidxDependencies = [
+                appCompat       : "androidx.appcompat:appcompat:1.1.0",
+                coreKtx         : "androidx.core:core-ktx:1.2.0",
+                constraintLayout: "androidx.constraintlayout:constraintlayout:1.1.3"
+        ]
+
+        unitTestDependencies = [
+                junit: "junit:junit:4.12"
+        ]
+    }
+
     repositories {
         google()
         jcenter()
-        
+
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -20,7 +43,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 
