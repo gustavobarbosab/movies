@@ -5,12 +5,21 @@ buildscript {
                 minSdk    : 21,
                 targetSdk : 29,
                 compileSdk: 29,
-                buildTools: "20.0.1",
+                buildTools: "30.0.2",
                 testInstrumentation: "androidx.test.runner.AndroidJUnitRunner"
         ]
 
         // Dependencies
         kotlin_version = '1.4.10'
+        def nav_version = "2.3.5"
+
+        navigationDependencies = [
+                fragment: "androidx.navigation:navigation-fragment:$nav_version",
+                ui: "androidx.navigation:navigation-ui:$nav_version",
+                kotlinFragment: "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                uiKtx: "androidx.navigation:navigation-ui-ktx:$nav_version",
+                dynamicFeature: "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+        ]
 
         kotlinDependencies = [
                 jdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -25,16 +34,21 @@ buildscript {
         unitTestDependencies = [
                 junit: "junit:junit:4.12"
         ]
+
+        modulesDependencies = [
+                app: ":app",
+                core: ":core",
+                common: ":commons"
+        ]
     }
 
     repositories {
         google()
-        jcenter()
-
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.4'
+        classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -42,7 +56,7 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

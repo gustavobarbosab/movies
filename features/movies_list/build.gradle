@@ -16,9 +16,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":app")
-    implementation project(":core")
-    implementation project(":commons")
+    implementation project(modulesDependencies.app)
 
     implementation androidxDependencies.appCompat
     implementation androidxDependencies.coreKtx

@@ -1,4 +1,6 @@
 package io.github.gustavobarbosab.home
 
-class HomeFragment {
+import androidx.fragment.app.Fragment
+
+class HomeFragment: Fragment() {
 }
