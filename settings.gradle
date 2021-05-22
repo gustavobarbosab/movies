@@ -1,5 +1,6 @@
-rootProject.name='Movies'
+rootProject.name = 'Movies'
 include ':app',
         ':features',
         ':features:home',
-        ':core'
+        ':core',
+        ':commons'
