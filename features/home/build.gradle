@@ -18,11 +18,16 @@ dependencies {
 
     implementation project(modulesDependencies.app)
 
+    implementation kotlinDependencies.jdk7
+
+    implementation kotlinDependencies.jdk7
+
     implementation androidxDependencies.appCompat
     implementation androidxDependencies.coreKtx
     implementation androidxDependencies.constraintLayout
 
-    implementation kotlinDependencies.jdk7
+    implementation navigationDependencies.fragment
+    implementation navigationDependencies.ui
 
     testImplementation unitTestDependencies.junit
 }

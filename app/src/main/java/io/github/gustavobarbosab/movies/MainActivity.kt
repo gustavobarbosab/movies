@@ -2,6 +2,8 @@ package io.github.gustavobarbosab.movies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+    override fun onSupportNavigateUp() =
+        findNavController(findViewById(R.id.nav_host_fragment)).navigateUp()
 }
