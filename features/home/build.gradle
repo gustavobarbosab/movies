@@ -1,6 +1,6 @@
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 android {
     compileSdkVersion movieConfigVersions.compileSdk
@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    buildFeatures.dataBinding = true
 }
 
 dependencies {
@@ -28,6 +29,8 @@ dependencies {
 
     implementation navigationDependencies.fragment
     implementation navigationDependencies.ui
+    implementation navigationDependencies.uiKtx
+    implementation navigationDependencies.fragmentKtx
 
     testImplementation unitTestDependencies.junit
 }

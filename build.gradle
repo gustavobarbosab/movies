@@ -11,12 +11,12 @@ buildscript {
 
         // Dependencies
         kotlin_version = '1.4.10'
-        def nav_version = "2.3.5"
+        nav_version = "2.3.5"
 
         navigationDependencies = [
                 fragment: "androidx.navigation:navigation-fragment:$nav_version",
                 ui: "androidx.navigation:navigation-ui:$nav_version",
-                kotlinFragment: "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                fragmentKtx: "androidx.navigation:navigation-fragment-ktx:$nav_version",
                 uiKtx: "androidx.navigation:navigation-ui-ktx:$nav_version",
                 dynamicFeature: "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
         ]
@@ -50,6 +50,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
