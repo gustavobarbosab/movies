@@ -1,4 +1,6 @@
 package io.github.gustavobarbosab.favorite_movies
 
-class FavoriteMoviesFragment {
+import androidx.fragment.app.Fragment
+
+class FavoriteMoviesFragment: Fragment(R.layout.fragment_favorite_movies) {
 }

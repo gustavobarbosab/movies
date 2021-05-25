@@ -1,4 +1,6 @@
 package io.github.gustavobarbosab.movies_list
 
-class MovieListFragment {
+import androidx.fragment.app.Fragment
+
+class MovieListFragment: Fragment(R.layout.fragment_movie_list) {
 }
