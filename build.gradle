@@ -40,6 +40,13 @@ buildscript {
                 core: ":core",
                 common: ":commons"
         ]
+
+        def daggerVersion = "2.35.1"
+        daggerDependencies = [
+                dagger: "com.google.dagger:dagger:$daggerVersion",
+                compiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+                processor: "com.google.dagger:dagger-android-processor:$daggerVersion",
+        ]
     }
 
     repositories {
