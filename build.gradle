@@ -2,10 +2,10 @@ buildscript {
     ext {
         // App Configs
         movieConfigVersions = [
-                minSdk    : 21,
-                targetSdk : 29,
-                compileSdk: 29,
-                buildTools: "30.0.2",
+                minSdk             : 21,
+                targetSdk          : 29,
+                compileSdk         : 29,
+                buildTools         : "30.0.2",
                 testInstrumentation: "androidx.test.runner.AndroidJUnitRunner"
         ]
 
@@ -14,10 +14,10 @@ buildscript {
         nav_version = "2.3.5"
 
         navigationDependencies = [
-                fragment: "androidx.navigation:navigation-fragment:$nav_version",
-                ui: "androidx.navigation:navigation-ui:$nav_version",
-                fragmentKtx: "androidx.navigation:navigation-fragment-ktx:$nav_version",
-                uiKtx: "androidx.navigation:navigation-ui-ktx:$nav_version",
+                fragment      : "androidx.navigation:navigation-fragment:$nav_version",
+                ui            : "androidx.navigation:navigation-ui:$nav_version",
+                fragmentKtx   : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                uiKtx         : "androidx.navigation:navigation-ui-ktx:$nav_version",
                 dynamicFeature: "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
         ]
 
@@ -36,17 +36,26 @@ buildscript {
         ]
 
         modulesDependencies = [
-                app: ":app",
-                core: ":core",
+                app   : ":app",
+                core  : ":core",
                 common: ":commons"
         ]
 
         def daggerVersion = "2.35.1"
         daggerDependencies = [
-                dagger: "com.google.dagger:dagger:$daggerVersion",
-                compiler: "com.google.dagger:dagger-compiler:$daggerVersion",
+                dagger   : "com.google.dagger:dagger:$daggerVersion",
+                compiler : "com.google.dagger:dagger-compiler:$daggerVersion",
                 processor: "com.google.dagger:dagger-android-processor:$daggerVersion",
         ]
+
+        def retrofitVersion = "2.9.0"
+        networkDependencies = [
+                retrofit: "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                moshi   : "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+                logging : "com.squareup.okhttp3:logging-interceptor:4.9.0"
+        ]
+
+        corroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
     }
 
     repositories {

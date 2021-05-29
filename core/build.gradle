@@ -17,20 +17,28 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "MOVIE_BASE_URL", "\"https://url/pre/\""
+        }
+
         release {
             minifyEnabled false
+            buildConfigField "String", "MOVIE_BASE_URL", "\"https://url/pre/\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
+
+    implementation kotlinDependencies.values()
+
     implementation androidxDependencies.appCompat
+
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
     kapt daggerDependencies.processor
+
+    implementation networkDependencies.values()
 }
