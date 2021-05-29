@@ -1,6 +1,7 @@
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion movieConfigVersions.compileSdk
@@ -31,4 +32,8 @@ dependencies {
     implementation navigationDependencies.ui
 
     testImplementation unitTestDependencies.junit
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
 }

@@ -34,4 +34,8 @@ dependencies {
     implementation navigationDependencies.fragmentKtx
 
     testImplementation unitTestDependencies.junit
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
 }

@@ -49,4 +49,8 @@ dependencies {
     implementation androidxDependencies.values()
     implementation navigationDependencies.values()
     testImplementation unitTestDependencies.values()
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
 }
