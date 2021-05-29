@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.movies.di
 
 import dagger.BindsInstance
 import dagger.Component
-import io.github.gustavobarbosab.core.di.ApplicationDependencies
+import io.github.gustavobarbosab.core.di.dependencies.ApplicationDependencies
 import io.github.gustavobarbosab.movies.MovieApplication
 import javax.inject.Singleton
 

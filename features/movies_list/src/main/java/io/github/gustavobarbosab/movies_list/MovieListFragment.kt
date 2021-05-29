@@ -2,9 +2,8 @@ package io.github.gustavobarbosab.movies_list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import io.github.gustavobarbosab.core.di.ModuleScope
+import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies_list.di.DaggerMovieListComponent
 import javax.inject.Inject

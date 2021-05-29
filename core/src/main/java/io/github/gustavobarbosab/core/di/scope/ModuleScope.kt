@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.core.di
+package io.github.gustavobarbosab.core.di.scope
 
 import javax.inject.Scope
 
