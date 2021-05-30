@@ -1,5 +1,9 @@
 package io.github.gustavobarbosab.movies_list.data
 
+import retrofit2.http.GET
+
 interface MovieApi {
-    suspend fun getMovieList()
+
+    @GET("/movie/popular")
+    suspend fun getPopularMovies()
 }
