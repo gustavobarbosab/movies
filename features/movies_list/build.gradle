@@ -38,4 +38,8 @@ dependencies {
     kapt daggerDependencies.processor
 
     implementation networkDependencies.values()
+
+    implementation corroutinesDependency
+
+    implementation lifecycleScopesDependencies.values()
 }

@@ -55,7 +55,13 @@ buildscript {
                 logging : "com.squareup.okhttp3:logging-interceptor:4.9.0"
         ]
 
-        corroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+        corroutinesDependency = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+
+        def lifecycleScopesVersion = "2.2.0"
+        lifecycleScopesDependencies = [
+                viewModel: "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleScopesVersion",
+                liveData : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleScopesVersion"
+        ]
     }
 
     repositories {
