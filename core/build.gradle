@@ -41,4 +41,6 @@ dependencies {
     kapt daggerDependencies.processor
 
     implementation networkDependencies.values()
+
+    implementation corroutinesDependency
 }

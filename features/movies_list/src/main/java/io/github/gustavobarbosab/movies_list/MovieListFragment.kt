@@ -47,15 +47,14 @@ class MovieListFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                MovieListViewModel.MovieListState.HideLoading -> binding.textMovie.text =
-                    "Carregando..."
+                MovieListViewModel.MovieListState.HideLoading -> binding.textMovie.setText("Carregando...")
                 MovieListViewModel.MovieListState.ShowLoading -> {
                 }
             }
         })
 
         viewModel.movieResponse.observe(viewLifecycleOwner, {
-            binding.textMovie.text = it.first().title
+            binding.textMovie.text = it.first().name
         })
     }
 }

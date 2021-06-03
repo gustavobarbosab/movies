@@ -4,7 +4,11 @@ import dagger.Module
 import dagger.Provides
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies_list.MovieListViewModel
-import io.github.gustavobarbosab.movies_list.data.MovieApi
+import io.github.gustavobarbosab.core.data.network.services.movies.MovieApi
+import io.github.gustavobarbosab.core.domain.repository.MovieRepository
+import io.github.gustavobarbosab.core.domain.repository.SessionRepository
+import io.github.gustavobarbosab.core.domain.usecase.MovieUseCase
+import io.github.gustavobarbosab.movies_list.MovieListUseCase
 import retrofit2.Retrofit
 
 @Module
@@ -16,5 +20,12 @@ class MovieListModule {
 
     @Provides
     @ModuleScope
-    fun provideViewModel(movieApi: MovieApi) = MovieListViewModel(movieApi)
+    fun provideViewModel(movieUseCase: MovieUseCase) = MovieListViewModel(movieUseCase)
+
+    @Provides
+    @ModuleScope
+    fun provideUseCase(
+        repository: MovieRepository,
+        sessionRepository: SessionRepository
+    ): MovieUseCase = MovieListUseCase(repository, sessionRepository)
 }

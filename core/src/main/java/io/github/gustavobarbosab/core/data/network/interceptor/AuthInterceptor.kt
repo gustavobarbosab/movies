@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.core.data.network
+package io.github.gustavobarbosab.core.data.network.interceptor
 
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
