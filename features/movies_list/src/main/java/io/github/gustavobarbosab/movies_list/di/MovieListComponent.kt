@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.movies_list.di
 import dagger.Component
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.di.AppComponent
-import io.github.gustavobarbosab.movies_list.MovieListFragment
+import io.github.gustavobarbosab.movies_list.presentation.MovieListFragment
 
 @ModuleScope
 @Component(

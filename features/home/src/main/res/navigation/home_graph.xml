@@ -4,13 +4,4 @@
     android:id="@+id/home_graph"
     app:startDestination="@id/fragment_list">
 
-    <fragment
-        android:id="@+id/fragment_list"
-        android:name="io.github.gustavobarbosab.movies_list.MovieListFragment"
-        android:label="Movies List" />
-
-    <fragment
-        android:id="@+id/fragment_favorite"
-        android:name="io.github.gustavobarbosab.favorite_movies.FavoriteMoviesFragment"
-        android:label="Favorite Movies" />
 </navigation>

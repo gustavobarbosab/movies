@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies_list
+package io.github.gustavobarbosab.movies_list.domain
 
 import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie

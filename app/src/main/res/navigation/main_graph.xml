@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_list"
-        android:name="io.github.gustavobarbosab.movies_list.MovieListFragment"
+        android:name="io.github.gustavobarbosab.movies_list.presentation.MovieListFragment"
         android:label="Movies List" />
 
     <fragment

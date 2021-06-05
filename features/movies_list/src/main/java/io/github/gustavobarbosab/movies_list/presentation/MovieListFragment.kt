@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies_list
+package io.github.gustavobarbosab.movies_list.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
+import io.github.gustavobarbosab.movies_list.R
 import io.github.gustavobarbosab.movies_list.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.movies_list.di.DaggerMovieListComponent
 import javax.inject.Inject

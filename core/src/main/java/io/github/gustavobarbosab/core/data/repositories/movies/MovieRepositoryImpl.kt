@@ -1,6 +1,5 @@
 package io.github.gustavobarbosab.core.data.repositories.movies
 
-import android.content.res.Resources
 import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
@@ -8,8 +7,6 @@ import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMo
 import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.repository.MovieRepository
-import retrofit2.Response
-import java.lang.Exception
 
 class MovieRepositoryImpl(
     val localDataSource: MovieLocalDataSource,

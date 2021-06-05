@@ -1,15 +1,13 @@
-package io.github.gustavobarbosab.movies_list
+package io.github.gustavobarbosab.movies_list.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.core.domain.data
-import io.github.gustavobarbosab.core.domain.isSuccess
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.usecase.MovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MovieListViewModel(
     val useCase: MovieUseCase
