@@ -21,6 +21,8 @@ class MovieListFragment : Fragment() {
 
     lateinit var binding: FragmentMovieListBinding
 
+    private val adapter = MovieListAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMovieListComponent
@@ -47,14 +49,16 @@ class MovieListFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                MovieListViewModel.MovieListState.HideLoading -> binding.textMovie.setText("Carregando...")
+                MovieListViewModel.MovieListState.HideLoading -> {
+                }
                 MovieListViewModel.MovieListState.ShowLoading -> {
                 }
             }
         })
 
         viewModel.movieResponse.observe(viewLifecycleOwner, {
-            binding.textMovie.text = it.first().name
+            adapter.movies = it
+            binding.movies.adapter = adapter
         })
     }
 }
