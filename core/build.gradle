@@ -17,13 +17,16 @@ android {
     }
 
     buildTypes {
+
         debug {
             buildConfigField "String", "MOVIE_BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\""
         }
 
         release {
             minifyEnabled false
             buildConfigField "String", "MOVIE_BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\""
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
@@ -49,10 +50,16 @@ class MovieListFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                MovieListViewModel.MovieListState.HideLoading -> {
-                }
-                MovieListViewModel.MovieListState.ShowLoading -> {
-                }
+                MovieListViewModel.MovieListState.HideLoading -> Toast.makeText(
+                    requireContext(),
+                    "Hide Loading...",
+                    Toast.LENGTH_SHORT
+                ).show()
+                MovieListViewModel.MovieListState.ShowLoading -> Toast.makeText(
+                    requireContext(),
+                    "Show Loading...",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 

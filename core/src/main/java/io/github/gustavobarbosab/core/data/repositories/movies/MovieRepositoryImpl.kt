@@ -1,5 +1,6 @@
 package io.github.gustavobarbosab.core.data.repositories.movies
 
+import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
 import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
@@ -10,10 +11,9 @@ import io.github.gustavobarbosab.core.domain.repository.MovieRepository
 
 class MovieRepositoryImpl(
     val localDataSource: MovieLocalDataSource,
-    val remoteDataSource: MovieRemoteDataSource
+    val remoteDataSource: MovieRemoteDataSource,
+    val mapper: MovieMapper
 ) : MovieRepository {
-
-    private val mapper = MovieMapper()
 
     override suspend fun getPopularMovies(): Result<List<Movie>> =
         try {

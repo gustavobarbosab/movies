@@ -2,9 +2,11 @@ package io.github.gustavobarbosab.core.di.modules
 
 import dagger.Module
 import dagger.Provides
+import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
 import io.github.gustavobarbosab.core.data.database.movie.MovieDao
 import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieApi
+import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
 import io.github.gustavobarbosab.core.data.repositories.movies.MovieRepositoryImpl
 import io.github.gustavobarbosab.core.data.repositories.session.SessionRepositoryImpl
@@ -20,8 +22,9 @@ class RepositoryModule {
     @Singleton
     fun provideMovieRepositoryModule(
         localDataSource: MovieLocalDataSource,
-        remoteDataSource: MovieRemoteDataSource
-    ): MovieRepository = MovieRepositoryImpl(localDataSource, remoteDataSource)
+        remoteDataSource: MovieRemoteDataSource,
+        mapper: MovieMapper
+    ): MovieRepository = MovieRepositoryImpl(localDataSource, remoteDataSource, mapper)
 
     @Provides
     @Singleton
@@ -48,4 +51,9 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepository(): SessionRepository = SessionRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideMapper(configWrapper: AppConfigWrapper) = MovieMapper(configWrapper)
+
 }
