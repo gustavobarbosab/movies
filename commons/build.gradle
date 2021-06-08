@@ -27,12 +27,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    testImplementation 'junit:junit:4.12'
+    implementation androidxDependencies.constraintLayout
 
     implementation corroutinesDependency
 
     implementation glideDependencies.glide
     kapt glideDependencies.processor
+
+    implementation navigationDependencies.dynamicFeature
 }
