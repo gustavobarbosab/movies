@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import io.github.gustavobarbosab.commons.widget.MovieToolbar
 import io.github.gustavobarbosab.movies.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
+
+    val toolbar: MovieToolbar
+        get() = binding.toolbar
 
     var navController = lazy {
         val navHostFragment =
@@ -33,7 +37,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onSupportNavigateUp() =
-        navController.value.navigateUp()
 }

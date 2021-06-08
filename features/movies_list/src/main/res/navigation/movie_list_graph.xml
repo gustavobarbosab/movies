@@ -7,4 +7,9 @@
         android:id="@+id/movie_list"
         android:name="io.github.gustavobarbosab.movies_list.presentation.MovieListFragment"
         android:label="Movie List" />
+
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="io.github.gustavobarbosab.commons.ui.base.BaseLoadingFragment" />
+
 </navigation>

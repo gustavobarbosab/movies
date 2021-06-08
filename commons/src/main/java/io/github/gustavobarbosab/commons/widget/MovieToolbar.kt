@@ -4,9 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import io.github.gustavobarbosab.commons.R
 
@@ -18,13 +16,13 @@ class MovieToolbar @JvmOverloads constructor(
 
     protected val imageLogo: ImageView
     protected val backButton: ImageButton
-    protected val shortcutMenuIcon: ImageButton
+    protected val shortcutMenuIcon: ImageView
     protected val title: TextView
 
     init {
         LayoutInflater
             .from(context)
-            .inflate(R.layout.toolbar_movie, this)
+            .inflate(R.layout.toolbar_movie, this, true)
 
         imageLogo = findViewById(R.id.toolbarIcon)
         backButton = findViewById(R.id.backIcon)
