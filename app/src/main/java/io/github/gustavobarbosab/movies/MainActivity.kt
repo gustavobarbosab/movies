@@ -11,12 +11,12 @@ import io.github.gustavobarbosab.movies.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     val toolbar: MovieToolbar
         get() = binding.toolbar
 
-    var navController = lazy {
+    private var navController = lazy {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_main_fragment) as NavHostFragment
         navHostFragment.navController
