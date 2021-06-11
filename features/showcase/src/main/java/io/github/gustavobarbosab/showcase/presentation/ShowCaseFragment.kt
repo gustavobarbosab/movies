@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import io.github.gustavobarbosab.commons.extension.toolbar
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.showcase.R
@@ -44,6 +45,7 @@ class ShowCaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
+        toolbar()?.setLogo()
         viewModel.getPopularMovies()
     }
 

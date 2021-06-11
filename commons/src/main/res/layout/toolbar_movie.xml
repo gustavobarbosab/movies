@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
     android:layout_height="wrap_content"
+    android:id="@+id/toolbar"
     xmlns:tools="http://schemas.android.com/tools">
 
     <View
