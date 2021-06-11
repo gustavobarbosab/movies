@@ -5,7 +5,7 @@
     app:startDestination="@id/movie_list">
     <fragment
         android:id="@+id/movie_list"
-        android:name="io.github.gustavobarbosab.movies_list.presentation.MovieListFragment"
+        android:name="io.github.gustavobarbosab.showcase.presentation.ShowCaseFragment"
         android:label="Movie List" />
 
     <fragment

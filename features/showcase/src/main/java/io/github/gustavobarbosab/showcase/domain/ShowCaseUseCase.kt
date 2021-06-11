@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies_list.domain
+package io.github.gustavobarbosab.showcase.domain
 
 import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie
@@ -8,7 +8,7 @@ import io.github.gustavobarbosab.core.domain.usecase.MovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MovieListUseCase(
+class ShowCaseUseCase(
     private val movieRepository: MovieRepository,
     private val sessionRepository: SessionRepository
 ) : MovieUseCase {

@@ -1,10 +1,10 @@
 package io.github.gustavobarbosab.movies
 
-import android.app.Application
+import com.google.android.play.core.splitcompat.SplitCompatApplication
 import io.github.gustavobarbosab.movies.di.AppComponent
 import io.github.gustavobarbosab.movies.di.DaggerAppComponent
 
-class MovieApplication : Application() {
+class MovieApplication : SplitCompatApplication() {
 
     lateinit var appComponent: AppComponent
 

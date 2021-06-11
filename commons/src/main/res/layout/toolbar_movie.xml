@@ -7,37 +7,40 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/toolbar" />
+        android:background="@color/colorPrimaryDark" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/backIcon"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="wrap_content"
         android:layout_height="58dp"
         android:padding="16dp"
         android:src="@drawable/ic_back"
         android:visibility="gone"
-        tools:visibility="visible"
+        tools:visibility="gone"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/toolbarIcon"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
     <ImageView
         android:id="@+id/toolbarIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_default_icon"
+        android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backIcon"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="App's logo" />
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/titleText"
@@ -62,6 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/toolbarIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
 </merge>

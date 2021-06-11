@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/home_graph"
-    app:startDestination="@id/fragment_list">
+    android:id="@+id/main_graph"
+    app:startDestination="@+id/fragment_home">
 
     <fragment
-        android:id="@+id/fragment_list"
+        android:id="@+id/fragment_home"
         android:name="io.github.gustavobarbosab.home.HomeFragment"
-        android:label="Movies List" />
+        android:label="Home" />
 
-    <fragment
-        android:id="@+id/fragment_favorite"
-        android:name="io.github.gustavobarbosab.favorite_movies.FavoriteMoviesFragment"
-        android:label="Favorite Movies" />
 </navigation>

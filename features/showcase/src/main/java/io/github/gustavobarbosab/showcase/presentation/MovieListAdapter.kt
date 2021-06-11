@@ -1,11 +1,11 @@
-package io.github.gustavobarbosab.movies_list.presentation
+package io.github.gustavobarbosab.showcase.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.core.domain.model.Movie
-import io.github.gustavobarbosab.movies_list.databinding.ItemMovieListBinding
+import io.github.gustavobarbosab.showcase.databinding.ItemMovieListBinding
 
 class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
@@ -28,7 +28,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
         fun bind(movie: Movie) {
             binding.apply {
-                movie.imageUrl?.let{movieImage.loadImage(it)}
+                movie.imageUrl?.let { movieImage.loadImage(it) }
                 movieName.text = movie.name
             }
         }

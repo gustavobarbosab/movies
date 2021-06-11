@@ -15,7 +15,7 @@ class MovieToolbar @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     protected val imageLogo: ImageView
-    protected val backButton: ImageButton
+    protected val backButton: ImageView
     protected val shortcutMenuIcon: ImageView
     protected val title: TextView
 

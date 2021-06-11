@@ -5,12 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import io.github.gustavobarbosab.home.databinding.FragmentHomeBinding
-import io.github.gustavobarbosab.movies.extension.requireMainActivity
 
 class HomeFragment : Fragment() {
 
-    var binding: FragmentHomeBinding? = null
+    private var binding: FragmentHomeBinding? = null
+
+    private var navController = lazy {
+        (childFragmentManager
+            .findFragmentById(R.id.nav_home_fragment) as NavHostFragment)
+            .navController
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +30,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireMainActivity().toolbar.setLogo()
+        setupBottomNav()
+    }
+
+    private fun setupBottomNav() {
+        binding?.bottomNav?.setupWithNavController(navController.value)
     }
 
     override fun onDestroyView() {

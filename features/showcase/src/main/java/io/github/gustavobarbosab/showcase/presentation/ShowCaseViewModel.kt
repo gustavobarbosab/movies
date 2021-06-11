@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies_list.presentation
+package io.github.gustavobarbosab.showcase.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import io.github.gustavobarbosab.core.domain.usecase.MovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MovieListViewModel(
+class ShowCaseViewModel(
     val useCase: MovieUseCase
 ) : ViewModel() {
 

@@ -34,7 +34,7 @@ android {
 
     dynamicFeatures = [
             ":features:home",
-            ":features:movies_list",
+            ':features:showcase',
             ":features:favorite_movies"
     ]
 }
@@ -55,4 +55,6 @@ dependencies {
     kapt daggerDependencies.processor
 
     implementation networkDependencies.values()
+
+    implementation playCoreDependencies.values()
 }

@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies_list.presentation
+package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +9,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
-import io.github.gustavobarbosab.movies_list.R
-import io.github.gustavobarbosab.movies_list.databinding.FragmentMovieListBinding
-import io.github.gustavobarbosab.movies_list.di.DaggerMovieListComponent
+import io.github.gustavobarbosab.showcase.R
+import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
+import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
 import javax.inject.Inject
 
 @ModuleScope
-class MovieListFragment : Fragment() {
+class ShowCaseFragment : Fragment() {
 
     @Inject
-    lateinit var viewModel: MovieListViewModel
+    lateinit var viewModel: ShowCaseViewModel
 
     lateinit var binding: FragmentMovieListBinding
 
@@ -50,12 +50,12 @@ class MovieListFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                MovieListViewModel.MovieListState.HideLoading -> Toast.makeText(
+                ShowCaseViewModel.MovieListState.HideLoading -> Toast.makeText(
                     requireContext(),
                     "Hide Loading...",
                     Toast.LENGTH_SHORT
                 ).show()
-                MovieListViewModel.MovieListState.ShowLoading -> Toast.makeText(
+                ShowCaseViewModel.MovieListState.ShowLoading -> Toast.makeText(
                     requireContext(),
                     "Show Loading...",
                     Toast.LENGTH_SHORT
