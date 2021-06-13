@@ -18,6 +18,7 @@ class MovieToolbar @JvmOverloads constructor(
     protected val backButton: ImageView
     protected val shortcutMenuIcon: ImageView
     protected val title: TextView
+    private var backButtonListener: () -> Unit = {}
 
     init {
         LayoutInflater
@@ -39,8 +40,8 @@ class MovieToolbar @JvmOverloads constructor(
     }
 
     fun setupBackButton(function: () -> Unit) {
-        showBackButton()
-        backButton.setOnClickListener { function() }
+        backButtonListener = function
+        backButton.setOnClickListener { backButtonListener() }
     }
 
     fun setTitle(message: String) {
@@ -50,6 +51,7 @@ class MovieToolbar @JvmOverloads constructor(
     }
 
     fun setLogo() {
+        hideBackButton()
         imageLogo.visibility = View.VISIBLE
         title.visibility = View.GONE
     }

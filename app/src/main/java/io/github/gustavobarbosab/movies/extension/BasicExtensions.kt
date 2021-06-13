@@ -10,8 +10,14 @@ fun Activity.requireAppComponent() = (this.application as MovieApplication).appC
 
 fun Fragment.requireMainActivity(): MainActivity = (this.requireActivity() as MainActivity)
 
-fun Fragment.findAppNavController(): NavController = (this.requireActivity() as MainActivity).navController
+fun Fragment.findAppNavController(): NavController =
+    requireMainActivity().navController
 
 fun Fragment.requireAppComponent() =
     (this.requireActivity().application as MovieApplication).appComponent
+
+fun Fragment.toolbar() =
+    requireMainActivity().binding.toolbar
+
+
 

@@ -15,9 +15,6 @@ class HomeFragment : BaseParentFragment() {
 
     private var binding: FragmentHomeBinding? = null
 
-    override val toolbar: MovieToolbar?
-        get() = binding?.toolbar
-
     override val fragmentNavController: NavController
         get() = childFragmentManager.navController(R.id.nav_home_fragment)
 
