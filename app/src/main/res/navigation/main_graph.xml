@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/feature_detail"
         android:name="io.github.gustavobarbosab.detail.MovieDetailFragment"
-        android:label="fragment_movie_detail"
+        android:label="Detail"
         tools:layout="@layout/fragment_movie_detail" />
 
     <fragment

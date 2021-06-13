@@ -44,6 +44,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        binding.toolbar.removeListener()
+        super.onDestroy()
+    }
+
     override fun onBackPressed() {
         // TODO remover logica
         if (!navController.popBackStack()) {
