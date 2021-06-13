@@ -8,7 +8,12 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.commons.extension.toolbar
+import io.github.gustavobarbosab.core.data.router.FeatureInstallManager
+import io.github.gustavobarbosab.core.data.router.FeatureName
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
+import io.github.gustavobarbosab.core.domain.model.Movie
+import io.github.gustavobarbosab.home.HomeFragmentDirections
+import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
@@ -23,7 +28,7 @@ class ShowCaseFragment : Fragment() {
 
     lateinit var binding: FragmentMovieListBinding
 
-    private val adapter = MovieListAdapter()
+    private val adapter = MovieListAdapter(this::onItemClicked)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,5 +74,24 @@ class ShowCaseFragment : Fragment() {
             adapter.movies = it
             binding.movies.adapter = adapter
         })
+    }
+
+    private fun onItemClicked(movie: Movie) {
+        FeatureInstallManager(requireContext())
+            .installFeature(FeatureName.MovieDetail, {
+                Toast.makeText(context, "Instalooou!", Toast.LENGTH_SHORT).show()
+                goToDetail()
+            }, {
+                Toast.makeText(context, "Falhooou!", Toast.LENGTH_SHORT).show()
+            })
+    }
+
+    private fun goToDetail() {
+        findAppNavController().navigate(HomeFragmentDirections.actionDetailFragment())
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = ShowCaseFragment()
     }
 }

@@ -7,7 +7,8 @@ import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.showcase.databinding.ItemMovieListBinding
 
-class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter(val clickListener: (Movie) -> Unit) :
+    RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
 
     var movies: List<Movie> = emptyList()
 
@@ -17,7 +18,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position])
+        holder.bind(movies[position], clickListener)
     }
 
     override fun getItemCount(): Int = movies.size
@@ -26,8 +27,12 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
         private val binding: ItemMovieListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(movie: Movie) {
+        fun bind(
+            movie: Movie,
+            clickListener: (Movie) -> Unit
+        ) {
             binding.apply {
+                binding.root.setOnClickListener { clickListener(movie) }
                 movie.imageUrl?.let { movieImage.loadImage(it) }
                 movieName.text = movie.name
             }

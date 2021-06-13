@@ -46,4 +46,6 @@ dependencies {
     implementation networkDependencies.values()
 
     implementation corroutinesDependency
+
+    implementation playCoreDependencies.values()
 }

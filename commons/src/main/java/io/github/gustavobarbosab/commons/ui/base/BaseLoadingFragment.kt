@@ -10,8 +10,7 @@ import androidx.navigation.dynamicfeatures.fragment.ui.AbstractProgressFragment
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import io.github.gustavobarbosab.commons.R
 
-class BaseLoadingFragment
-    : AbstractProgressFragment() {
+class BaseLoadingFragment : AbstractProgressFragment() {
 
     protected val loading: ProgressBar?
         get() = view?.findViewById(R.id.progress)

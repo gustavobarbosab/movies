@@ -19,6 +19,7 @@ class ShowCaseViewModel(
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.Main) {
             loading.postValue(MovieListState.ShowLoading)
+
             val response = useCase.getPopularMovies()
 
             response.data()?.let {

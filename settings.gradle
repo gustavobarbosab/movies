@@ -5,4 +5,5 @@ include ':app',
         ':features',
         ':features:home',
         ':features:showcase',
-        ':features:favorite_movies'
+        ':features:favorite_movies',
+        ':features:detail'

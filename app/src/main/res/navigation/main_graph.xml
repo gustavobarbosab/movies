@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
+    app:progressDestination="@+id/fragment_progress"
     app:startDestination="@+id/fragment_home">
 
     <fragment
         android:id="@+id/fragment_home"
         android:name="io.github.gustavobarbosab.home.HomeFragment"
-        android:label="Home" />
+        android:label="Home">
+        <action
+            android:id="@+id/action_detail_fragment"
+            app:popUpTo="@id/fragment_home"
+            app:destination="@id/feature_detail" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/feature_detail"
+        android:name="io.github.gustavobarbosab.detail.MovieDetailFragment"
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail" />
+
+    <fragment
+        android:id="@+id/fragment_progress"
+        android:name="io.github.gustavobarbosab.commons.ui.base.BaseLoadingFragment"
+        android:label="Progress" />
 </navigation>

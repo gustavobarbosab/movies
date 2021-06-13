@@ -15,10 +15,15 @@ class MovieRepositoryImpl(
     val mapper: MovieMapper
 ) : MovieRepository {
 
+    var localCache: List<Movie> = emptyList()
+
     override suspend fun getPopularMovies(): Result<List<Movie>> =
         try {
-            val result = mapToMovie(remoteDataSource.getPopularMovies().results)
-            Result.Success(result)
+            if (localCache.isEmpty()) {
+                localCache = mapToMovie(remoteDataSource.getPopularMovies().results)
+            }
+
+            Result.Success(localCache)
         } catch (ex: Exception) {
             Result.Error(ex)
         }

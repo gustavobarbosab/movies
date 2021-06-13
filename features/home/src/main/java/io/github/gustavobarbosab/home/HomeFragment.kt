@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import io.github.gustavobarbosab.commons.extension.navController
 import io.github.gustavobarbosab.commons.ui.base.BaseParentFragment
@@ -17,9 +18,8 @@ class HomeFragment : BaseParentFragment() {
     override val toolbar: MovieToolbar?
         get() = binding?.toolbar
 
-    private val navController
-    get() = childFragmentManager.navController(R.id.nav_home_fragment)
-
+    override val fragmentNavController: NavController
+        get() = childFragmentManager.navController(R.id.nav_home_fragment)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,7 +36,7 @@ class HomeFragment : BaseParentFragment() {
     }
 
     private fun setupBottomNav() {
-        binding?.bottomNav?.setupWithNavController(navController)
+        binding?.bottomNav?.setupWithNavController(fragmentNavController)
     }
 
     override fun onDestroyView() {
