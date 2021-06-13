@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movies</string>
+    <string name="app_name">Moovie</string>
     <string name="title_home">Home</string>
     <string name="title_movies_list">Movies List</string>
     <string name="title_favorite_movies">Favorites</string>
