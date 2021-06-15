@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import io.github.gustavobarbosab.core.data.router.FeatureInstallManager
-import io.github.gustavobarbosab.core.data.router.FeatureName
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.home.HomeFragmentDirections
@@ -77,16 +75,6 @@ class ShowCaseFragment : Fragment() {
     }
 
     private fun onItemClicked(movie: Movie) {
-        FeatureInstallManager(requireContext())
-            .installFeature(FeatureName.MovieDetail, {
-                Toast.makeText(context, "Instalooou!", Toast.LENGTH_SHORT).show()
-                goToDetail()
-            }, {
-                Toast.makeText(context, "Falhooou!", Toast.LENGTH_SHORT).show()
-            })
-    }
-
-    private fun goToDetail() {
         findAppNavController().navigate(HomeFragmentDirections.actionDetailFragment())
     }
 

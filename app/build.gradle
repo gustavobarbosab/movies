@@ -14,8 +14,8 @@ android {
         applicationId "io.github.gustavobarbosab.movies"
         minSdkVersion movieConfigVersions.minSdk
         targetSdkVersion movieConfigVersions.targetSdk
-        versionCode 2
-        versionName "1.0"
+        versionCode 5
+        versionName "5.0"
 
         testInstrumentationRunner movieConfigVersions.testInstrumentation
     }
@@ -28,8 +28,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 
     buildFeatures.dataBinding = true
