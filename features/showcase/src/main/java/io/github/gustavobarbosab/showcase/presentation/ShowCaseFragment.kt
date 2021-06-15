@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.home.HomeFragmentDirections
+import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.extension.toolbar
@@ -50,6 +51,7 @@ class ShowCaseFragment : Fragment() {
         observeViewModel()
         toolbar().setLogo()
         viewModel.getPopularMovies()
+        binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
     private fun observeViewModel() {

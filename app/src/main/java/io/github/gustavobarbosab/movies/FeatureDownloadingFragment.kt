@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.commons.ui.base
+package io.github.gustavobarbosab.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.dynamicfeatures.fragment.ui.AbstractProgressFragment
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
-import io.github.gustavobarbosab.commons.R
 
-class BaseLoadingFragment : AbstractProgressFragment() {
+class FeatureDownloadingFragment : AbstractProgressFragment() {
 
     protected val loading: ProgressBar?
         get() = view?.findViewById(R.id.progress)
@@ -49,9 +48,12 @@ class BaseLoadingFragment : AbstractProgressFragment() {
             }
         }
 
-        loading?.progress = calculateProgress(bytesDownloaded, bytesTotal)
+        loading?.progress = calculateProgress(bytesDownloaded.toInt(), bytesTotal.toInt())
     }
 
-    private fun calculateProgress(bytesDownloaded: Long, bytesTotal: Long): Int =
-        (bytesDownloaded / bytesTotal).toInt() * 100
+    private fun calculateProgress(bytesDownloaded: Int, bytesTotal: Int): Int = try {
+        (bytesDownloaded / bytesTotal) * 100
+    } catch (e: Exception) {
+        100
+    }
 }
