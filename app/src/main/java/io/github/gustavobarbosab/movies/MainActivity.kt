@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.apply {
             setTitle(title)
             showBackButton()
+            hideShortcutIcon()
         }
     }
 

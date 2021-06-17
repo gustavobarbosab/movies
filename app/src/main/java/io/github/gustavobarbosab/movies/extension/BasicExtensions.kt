@@ -17,7 +17,11 @@ fun Fragment.requireAppComponent() =
     (this.requireActivity().application as MovieApplication).appComponent
 
 fun Fragment.toolbar() =
-    requireMainActivity().binding.toolbar
+    requireMainActivity()
+        .binding
+        .toolbar
+        .hideBackButton()
+        .hideShortcutIcon()
 
 
 

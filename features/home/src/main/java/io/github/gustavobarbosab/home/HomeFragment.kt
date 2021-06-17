@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import io.github.gustavobarbosab.commons.extension.navController
+import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseParentFragment
 import io.github.gustavobarbosab.commons.widget.MovieToolbar
 import io.github.gustavobarbosab.home.databinding.FragmentHomeBinding
+import io.github.gustavobarbosab.movies.extension.requireMainActivity
+import io.github.gustavobarbosab.movies.extension.toolbar
 
 class HomeFragment : BaseParentFragment() {
 

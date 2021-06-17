@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.home.HomeFragmentDirections
@@ -52,6 +53,12 @@ class ShowCaseFragment : Fragment() {
         toolbar().setLogo()
         viewModel.getPopularMovies()
         binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
+        toolbar()
+            .setLogo()
+            .setShortcutIcon(R.drawable.ic_search)
+            .setShortcutListener {
+                requireContext().toast("Clicooou!")
+            }
     }
 
     private fun observeViewModel() {
