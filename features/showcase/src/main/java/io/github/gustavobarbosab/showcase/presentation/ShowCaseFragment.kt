@@ -18,6 +18,7 @@ import io.github.gustavobarbosab.movies.extension.toolbar
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
+import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import javax.inject.Inject
 
 @ModuleScope
@@ -27,8 +28,6 @@ class ShowCaseFragment : Fragment() {
     lateinit var viewModel: ShowCaseViewModel
 
     lateinit var binding: FragmentMovieListBinding
-
-    private val adapter = MovieListAdapter(this::onItemClicked)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,17 +77,13 @@ class ShowCaseFragment : Fragment() {
         })
 
         viewModel.movieResponse.observe(viewLifecycleOwner, {
-            adapter.movies = it
-            binding.movies.adapter = adapter
+            binding.nowPlaying.loadMovies("Now Playing", it)
+            binding.topRated.loadMovies("Top Rated", it)
+            binding.popularMovies.loadMovies("Popular", it)
         })
     }
 
-    private fun onItemClicked(movie: Movie) {
+    private fun onItemClicked(movie: MovieShowCase) {
         findAppNavController().navigate(HomeFragmentDirections.actionDetailFragment())
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = ShowCaseFragment()
     }
 }

@@ -4,16 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.core.domain.data
-import io.github.gustavobarbosab.core.domain.model.Movie
-import io.github.gustavobarbosab.core.domain.usecase.MovieUseCase
+import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
+import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ShowCaseViewModel(
-    val useCase: MovieUseCase
+    private val useCase: ShowCaseUseCase
 ) : ViewModel() {
 
-    val movieResponse = MutableLiveData<List<Movie>>()
+    val movieResponse = MutableLiveData<List<MovieShowCase>>()
     val loading = MutableLiveData<MovieListState>()
 
     fun getPopularMovies() {
