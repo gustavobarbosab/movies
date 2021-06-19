@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
+import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.home.HomeFragmentDirections
 import io.github.gustavobarbosab.movies.BuildConfig
@@ -19,7 +20,6 @@ import io.github.gustavobarbosab.movies.extension.toolbar
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
-import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import javax.inject.Inject
 
 @ModuleScope
@@ -30,7 +30,7 @@ class ShowCaseFragment : Fragment() {
 
     lateinit var binding: FragmentMovieListBinding
 
-    private val bannerTopAdapter = PagerCarouselAdapter({})
+    private val bannerTopAdapter = PagerCarouselAdapter(this::onItemClicked)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +54,9 @@ class ShowCaseFragment : Fragment() {
         observeViewModel()
         setupToolbar()
         setupBanner()
+        binding.nowPlaying.clickListener = this::onItemClicked
+        binding.popularMovies.clickListener = this::onItemClicked
+        binding.topRated.clickListener = this::onItemClicked
         binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
         viewModel.getPopularMovies()
     }
@@ -98,7 +101,8 @@ class ShowCaseFragment : Fragment() {
         })
     }
 
-    private fun onItemClicked(movie: MovieShowCase) {
+    private fun onItemClicked(movie: MovieScrollableModel) {
+        context?.toast(movie.id.toString())
         findAppNavController().navigate(HomeFragmentDirections.actionDetailFragment())
     }
 }

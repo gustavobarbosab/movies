@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import io.github.gustavobarbosab.movies.extension.requireMainActivity
+import io.github.gustavobarbosab.movies.extension.toolbar
 
 class MovieDetailFragment : Fragment() {
 
@@ -18,5 +20,8 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        toolbar()
+            .setTitle("Details")
+            .showBackButton()
     }
 }

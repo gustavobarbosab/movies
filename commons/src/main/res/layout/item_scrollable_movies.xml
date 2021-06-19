@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:minHeight="150dp"
             android:minWidth="90dp"
+            android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
