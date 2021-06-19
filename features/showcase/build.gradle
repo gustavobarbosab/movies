@@ -35,6 +35,7 @@ dependencies {
     implementation androidxDependencies.appCompat
     implementation androidxDependencies.coreKtx
     implementation androidxDependencies.constraintLayout
+    implementation androidxDependencies.viewPager2
 
     implementation navigationDependencies.fragment
     implementation navigationDependencies.ui

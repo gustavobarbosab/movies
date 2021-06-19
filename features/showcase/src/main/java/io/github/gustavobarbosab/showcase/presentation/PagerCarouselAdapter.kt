@@ -1,16 +1,17 @@
-package io.github.gustavobarbosab.commons.widget.scrollablemovie
+package io.github.gustavobarbosab.showcase.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import io.github.gustavobarbosab.commons.databinding.ItemScrollableMoviesBinding
+import io.github.gustavobarbosab.commons.databinding.ItemPagerCarouselBinding
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
+import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 
-class ScrollableMovieAdapter(
-    private val clickListener: (MovieScrollableModel) -> Unit
-) : RecyclerView.Adapter<ScrollableMovieAdapter.ViewHolder>() {
+class PagerCarouselAdapter(
+    private val clickListener: (MovieShowCase) -> Unit
+) : RecyclerView.Adapter<PagerCarouselAdapter.ViewHolder>() {
 
-    var movies: List<MovieScrollableModel> = emptyList()
+    var items: List<MovieShowCase> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -19,7 +20,7 @@ class ScrollableMovieAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return ViewHolder(
-            ItemScrollableMoviesBinding.inflate(
+            ItemPagerCarouselBinding.inflate(
                 inflater,
                 parent,
                 false
@@ -28,23 +29,22 @@ class ScrollableMovieAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position], clickListener)
+        holder.bind(items[position], clickListener)
     }
 
-    override fun getItemCount(): Int = movies.size
+    override fun getItemCount(): Int = items.size
 
     class ViewHolder(
-        private val binding: ItemScrollableMoviesBinding
+        private val binding: ItemPagerCarouselBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            movie: MovieScrollableModel,
-            clickListener: (MovieScrollableModel) -> Unit
+            movie: MovieShowCase,
+            clickListener: (MovieShowCase) -> Unit
         ) {
             binding.apply {
                 root.setOnClickListener { clickListener(movie) }
-                movieImage.loadImage(movie.imageUrl)
-                likeMovie.isChecked = movie.isFavorite
+                carouselImage.loadImage(movie.posterUrl)
             }
         }
     }

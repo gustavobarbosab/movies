@@ -12,9 +12,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <View
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/bannerTop"
-                android:background="@color/colorPrimaryLight"
                 android:layout_margin="8dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

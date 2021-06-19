@@ -7,5 +7,6 @@ data class MovieShowCase(
     val name: String,
     val description: String,
     override val imageUrl: String,
+    val posterUrl: String,
     override val isFavorite: Boolean
 ) : MovieScrollableModel

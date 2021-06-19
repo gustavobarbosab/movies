@@ -14,6 +14,7 @@ class MovieMapper(
             input.id,
             input.title,
             input.overview,
-            configWrapper.formatImageUrl(input.posterPath)
+            configWrapper.formatImageUrl(input.posterPath),
+            configWrapper.formatImageUrl(input.backdropPath)
         )
 }

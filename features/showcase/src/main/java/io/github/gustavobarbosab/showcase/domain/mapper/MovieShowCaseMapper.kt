@@ -11,6 +11,7 @@ class MovieShowCaseMapper : Mapper<Movie, MovieShowCase> {
             input.name,
             input.description,
             input.imageUrl,
+            input.poster,
             input.isFavorite
         )
 }

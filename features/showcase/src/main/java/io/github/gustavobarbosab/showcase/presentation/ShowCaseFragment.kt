@@ -8,8 +8,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.commons.extension.toast
+import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
+import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
-import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.home.HomeFragmentDirections
 import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.findAppNavController
@@ -28,6 +29,8 @@ class ShowCaseFragment : Fragment() {
     lateinit var viewModel: ShowCaseViewModel
 
     lateinit var binding: FragmentMovieListBinding
+
+    private val bannerTopAdapter = PagerCarouselAdapter({})
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +52,19 @@ class ShowCaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
-        toolbar().setLogo()
-        viewModel.getPopularMovies()
+        setupToolbar()
+        setupBanner()
         binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
+        viewModel.getPopularMovies()
+    }
+
+    private fun setupBanner() {
+        binding.bannerTop.adapter = bannerTopAdapter
+        binding.bannerTop.setPageTransformer(DepthPageTransformer())
+        CarouselAutoScroll(binding.bannerTop, viewLifecycleOwner)
+    }
+
+    private fun setupToolbar() {
         toolbar()
             .setLogo()
             .setShortcutIcon(R.drawable.ic_search)
@@ -77,6 +90,8 @@ class ShowCaseFragment : Fragment() {
         })
 
         viewModel.movieResponse.observe(viewLifecycleOwner, {
+            // TODO separar futuramente
+            bannerTopAdapter.items = it
             binding.nowPlaying.loadMovies("Now Playing", it)
             binding.topRated.loadMovies("Top Rated", it)
             binding.popularMovies.loadMovies("Popular", it)
