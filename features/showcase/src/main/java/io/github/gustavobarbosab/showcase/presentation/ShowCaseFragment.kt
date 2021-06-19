@@ -61,7 +61,7 @@ class ShowCaseFragment : Fragment() {
     private fun setupBanner() {
         binding.bannerTop.adapter = bannerTopAdapter
         binding.bannerTop.setPageTransformer(DepthPageTransformer())
-        CarouselAutoScroll(binding.bannerTop, viewLifecycleOwner)
+        CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
     }
 
     private fun setupToolbar() {

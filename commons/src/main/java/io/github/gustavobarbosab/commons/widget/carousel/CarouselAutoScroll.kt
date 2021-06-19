@@ -61,6 +61,11 @@ class CarouselAutoScroll(
 
     companion object {
         const val FIRST_POSITION = 0
-        const val DEFAULT_TIME = 4000L
+        const val DEFAULT_TIME = 5000L
+
+        fun setupWithViewPager(
+            viewPager: ViewPager2?,
+            owner: LifecycleOwner?
+        ) = CarouselAutoScroll(viewPager, owner)
     }
 }

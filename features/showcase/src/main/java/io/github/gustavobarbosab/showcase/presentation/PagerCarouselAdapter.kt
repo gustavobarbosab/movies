@@ -45,6 +45,7 @@ class PagerCarouselAdapter(
             binding.apply {
                 root.setOnClickListener { clickListener(movie) }
                 carouselImage.loadImage(movie.posterUrl)
+                movieName.text = movie.name
             }
         }
     }
