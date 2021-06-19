@@ -15,6 +15,7 @@ class CarouselAutoScroll(
     private var currentPosition = FIRST_POSITION
     private val totalItems: Int
         get() = viewPager?.adapter?.itemCount ?: 0
+    private var lastRunnable: Runnable? = null
 
     init {
         currentPosition = viewPager?.currentItem ?: FIRST_POSITION
@@ -23,27 +24,37 @@ class CarouselAutoScroll(
         executeAutoScroll()
     }
 
-    private val runnableToScroll = Runnable {
-        if (viewPager == null)
-            return@Runnable
+    private val runnableToScroll
+        get() = Runnable {
+            if (viewPager == null)
+                return@Runnable
 
-        currentPosition =
-            if (currentPosition < totalItems) currentPosition + 1
-            else FIRST_POSITION
+            currentPosition =
+                if (currentPosition < totalItems) currentPosition + 1
+                else FIRST_POSITION
 
-        viewPager?.setCurrentItem(currentPosition, true)
-
-        executeAutoScroll()
-    }
+            viewPager?.setCurrentItem(currentPosition, true)
+            executeAutoScroll()
+        }
 
     private fun executeAutoScroll() {
-        viewPager?.postDelayed(runnableToScroll, timeMillis)
+        lastRunnable = runnableToScroll
+        viewPager?.postDelayed(lastRunnable, timeMillis)
+    }
+
+    override fun onPageScrollStateChanged(state: Int) {
+        if (state != ViewPager2.SCROLL_STATE_DRAGGING)
+            return
+        viewPager?.removeCallbacks(lastRunnable)
+        currentPosition = viewPager?.currentItem ?: FIRST_POSITION
+        executeAutoScroll()
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private fun onDestroy() {
         viewPager?.unregisterOnPageChangeCallback(this)
         owner?.lifecycle?.removeObserver(this)
+        viewPager?.removeCallbacks(lastRunnable)
         owner = null
         viewPager = null
     }
