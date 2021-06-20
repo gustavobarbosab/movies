@@ -11,8 +11,8 @@
             android:id="@+id/movieImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minHeight="150dp"
-            android:minWidth="90dp"
+            android:minHeight="170dp"
+            android:minWidth="110dp"
             android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -5,10 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.play.core.splitcompat.SplitCompat
+import com.google.android.play.core.splitinstall.SplitInstallHelper
+import com.google.android.play.core.splitinstall.SplitInstallManager
 import io.github.gustavobarbosab.movies.extension.requireMainActivity
 import io.github.gustavobarbosab.movies.extension.toolbar
 
 class MovieDetailFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        SplitCompat.install(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -15,6 +15,7 @@ import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.home.HomeFragmentDirections
 import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.findAppNavController
+import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.extension.toolbar
 import io.github.gustavobarbosab.showcase.R
@@ -63,7 +64,6 @@ class ShowCaseFragment : Fragment() {
     private fun setupBanner() {
         binding.bannerTop.adapter = bannerTopAdapter
         binding.bannerTop.setPageTransformer(DepthPageTransformer())
-        CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
     }
 
     private fun setupToolbar() {
@@ -97,12 +97,14 @@ class ShowCaseFragment : Fragment() {
 
         viewModel.playingNowResponse.observe(viewLifecycleOwner, {
             bannerTopAdapter.items = it
+            CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
+            binding.progressBar.startProgress()
         })
 
         viewModel.topRatedResponse.observe(viewLifecycleOwner, {
             binding.topRated.loadMovies("Top Rated", it)
         })
-        
+
         viewModel.latestMovieResponse.observe(viewLifecycleOwner, {
             binding.nowPlaying.loadMovies("Now Playing", it)
         })
@@ -110,6 +112,9 @@ class ShowCaseFragment : Fragment() {
 
     private fun onItemClicked(movie: MovieScrollableModel) {
         context?.toast(movie.id.toString())
-        findAppNavController().navigate(HomeFragmentDirections.actionDetailFragment())
+        findAppNavController()
+            .navigateSafely(HomeFragmentDirections.actionDetailFragment()) {
+                context?.toast("Ops, houve um erro :/")
+            }
     }
 }
