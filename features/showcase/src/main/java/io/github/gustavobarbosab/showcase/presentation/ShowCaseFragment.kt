@@ -58,7 +58,6 @@ class ShowCaseFragment : Fragment() {
         binding.popularMovies.clickListener = this::onItemClicked
         binding.topRated.clickListener = this::onItemClicked
         binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
-        viewModel.getPopularMovies()
     }
 
     private fun setupBanner() {
@@ -92,12 +91,20 @@ class ShowCaseFragment : Fragment() {
             }
         })
 
-        viewModel.movieResponse.observe(viewLifecycleOwner, {
-            // TODO separar futuramente
-            bannerTopAdapter.items = it
-            binding.nowPlaying.loadMovies("Now Playing", it)
-            binding.topRated.loadMovies("Top Rated", it)
+        viewModel.popularMovieResponse.observe(viewLifecycleOwner, {
             binding.popularMovies.loadMovies("Popular", it)
+        })
+
+        viewModel.playingNowResponse.observe(viewLifecycleOwner, {
+            bannerTopAdapter.items = it
+        })
+
+        viewModel.topRatedResponse.observe(viewLifecycleOwner, {
+            binding.topRated.loadMovies("Top Rated", it)
+        })
+        
+        viewModel.latestMovieResponse.observe(viewLifecycleOwner, {
+            binding.nowPlaying.loadMovies("Now Playing", it)
         })
     }
 

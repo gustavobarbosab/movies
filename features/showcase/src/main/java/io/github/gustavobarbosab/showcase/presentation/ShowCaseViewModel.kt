@@ -13,8 +13,18 @@ class ShowCaseViewModel(
     private val useCase: ShowCaseUseCase
 ) : ViewModel() {
 
-    val movieResponse = MutableLiveData<List<MovieShowCase>>()
+    val popularMovieResponse = MutableLiveData<List<MovieShowCase>>()
+    val topRatedResponse = MutableLiveData<List<MovieShowCase>>()
+    val playingNowResponse = MutableLiveData<List<MovieShowCase>>()
+    val latestMovieResponse = MutableLiveData<List<MovieShowCase>>()
     val loading = MutableLiveData<MovieListState>()
+
+    init {
+        getPopularMovies()
+        getLatestMovies()
+        getPlayingNowMovies()
+        getTopRatedMovies()
+    }
 
     fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.Main) {
@@ -23,7 +33,49 @@ class ShowCaseViewModel(
             val response = useCase.getPopularMovies()
 
             response.data()?.let {
-                movieResponse.postValue(it)
+                popularMovieResponse.postValue(it)
+            }
+
+            loading.value = MovieListState.HideLoading
+        }
+    }
+
+    fun getLatestMovies() {
+        viewModelScope.launch(Dispatchers.Main) {
+            loading.postValue(MovieListState.ShowLoading)
+
+            val response = useCase.getLatestMovies()
+
+            response.data()?.let {
+                latestMovieResponse.postValue(it)
+            }
+
+            loading.value = MovieListState.HideLoading
+        }
+    }
+
+    fun getPlayingNowMovies() {
+        viewModelScope.launch(Dispatchers.Main) {
+            loading.postValue(MovieListState.ShowLoading)
+
+            val response = useCase.getPlayingNow()
+
+            response.data()?.let {
+                playingNowResponse.postValue(it)
+            }
+
+            loading.value = MovieListState.HideLoading
+        }
+    }
+
+    fun getTopRatedMovies() {
+        viewModelScope.launch(Dispatchers.Main) {
+            loading.postValue(MovieListState.ShowLoading)
+
+            val response = useCase.getTopRatedMovies()
+
+            response.data()?.let {
+                topRatedResponse.postValue(it)
             }
 
             loading.value = MovieListState.HideLoading

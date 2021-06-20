@@ -27,6 +27,36 @@ class ShowCaseUseCaseImpl(
             }
         }
 
+    override suspend fun getTopRatedMovies(): Result<List<MovieShowCase>> =
+        withContext(Dispatchers.IO) {
+            val topRated = movieRepository.getTopRatedMovies()
+            val favorites = sessionRepository.favoriteMovies()
+
+            return@withContext when (topRated) {
+                is Result.Error -> topRated
+                is Result.Success -> bookmarkFavorites(topRated, favorites)
+            }
+        }
+
+    override suspend fun getPlayingNow(): Result<List<MovieShowCase>> =
+        withContext(Dispatchers.IO) {
+            val playing = movieRepository.getPlayingNow()
+            val favorites = sessionRepository.favoriteMovies()
+
+            return@withContext when (playing) {
+                is Result.Error -> playing
+                is Result.Success -> bookmarkFavorites(playing, favorites)
+            }
+        }
+
+    override suspend fun getLatestMovies(): Result<List<MovieShowCase>> =
+        withContext(Dispatchers.IO) {
+            return@withContext when (val movies = movieRepository.getLatestMovies()) {
+                is Result.Error -> movies
+                is Result.Success -> mapList(movies.data)
+            }
+        }
+
     private fun bookmarkFavorites(
         popular: Result.Success<List<Movie>>,
         favorites: Result<List<Movie>>

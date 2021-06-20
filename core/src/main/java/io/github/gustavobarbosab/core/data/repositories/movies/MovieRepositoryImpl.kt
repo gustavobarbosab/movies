@@ -1,6 +1,5 @@
 package io.github.gustavobarbosab.core.data.repositories.movies
 
-import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
 import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
@@ -15,19 +14,41 @@ class MovieRepositoryImpl(
     val mapper: MovieMapper
 ) : MovieRepository {
 
-    var localCache: List<Movie> = emptyList()
-
     override suspend fun getPopularMovies(): Result<List<Movie>> =
         try {
-            if (localCache.isEmpty()) {
-                localCache = mapToMovie(remoteDataSource.getPopularMovies().results)
-            }
-
-            Result.Success(localCache)
+            Result.Success(
+                mapToMovie(remoteDataSource.getPopularMovies().results)
+            )
         } catch (ex: Exception) {
             Result.Error(ex)
         }
 
+    override suspend fun getTopRatedMovies(): Result<List<Movie>> =
+        try {
+            Result.Success(
+                mapToMovie(remoteDataSource.getTopRatedMovies().results)
+            )
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+
+    override suspend fun getPlayingNow(): Result<List<Movie>> =
+        try {
+            Result.Success(
+                mapToMovie(remoteDataSource.getPlayingNow().results)
+            )
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
+
+    override suspend fun getLatestMovies(): Result<List<Movie>> =
+        try {
+            Result.Success(
+                mapToMovie(remoteDataSource.getLatestMovies().results)
+            )
+        } catch (ex: Exception) {
+            Result.Error(ex)
+        }
 
     private fun mapToMovie(movieResponse: List<PopularMovieResponse>?): List<Movie> =
         movieResponse
