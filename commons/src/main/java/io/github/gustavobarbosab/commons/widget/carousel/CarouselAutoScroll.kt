@@ -16,6 +16,7 @@ class CarouselAutoScroll(
     private val totalItems: Int
         get() = viewPager?.adapter?.itemCount ?: 0
     private var lastRunnable: Runnable? = null
+    var onPageChangedListener: (Int) -> Unit = {}
 
     init {
         currentPosition = viewPager?.currentItem ?: FIRST_POSITION
@@ -33,15 +34,10 @@ class CarouselAutoScroll(
                 else FIRST_POSITION
 
             viewPager?.setCurrentItem(currentPosition, true)
-            executeAutoScroll()
+            startAutoScroll()
         }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun onResume() {
-        executeAutoScroll()
-    }
-
-    private fun executeAutoScroll() {
+    fun startAutoScroll() {
         lastRunnable = runnableToScroll
         viewPager?.postDelayed(lastRunnable, timeMillis)
     }
@@ -51,12 +47,11 @@ class CarouselAutoScroll(
             return
         viewPager?.removeCallbacks(lastRunnable)
         currentPosition = viewPager?.currentItem ?: FIRST_POSITION
-        executeAutoScroll()
+        startAutoScroll()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    private fun onStop() {
-        viewPager?.removeCallbacks(lastRunnable)
+    override fun onPageSelected(position: Int) {
+        onPageChangedListener(position)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

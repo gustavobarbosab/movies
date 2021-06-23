@@ -12,6 +12,7 @@ class ProgressCounter(
     private var countDownTimer: CountDownTimer? = null
 
     fun startCounter() {
+        stopCounter()
         countDownTimer = object : CountDownTimer(counterTimeMillis, ONE_SECOND_IN_MILLIS) {
             override fun onTick(millisUntilFinished: Long) {
                 val timeToFinish = calculate(millisUntilFinished)

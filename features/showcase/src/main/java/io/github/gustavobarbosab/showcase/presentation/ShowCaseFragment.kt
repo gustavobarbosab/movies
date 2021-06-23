@@ -33,6 +33,8 @@ class ShowCaseFragment : Fragment() {
 
     private val bannerTopAdapter = PagerCarouselAdapter(this::onItemClicked)
 
+    private var carouselAutoScroll: CarouselAutoScroll? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMovieListComponent
@@ -62,6 +64,11 @@ class ShowCaseFragment : Fragment() {
     }
 
     private fun setupBanner() {
+        carouselAutoScroll =
+            CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
+        carouselAutoScroll?.onPageChangedListener = {
+            binding.progressBar.startProgress()
+        }
         binding.bannerTop.adapter = bannerTopAdapter
         binding.bannerTop.setPageTransformer(DepthPageTransformer())
     }
@@ -97,7 +104,7 @@ class ShowCaseFragment : Fragment() {
 
         viewModel.playingNowResponse.observe(viewLifecycleOwner, {
             bannerTopAdapter.items = it
-            CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
+            carouselAutoScroll?.startAutoScroll()
             binding.progressBar.startProgress()
         })
 
