@@ -43,7 +43,7 @@ pipeline {
     stages {
         stage('Run Tests') {
             steps {
-                echo 'Running Tests'
+                echo '-------- Running Unit Tests \o/ --------'
                 script {
                     VARIANT = getBuildType()
                     sh "./gradlew test${VARIANT}UnitTest"
@@ -53,7 +53,7 @@ pipeline {
         stage('Build Bundle') {
             when { expression { return isDeployCandidate() } }
             steps {
-                echo 'Building'
+                echo '-------- Building Application \o/ --------'
                 script {
                     VARIANT = getBuildType()
                     sh "./gradlew bundle${VARIANT}"
