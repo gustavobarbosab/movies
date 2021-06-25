@@ -14,8 +14,8 @@ android {
         applicationId "io.github.gustavobarbosab.movies"
         minSdkVersion movieConfigVersions.minSdk
         targetSdkVersion movieConfigVersions.targetSdk
-        versionCode 10
-        versionName "0.10.0"
+        versionCode 11
+        versionName "0.11.0"
 
         testInstrumentationRunner movieConfigVersions.testInstrumentation
     }
