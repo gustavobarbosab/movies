@@ -1,0 +1,46 @@
+apply plugin: 'com.android.dynamic-feature'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion movieConfigVersions.compileSdk
+
+    defaultConfig {
+        minSdkVersion movieConfigVersions.minSdk
+        targetSdkVersion movieConfigVersions.targetSdk
+        versionCode 1
+        versionName "1.0"
+    }
+    buildFeatures.dataBinding = true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(modulesDependencies.app)
+
+    implementation kotlinDependencies.jdk7
+
+    implementation androidxDependencies.appCompat
+    implementation androidxDependencies.coreKtx
+    implementation androidxDependencies.constraintLayout
+
+    implementation navigationDependencies.fragment
+    implementation navigationDependencies.ui
+
+    testImplementation unitTestDependencies.junit
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
+}

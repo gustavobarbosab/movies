@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion movieConfigVersions.compileSdk
+    buildToolsVersion movieConfigVersions.buildTools
+
+    defaultConfig {
+        minSdkVersion movieConfigVersions.minSdk
+        targetSdkVersion movieConfigVersions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner movieConfigVersions.testInstrumentation
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+
+        debug {
+            buildConfigField "String", "MOVIE_BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\""
+        }
+
+        release {
+            minifyEnabled false
+            buildConfigField "String", "MOVIE_BASE_URL", "\"https://api.themoviedb.org/3/\""
+            buildConfigField "String", "IMAGE_BASE_URL", "\"https://image.tmdb.org/t/p/original\""
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation kotlinDependencies.values()
+
+    implementation androidxDependencies.appCompat
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
+
+    implementation networkDependencies.values()
+
+    implementation corroutinesDependency
+
+    implementation playCoreDependencies.values()
+
+    implementation navigationDependencies.values()
+}

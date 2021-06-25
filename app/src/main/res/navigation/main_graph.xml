@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:progressDestination="@+id/fragment_progress"
+    app:startDestination="@+id/fragment_home">
+
+    <fragment
+        android:id="@+id/fragment_home"
+        android:name="io.github.gustavobarbosab.home.HomeFragment"
+        android:label="Home">
+        <action
+            android:id="@+id/action_detail_fragment"
+            app:popUpTo="@id/fragment_home"
+            app:destination="@id/detailGraph" />
+    </fragment>
+
+    <include-dynamic
+        android:id="@+id/detailGraph"
+        app:moduleName="detail"
+        app:graphResName="detail_graph" />
+
+    <fragment
+        android:id="@+id/fragment_progress"
+        android:name="io.github.gustavobarbosab.movies.FeatureDownloadingFragment"
+        android:label="ProgressFragment" />
+</navigation>

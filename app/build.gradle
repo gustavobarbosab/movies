@@ -1,19 +1,23 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion movieConfigVersions.compileSdk
+    buildToolsVersion movieConfigVersions.buildTools
 
     defaultConfig {
         applicationId "io.github.gustavobarbosab.movies"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion movieConfigVersions.minSdk
+        targetSdkVersion movieConfigVersions.targetSdk
+        versionCode 11
+        versionName "0.11.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner movieConfigVersions.testInstrumentation
     }
 
     buildTypes {
@@ -23,15 +27,45 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures.dataBinding = true
+
+    dynamicFeatures = [
+            ":features:home",
+            ':features:showcase',
+            ":features:favorite_movies",
+            ':features:detail'
+    ]
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    api project(modulesDependencies.core)
+    api project(modulesDependencies.common)
+
+    implementation kotlinDependencies.values()
+    implementation androidxDependencies.values()
+    implementation navigationDependencies.values()
+    testImplementation unitTestDependencies.values()
+
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
+    kapt daggerDependencies.processor
+
+    implementation networkDependencies.values()
+
+    implementation playCoreDependencies.values()
+
+    implementation platform('com.google.firebase:firebase-bom:28.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
 }

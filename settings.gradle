@@ -1,2 +1,9 @@
-rootProject.name='Movies'
-include ':app'
+rootProject.name = 'Movies'
+include ':app',
+        ':core',
+        ':commons',
+        ':features',
+        ':features:home',
+        ':features:showcase',
+        ':features:favorite_movies',
+        ':features:detail'
