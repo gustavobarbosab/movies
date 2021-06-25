@@ -1,5 +1,4 @@
 class Constants {
-
     static final String MASTER_BRANCH = 'master'
 
     static final String QA_BUILD = 'Debug'
@@ -36,10 +35,10 @@ pipeline {
     environment {
         appName = 'Moovie'
 
-        KEY_PASSWORD = credentials('keyPassword')
-        KEY_ALIAS = credentials('keyAlias')
-        KEYSTORE = credentials('keystore')
-        STORE_PASSWORD = credentials('storePassword')
+//         KEY_PASSWORD = credentials('keyPassword')
+//         KEY_ALIAS = credentials('keyAlias')
+//         KEYSTORE = credentials('keystore')
+//         STORE_PASSWORD = credentials('storePassword')
     }
     stages {
         stage('Run Tests') {
@@ -57,7 +56,7 @@ pipeline {
                 echo 'Building'
                 script {
                     VARIANT = getBuildType()
-                    sh "./gradlew -PstorePass=${STORE_PASSWORD} -Pkeystore=${KEYSTORE} -Palias=${KEY_ALIAS} -PkeyPass=${KEY_PASSWORD} bundle${VARIANT}"
+                    sh "./gradlew bundle${VARIANT}"
                 }
             }
         }
