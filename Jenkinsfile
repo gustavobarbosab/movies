@@ -45,17 +45,10 @@ def getAppVersion() {
 }
 
 pipeline {
+
     agent any
-    environment {
-        appName = 'Moovie'
 
-//         KEY_PASSWORD = credentials('keyPassword')
-//         KEY_ALIAS = credentials('keyAlias')
-//         KEYSTORE = credentials('keystore')
-//         STORE_PASSWORD = credentials('storePassword')
-    }
     stages {
-
         stage('Checking code style') {
             steps {
                 echo "-------- Running Unit Tests --------"
@@ -87,7 +80,9 @@ pipeline {
             }
         }
         stage('Upload to Play Store') {
-            androidApkUpload googleCredentialsId: 'Moovie Google Key', apkFilesPattern: '**/*-release.aab', trackName: 'internal'
+            steps {
+                androidApkUpload googleCredentialsId: 'Moovie Google Key', apkFilesPattern: '**/*-release.aab', trackName: 'internal'
+            }
         }
          /* stage('Cleanup Credential') {
               sh "rm app/keystore.jks"
