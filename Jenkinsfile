@@ -51,6 +51,7 @@ pipeline {
             }
         }
         stage('Build Bundle') {
+            echo "Build inside branch ${BRANCH_NAME}"
             when { expression { return isDeployCandidate() } }
             steps {
                 echo "-------- Building Application --------"
