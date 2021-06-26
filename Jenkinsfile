@@ -35,6 +35,15 @@ def isDeployCandidate() {
     return true
 }
 
+def getAppVersion() {
+    Properties properties = new Properties()
+    File propertiesFile = new File('version.properties')
+    propertiesFile.withInputStream {
+        properties.load(it)
+    }
+    return "${properties.MAJOR}.${properties.MINOR}.${properties.PATCH}"
+}
+
 pipeline {
     agent any
     environment {
@@ -46,7 +55,8 @@ pipeline {
 //         STORE_PASSWORD = credentials('storePassword')
     }
     stages {
-        stage('Run Unit Tests') {
+
+        stage('Checking code style') {
             steps {
                 echo "-------- Running Unit Tests --------"
                 script {
@@ -54,10 +64,27 @@ pipeline {
                 }
             }
         }
-        stage('Build Bundle') {
+        stage('Run tests') {
+            steps {
+                echo "-------- Running Unit Tests --------"
+                script {
+                    sh "./gradlew test${VARIANT}UnitTest"
+                }
+            }
+        }
+        stage('Build bundle') {
             when { expression { return isDeployCandidate() } }
             steps {
                 echo "-------- Building Application --------"
+                script {
+                    sh "./gradlew bundle${VARIANT}"
+                }
+            }
+        }
+        stage('Upload to store') {
+            when { expression { return isDeployCandidate() } }
+            steps {
+                echo "-------- Upload App VERSION ${getAppVersion()} --------"
                 script {
                     sh "./gradlew bundle${VARIANT}"
                 }
