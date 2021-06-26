@@ -80,7 +80,11 @@ pipeline {
         stage('Upload to Play Store') {
             steps {
                 echo "-------- Starting MOOVIE upload to store --------"
-                androidApkUpload googleCredentialsId: 'Moovie Google Key', apkFilesPattern: '**/*-release.aab', trackName: 'internal'
+                androidApkUpload
+                    googleCredentialsId: 'Moovie Google Key',
+                    apkFilesPattern: '**/*-release.aab',
+                    trackName: 'internal',
+                    rolloutPercentage: '100%'
             }
         }
          /* stage('Cleanup Credential') {
