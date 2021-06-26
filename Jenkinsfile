@@ -27,7 +27,12 @@ def getTrackType() {
 }
 
 def isDeployCandidate() {
-    return ("${env.VARIANT}" == Constants.RELEASE_BUILD)
+    if ("${env.VARIANT}" == Constants.QA_BUILD) {
+        println "-------- This 's a QA build, we stopping here --------"
+        return false
+    }
+
+    return true
 }
 
 pipeline {
