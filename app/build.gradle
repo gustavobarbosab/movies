@@ -10,6 +10,15 @@ android {
     compileSdkVersion movieConfigVersions.compileSdk
     buildToolsVersion movieConfigVersions.buildTools
 
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEYSTORE_ALIAS")
+            keyPassword System.getenv("KEYSTORE_PASSWORD")
+        }
+    }
+
     defaultConfig {
         applicationId "io.github.gustavobarbosab.movies"
         minSdkVersion movieConfigVersions.minSdk
