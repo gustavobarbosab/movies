@@ -49,3 +49,9 @@ build/
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.idea/navEditor.xml
+/.idea/shelf/
+/.idea/assetWizardSettings.xml
+/.idea/jarRepositories.xml
+/app.apks
+/app/*.aab
