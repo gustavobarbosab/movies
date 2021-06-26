@@ -27,7 +27,7 @@ def getTrackType() {
 }
 
 def isDeployCandidate() {
-    return ("${env.BRANCH_NAME}" =~ /(develop|master)/)
+    return ("${env.VARIANT}" == Constants.RELEASE_BUILD)
 }
 
 pipeline {
@@ -41,24 +41,19 @@ pipeline {
 //         STORE_PASSWORD = credentials('storePassword')
     }
     stages {
-        stage('Run Tests') {
+        stage('Run Unit Tests') {
             steps {
                 echo "-------- Running Unit Tests --------"
                 script {
-                    VARIANT = getBuildType()
                     sh "./gradlew test${VARIANT}UnitTest"
                 }
             }
         }
         stage('Build Bundle') {
-            script {
-                        echo "Build inside branch ${env.BRANCH_NAME}"
-            }
             when { expression { return isDeployCandidate() } }
             steps {
                 echo "-------- Building Application --------"
                 script {
-                    VARIANT = getBuildType()
                     sh "./gradlew bundle${VARIANT}"
                 }
             }
