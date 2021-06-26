@@ -51,10 +51,7 @@ pipeline {
     stages {
         stage('Checking code style') {
             steps {
-                echo "-------- Running Unit Tests --------"
-                script {
-                    sh "./gradlew test${VARIANT}UnitTest"
-                }
+                echo "-------- Checking code style --------"
             }
         }
         stage('Run tests') {
@@ -70,17 +67,18 @@ pipeline {
                 sh "cp \$KEYFILE app/keystore.jks"
                 }
              } */
-        stage('Upload to store') {
+        stage('Generate bundle application') {
             when { expression { return isDeployCandidate() } }
             steps {
-                echo "-------- Upload App VERSION ${getAppVersion()} --------"
+                echo "-------- Generate App VERSION ${getAppVersion()} --------"
                 script {
-                    sh "./gradlew clean assembleRelease"
+                    sh "./gradlew clean bundleRelease"
                 }
             }
         }
         stage('Upload to Play Store') {
             steps {
+                echo "-------- Starting MOOVIE upload to store --------"
                 androidApkUpload googleCredentialsId: 'Moovie Google Key', apkFilesPattern: '**/*-release.aab', trackName: 'internal'
             }
         }
