@@ -7,6 +7,15 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEYSTORE_ALIAS")
+            keyPassword System.getenv("KEYSTORE_PASSWORD")
+        }
+    }
+
     compileSdkVersion movieConfigVersions.compileSdk
     buildToolsVersion movieConfigVersions.buildTools
 

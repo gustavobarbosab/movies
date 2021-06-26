@@ -72,23 +72,25 @@ pipeline {
                 }
             }
         }
-        stage('Build bundle') {
-            when { expression { return isDeployCandidate() } }
-            steps {
-                echo "-------- Building Application --------"
-                script {
-                    sh "./gradlew bundle${VARIANT}"
+        /* stage('Setup Tools') {
+             withCredentials([file(credentialsId: 'mooviekey', variable: 'KEYFILE')]) {
+                sh "cp \$KEYFILE app/keystore.jks"
                 }
-            }
-        }
+             } */
         stage('Upload to store') {
             when { expression { return isDeployCandidate() } }
             steps {
                 echo "-------- Upload App VERSION ${getAppVersion()} --------"
                 script {
-                    sh "./gradlew bundle${VARIANT}"
+                    sh "./gradlew clean assembleRelease"
                 }
             }
         }
+        stage('Upload to Play Store') {
+            androidApkUpload googleCredentialsId: 'Moovie Google Key', apkFilesPattern: '**/*-release.aab', trackName: 'internal'
+        }
+         /* stage('Cleanup Credential') {
+              sh "rm app/keystore.jks"
+         }  */
     }
 }
