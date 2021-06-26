@@ -59,4 +59,6 @@ dependencies {
     implementation playCoreDependencies.values()
 
     implementation navigationDependencies.values()
+
+    testImplementation unitTestDependencies.values()
 }

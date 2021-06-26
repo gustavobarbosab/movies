@@ -48,4 +48,6 @@ dependencies {
     kapt glideDependencies.processor
 
     implementation navigationDependencies.dynamicFeature
+
+    testImplementation unitTestDependencies.values()
 }
