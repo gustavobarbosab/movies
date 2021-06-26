@@ -70,7 +70,7 @@ pipeline {
         stage('Generate bundle application') {
             when { expression { return isDeployCandidate() } }
             steps {
-                pwd
+                sh pwd
                 echo "-------- Generate App VERSION --------"
                 script {
                     sh "./gradlew clean bundleRelease"
