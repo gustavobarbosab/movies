@@ -81,7 +81,7 @@ pipeline {
             steps {
                 echo "-------- Starting MOOVIE upload to store --------"
                 androidApkUpload googleCredentialsId:'Moovie Google Key',
-                                 apkFilesPattern: '**/*-release.aab',
+                                 filesPattern: '**/build/outputs/**/*-release.aab',
                                  trackName: 'internal',
                                  rolloutPercentage: '100'
             }
