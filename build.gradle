@@ -1,18 +1,10 @@
 buildscript {
-
-    Properties properties = new Properties()
-    File propertiesFile = new File('version.properties')
-    propertiesFile.withInputStream { properties.load(it) }
-
     ext {
-        appVersionName = "${properties.MAJOR}.${properties.MINOR}.${properties.PATCH}"
-        appVersionCode = Integer.parseInt(properties.VERSION_CODE)
-
         // App Configs
         movieConfigVersions = [
                 minSdk             : 21,
-                targetSdk          : 29,
-                compileSdk         : 29,
+                targetSdk          : 30,
+                compileSdk         : 30,
                 buildTools         : "30.0.2",
                 testInstrumentation: "androidx.test.runner.AndroidJUnitRunner"
         ]
@@ -91,11 +83,11 @@ buildscript {
 
     dependencies {
         // Don't update gradle, this dependency are generating problems after update
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-        classpath 'com.google.gms:google-services:4.3.8'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.0'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
     }
 }
 

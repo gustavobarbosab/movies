@@ -1,3 +1,5 @@
+import static java.lang.Integer.getInteger
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
@@ -6,12 +8,15 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+keystoreFile.withInputStream { keystoreProperties.load(it) }
+
+def versionFile = file('version.properties')
+def versionProperties = new Properties()
+versionFile.withInputStream { versionProperties.load(it) }
 
 android {
-
     compileSdkVersion movieConfigVersions.compileSdk
     buildToolsVersion movieConfigVersions.buildTools
 
@@ -19,8 +24,8 @@ android {
         applicationId "io.github.gustavobarbosab.movies"
         minSdkVersion movieConfigVersions.minSdk
         targetSdkVersion movieConfigVersions.targetSdk
-        versionCode appVersionCode
-        versionName appVersionName
+        versionCode getInteger(versionProperties.VERSION_CODE)
+        versionName versionProperties.VERSION_NAME
 
         testInstrumentationRunner movieConfigVersions.testInstrumentation
     }
