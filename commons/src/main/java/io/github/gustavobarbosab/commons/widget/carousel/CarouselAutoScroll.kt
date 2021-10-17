@@ -1,5 +1,7 @@
 package io.github.gustavobarbosab.commons.widget.carousel
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -11,48 +13,38 @@ class CarouselAutoScroll(
     private var owner: LifecycleOwner?
 ) : LifecycleObserver, ViewPager2.OnPageChangeCallback() {
 
-    private var timeMillis = DEFAULT_TIME
-    private var currentPosition = FIRST_POSITION
-    private val totalItems: Int
-        get() = viewPager?.adapter?.itemCount ?: 0
-    private var lastRunnable: Runnable? = null
     var onPageChangedListener: (Int) -> Unit = {}
+    private var timeMillis = DEFAULT_TIME
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val currentPosition: Int
+        get() = viewPager?.currentItem ?: FIRST_POSITION
+
+    private val lastPosition: Int
+        get() = (viewPager?.adapter?.itemCount ?: 0) - 1
+
+    private val nextPosition: Int
+        get() {
+            return if (currentPosition < lastPosition) currentPosition + 1
+            else FIRST_POSITION
+        }
 
     init {
-        currentPosition = viewPager?.currentItem ?: FIRST_POSITION
         owner?.lifecycle?.addObserver(this)
         viewPager?.registerOnPageChangeCallback(this)
     }
 
-    private val runnableToScroll
-        get() = Runnable {
-            if (viewPager == null)
-                return@Runnable
-
-            currentPosition =
-                if (currentPosition < totalItems) currentPosition + 1
-                else FIRST_POSITION
-
-            viewPager?.setCurrentItem(currentPosition, true)
-            startAutoScroll()
+    private fun startAutoScroll() {
+        val runnable = Runnable {
+            viewPager?.setCurrentItem(nextPosition, true)
         }
-
-    fun startAutoScroll() {
-        lastRunnable = runnableToScroll
-        viewPager?.postDelayed(lastRunnable, timeMillis)
-    }
-
-    override fun onPageScrollStateChanged(state: Int) {
-        if (state != ViewPager2.SCROLL_STATE_IDLE)
-            return
-        viewPager?.removeCallbacks(lastRunnable)
-        currentPosition = viewPager?.currentItem ?: FIRST_POSITION
-        onPageChangedListener(currentPosition)
-        startAutoScroll()
+        handler.removeCallbacksAndMessages(null)
+        handler.postDelayed(runnable, timeMillis)
     }
 
     override fun onPageSelected(position: Int) {
-        onPageChangedListener(position)
+        startAutoScroll()
+        onPageChangedListener(currentPosition)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)

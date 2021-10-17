@@ -102,8 +102,6 @@ class ShowCaseFragment : Fragment() {
 
         viewModel.playingNowResponse.observe(viewLifecycleOwner, {
             bannerTopAdapter.items = it
-            carouselAutoScroll?.startAutoScroll()
-            binding.progressBar.startProgress()
         })
 
         viewModel.topRatedResponse.observe(viewLifecycleOwner, {
