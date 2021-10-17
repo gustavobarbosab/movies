@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
 import io.github.gustavobarbosab.commons.extension.navController
 import io.github.gustavobarbosab.movies.databinding.ActivityMainBinding
@@ -18,8 +17,7 @@ class MainActivity : AppCompatActivity() {
         get() = supportFragmentManager.navController(R.id.nav_main_fragment)
 
     private val destinationListener =
-        NavController.OnDestinationChangedListener { _, destination, arguments ->
-            changeToolbarType(destination, arguments)
+        NavController.OnDestinationChangedListener { _, _, arguments ->
             changeBottomNavVisibility(arguments)
         }
 
@@ -29,21 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.setupBackButton(this::onBackPressed)
         binding.bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener(destinationListener)
-    }
-
-    private fun changeToolbarType(navDestination: NavDestination, arguments: Bundle?) {
-        when (arguments?.getBoolean(TOOLBAR_LOGO)) {
-            true -> binding.toolbar.setLogo()
-            else -> toolbarDefault(navDestination.label.toString())
-        }
-    }
-
-    private fun toolbarDefault(title: String) {
-        binding.toolbar.apply {
-            setTitle(title)
-            showBackButton()
-            hideShortcutIcon()
-        }
     }
 
     private fun changeBottomNavVisibility(arguments: Bundle?) {

@@ -6,10 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.play.core.splitcompat.SplitCompat
-import com.google.android.play.core.splitinstall.SplitInstallHelper
-import com.google.android.play.core.splitinstall.SplitInstallManager
-import io.github.gustavobarbosab.movies.extension.requireMainActivity
-import io.github.gustavobarbosab.movies.extension.toolbar
+import io.github.gustavobarbosab.movies.extension.applicationToolbar
 
 class MovieDetailFragment : Fragment() {
 
@@ -28,8 +25,9 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toolbar()
-            .setTitle("Details")
-            .showBackButton()
+        applicationToolbar {
+            title("Details")
+            backButton(true)
+        }
     }
 }

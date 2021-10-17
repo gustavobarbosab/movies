@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
+import io.github.gustavobarbosab.commons.widget.MovieToolbar
 import io.github.gustavobarbosab.movies.MainActivity
 import io.github.gustavobarbosab.movies.MovieApplication
 import java.lang.Exception
@@ -27,12 +28,14 @@ fun NavController.navigateSafely(
 fun Fragment.requireAppComponent() =
     (this.requireActivity().application as MovieApplication).appComponent
 
-fun Fragment.toolbar() =
-    requireMainActivity()
-        .binding
-        .toolbar
-        .hideBackButton()
-        .hideShortcutIcon()
+fun Fragment.applicationToolbar(func: MovieToolbar.Builder.() -> Unit) =
+    MovieToolbar
+        .Builder()
+        .apply {
+            func()
+            build(requireMainActivity().binding.toolbar)
+        }
+
 
 
 

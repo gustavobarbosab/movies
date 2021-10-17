@@ -16,7 +16,7 @@ import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
-import io.github.gustavobarbosab.movies.extension.toolbar
+import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
@@ -73,12 +73,11 @@ class ShowCaseFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-        toolbar()
-            .setLogo()
-            .setShortcutIcon(R.drawable.ic_search)
-            .setShortcutListener {
-                requireContext().toast("Clicooou!")
-            }
+        applicationToolbar {
+            logo(io.github.gustavobarbosab.commons.R.drawable.ic_default_icon)
+            shortcutIcon(R.drawable.ic_search)
+            shortcutListener { requireContext().toast("Clicooou!") }
+        }
     }
 
     private fun observeViewModel() {
