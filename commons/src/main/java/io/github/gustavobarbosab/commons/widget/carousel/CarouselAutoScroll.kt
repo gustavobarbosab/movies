@@ -43,10 +43,11 @@ class CarouselAutoScroll(
     }
 
     override fun onPageScrollStateChanged(state: Int) {
-        if (state != ViewPager2.SCROLL_STATE_DRAGGING)
+        if (state != ViewPager2.SCROLL_STATE_IDLE)
             return
         viewPager?.removeCallbacks(lastRunnable)
         currentPosition = viewPager?.currentItem ?: FIRST_POSITION
+        onPageChangedListener(currentPosition)
         startAutoScroll()
     }
 
