@@ -31,6 +31,7 @@
 
     <include-dynamic
         android:id="@+id/detailGraph"
+        app:graphPackage="io.github.gustavobarbosab.movies.detail"
         app:graphResName="detail_graph"
         app:moduleName="detail" />
 
