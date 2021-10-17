@@ -16,7 +16,6 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/detail" />
             <option value="$PROJECT_DIR$/features/favorite_movies" />
-            <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/showcase" />
           </set>
         </option>

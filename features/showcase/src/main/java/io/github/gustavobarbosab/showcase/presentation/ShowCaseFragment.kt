@@ -12,7 +12,6 @@ import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
-import io.github.gustavobarbosab.home.HomeFragmentDirections
 import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
@@ -120,7 +119,7 @@ class ShowCaseFragment : Fragment() {
     private fun onItemClicked(movie: MovieScrollableModel) {
         context?.toast(movie.id.toString())
         findAppNavController()
-            .navigateSafely(HomeFragmentDirections.actionDetailFragment()) {
+            .navigateSafely(ShowCaseFragmentDirections.actionDetailFragment()) {
                 context?.toast("Ops, houve um erro :/")
             }
     }
