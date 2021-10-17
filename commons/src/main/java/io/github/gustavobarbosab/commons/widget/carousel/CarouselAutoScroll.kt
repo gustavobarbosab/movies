@@ -2,15 +2,14 @@ package io.github.gustavobarbosab.commons.widget.carousel
 
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import androidx.viewpager2.widget.ViewPager2
+import io.github.gustavobarbosab.commons.widget.autoprogress.AutoProgressView
 
 class CarouselAutoScroll(
+    private var owner: LifecycleOwner?,
     private var viewPager: ViewPager2?,
-    private var owner: LifecycleOwner?
+    private var autoProgressView: AutoProgressView? = null
 ) : LifecycleObserver, ViewPager2.OnPageChangeCallback() {
 
     var onPageChangedListener: (Int) -> Unit = {}
@@ -30,8 +29,14 @@ class CarouselAutoScroll(
         }
 
     init {
-        owner?.lifecycle?.addObserver(this)
         viewPager?.registerOnPageChangeCallback(this)
+        owner?.lifecycle?.addObserver(object : LifecycleEventObserver {
+            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                if (event == Lifecycle.Event.ON_DESTROY) {
+                    onDestroy()
+                }
+            }
+        })
     }
 
     private fun startAutoScroll() {
@@ -44,10 +49,10 @@ class CarouselAutoScroll(
 
     override fun onPageSelected(position: Int) {
         startAutoScroll()
+        autoProgressView?.startProgress()
         onPageChangedListener(currentPosition)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private fun onDestroy() {
         viewPager?.unregisterOnPageChangeCallback(this)
         owner?.lifecycle?.removeObserver(this)
@@ -60,8 +65,14 @@ class CarouselAutoScroll(
         const val DEFAULT_TIME = 5000L
 
         fun setupWithViewPager(
+            owner: LifecycleOwner?,
+            viewPager: ViewPager2?
+        ) = CarouselAutoScroll(owner, viewPager)
+
+        fun setupWithViewPager(
+            owner: LifecycleOwner?,
             viewPager: ViewPager2?,
-            owner: LifecycleOwner?
-        ) = CarouselAutoScroll(viewPager, owner)
+            autoProgressView: AutoProgressView
+        ) = CarouselAutoScroll(owner, viewPager, autoProgressView)
     }
 }

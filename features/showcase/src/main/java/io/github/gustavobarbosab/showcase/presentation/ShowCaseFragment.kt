@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.commons.extension.toast
@@ -13,10 +12,10 @@ import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.BuildConfig
+import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
-import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
@@ -64,10 +63,11 @@ class ShowCaseFragment : Fragment() {
 
     private fun setupBanner() {
         carouselAutoScroll =
-            CarouselAutoScroll.setupWithViewPager(binding.bannerTop, viewLifecycleOwner)
-        carouselAutoScroll?.onPageChangedListener = {
-            binding.progressBar.startProgress()
-        }
+            CarouselAutoScroll.setupWithViewPager(
+                viewLifecycleOwner,
+                binding.bannerTop,
+                binding.autoProgress
+            )
         binding.bannerTop.adapter = bannerTopAdapter
         binding.bannerTop.setPageTransformer(DepthPageTransformer())
     }
@@ -83,16 +83,8 @@ class ShowCaseFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                ShowCaseViewModel.MovieListState.HideLoading -> Toast.makeText(
-                    requireContext(),
-                    "Hide Loading...",
-                    Toast.LENGTH_SHORT
-                ).show()
-                ShowCaseViewModel.MovieListState.ShowLoading -> Toast.makeText(
-                    requireContext(),
-                    "Show Loading...",
-                    Toast.LENGTH_SHORT
-                ).show()
+                ShowCaseViewModel.MovieListState.HideLoading -> {}
+                ShowCaseViewModel.MovieListState.ShowLoading -> {}
             }
         })
 
