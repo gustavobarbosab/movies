@@ -18,7 +18,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="228dp" />
 
             <io.github.gustavobarbosab.commons.widget.autoprogress.AutoProgressView
                 android:id="@+id/autoProgress"
