@@ -5,7 +5,7 @@
     app:startDestination="@id/movieDetailFragment">
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="io.github.gustavobarbosab.detail.MovieDetailFragment"
+        android:name="io.github.gustavobarbosab.movies.movies.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" />
 </navigation>
