@@ -1,12 +1,9 @@
 package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import io.github.gustavobarbosab.commons.extension.toast
+import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
@@ -22,12 +19,12 @@ import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
 import javax.inject.Inject
 
 @ModuleScope
-class ShowCaseFragment : Fragment() {
+class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
 
     @Inject
     lateinit var viewModel: ShowCaseViewModel
 
-    lateinit var binding: FragmentMovieListBinding
+    override val layoutId: Int = R.layout.fragment_movie_list
 
     private val bannerTopAdapter = PagerCarouselAdapter(this::onItemClicked)
 
@@ -41,17 +38,7 @@ class ShowCaseFragment : Fragment() {
             .inject(this)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_list, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initializeViews(savedInstance: Bundle?) {
         observeViewModel()
         setupToolbar()
         setupBanner()
@@ -83,8 +70,10 @@ class ShowCaseFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                ShowCaseViewModel.MovieListState.HideLoading -> {}
-                ShowCaseViewModel.MovieListState.ShowLoading -> {}
+                ShowCaseViewModel.MovieListState.HideLoading -> {
+                }
+                ShowCaseViewModel.MovieListState.ShowLoading -> {
+                }
             }
         })
 
@@ -112,4 +101,5 @@ class ShowCaseFragment : Fragment() {
                 context?.toast("Ops, houve um erro :/")
             }
     }
+
 }

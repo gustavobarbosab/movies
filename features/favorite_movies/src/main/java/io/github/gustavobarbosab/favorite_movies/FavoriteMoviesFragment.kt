@@ -1,14 +1,15 @@
 package io.github.gustavobarbosab.favorite_movies
 
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
+import io.github.gustavobarbosab.commons.ui.base.BaseFragment
+import io.github.gustavobarbosab.favorite_movies.databinding.FragmentFavoriteMoviesBinding
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 
-class FavoriteMoviesFragment : Fragment(R.layout.fragment_favorite_movies) {
+class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override val layoutId: Int = R.layout.fragment_favorite_movies
+
+    override fun initializeViews(savedInstance: Bundle?) {
         applicationToolbar {
             title("Favoritos")
             backButton(false)
