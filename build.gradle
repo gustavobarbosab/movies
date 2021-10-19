@@ -28,7 +28,7 @@ buildscript {
         androidxDependencies = [
                 appCompat       : "androidx.appcompat:appcompat:1.1.0",
                 coreKtx         : "androidx.core:core-ktx:1.2.0",
-                constraintLayout: "androidx.constraintlayout:constraintlayout:1.1.3",
+                constraintLayout: "androidx.constraintlayout:constraintlayout:2.1.1",
                 recyclerView    : "androidx.recyclerview:recyclerview:1.1.0",
                 viewPager2      : "androidx.viewpager2:viewpager2:1.0.0"
         ]
