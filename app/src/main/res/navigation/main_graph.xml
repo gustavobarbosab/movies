@@ -37,6 +37,6 @@
 
     <fragment
         android:id="@+id/fragment_progress"
-        android:name="io.github.gustavobarbosab.movies.FeatureDownloadingFragment"
+        android:name="io.github.gustavobarbosab.movies.FeatureLoadingFragment"
         android:label="ProgressFragment" />
 </navigation>

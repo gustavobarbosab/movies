@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.navigation.dynamicfeatures.fragment.ui.AbstractProgressFragment
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 
-class FeatureDownloadingFragment : AbstractProgressFragment() {
+class FeatureLoadingFragment : AbstractProgressFragment() {
 
     protected val loading: ProgressBar?
         get() = view?.findViewById(R.id.progress)
@@ -44,8 +44,7 @@ class FeatureDownloadingFragment : AbstractProgressFragment() {
         when (status) {
             SplitInstallSessionStatus.DOWNLOADING -> text?.text = "Fazendo download..."
             SplitInstallSessionStatus.INSTALLING -> text?.text = "Instalando..."
-            else -> {
-            }
+            SplitInstallSessionStatus.FAILED -> text?.text = "Ops, o download falhou... =X"
         }
 
         loading?.progress = calculateProgress(bytesDownloaded.toInt(), bytesTotal.toInt())
