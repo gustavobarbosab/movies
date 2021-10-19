@@ -1,11 +1,10 @@
 package io.github.gustavobarbosab.showcase.presentation
 
-import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import io.github.gustavobarbosab.commons.databinding.ItemPagerCarouselBinding
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
+import io.github.gustavobarbosab.showcase.databinding.ItemPagerCarouselBinding
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 
 class PagerCarouselAdapter(
