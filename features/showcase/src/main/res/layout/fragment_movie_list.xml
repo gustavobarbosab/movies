@@ -9,6 +9,20 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_movie_list_scene">
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/group_banner_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="bannerTop,autoProgress" />
+
+        <include
+            android:id="@+id/shimmer_banner_top"
+            layout="@layout/shimmer_banner_movie_list"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/bannerTop"
             android:layout_width="match_parent"

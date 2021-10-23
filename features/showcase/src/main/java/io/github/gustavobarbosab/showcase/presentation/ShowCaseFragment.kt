@@ -2,20 +2,22 @@ package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
 import android.view.View
+import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
-import io.github.gustavobarbosab.movies.BuildConfig
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
+import io.github.gustavobarbosab.showcase.BuildConfig
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
+import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModel.MovieListState.*
 import javax.inject.Inject
 
 @ModuleScope
@@ -30,6 +32,12 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
 
     private var carouselAutoScroll: CarouselAutoScroll? = null
 
+    /**
+     * Unfortunately, I get shimmer instance from "findViewById" method,
+     * because dataBinding didn't resolve Shimmer's methods.
+     */
+    private var shimmerTop: ShimmerFrameLayout? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMovieListComponent
@@ -42,13 +50,16 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         observeViewModel()
         setupToolbar()
         setupBanner()
-        binding.nowPlaying.clickListener = this::onItemClicked
-        binding.popularMovies.clickListener = this::onItemClicked
-        binding.topRated.clickListener = this::onItemClicked
-        binding.textVersion.text = "v${BuildConfig.VERSION_NAME}"
+        binding.apply {
+            nowPlaying.clickListener = this@ShowCaseFragment::onItemClicked
+            popularMovies.clickListener = this@ShowCaseFragment::onItemClicked
+            topRated.clickListener = this@ShowCaseFragment::onItemClicked
+            textVersion.text = "v${BuildConfig.VERSION_NAME}"
+        }
     }
 
     private fun setupBanner() {
+        shimmerTop = view?.findViewById(R.id.shimmer_banner_top)
         carouselAutoScroll =
             CarouselAutoScroll.setupWithViewPager(
                 viewLifecycleOwner,
@@ -70,10 +81,19 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                ShowCaseViewModel.MovieListState.HideLoading -> {
+                ShowLoading -> {
+                    // TODO anything
                 }
-                ShowCaseViewModel.MovieListState.ShowLoading -> {
+                HideLoading -> {
+                    // TODO anything
                 }
+            }
+        })
+
+        viewModel.bannerLoading.observe(viewLifecycleOwner, {
+            binding.groupBannerTop.visibility = when (it) {
+                ShowLoading -> View.INVISIBLE
+                HideLoading -> View.VISIBLE
             }
         })
 

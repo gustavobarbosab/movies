@@ -15,12 +15,12 @@
 
         <KeyFrameSet>
             <KeyAttribute
-                android:alpha="0.6"
+                android:alpha="0.3"
                 android:translationY="-50dp"
                 motion:framePosition="50"
                 motion:motionTarget="@+id/bannerTop" />
             <KeyAttribute
-                android:alpha="0.3"
+                android:alpha="0.2"
                 android:translationY="-100dp"
                 motion:framePosition="80"
                 motion:motionTarget="@+id/bannerTop" />
@@ -37,6 +37,16 @@
                 android:alpha="0"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/autoProgress" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/shimmer_banner_top" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/shimmer_banner_top" />
         </KeyFrameSet>
     </Transition>
 
