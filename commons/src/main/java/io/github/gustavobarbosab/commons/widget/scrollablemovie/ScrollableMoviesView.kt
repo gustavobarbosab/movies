@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
+import com.facebook.shimmer.ShimmerFrameLayout
+import io.github.gustavobarbosab.commons.R
 import io.github.gustavobarbosab.commons.databinding.ComponentScrollableMoviesBinding
-import io.github.gustavobarbosab.commons.extension.toast
 
 class ScrollableMoviesView @JvmOverloads constructor(
     context: Context,
@@ -21,6 +23,8 @@ class ScrollableMoviesView @JvmOverloads constructor(
                 true
             )
 
+    private var shimmerLayout = rootView.findViewById<ShimmerFrameLayout>(R.id.shimmer_layout)
+
     var adapter: ScrollableMovieAdapter
     var clickListener: (MovieScrollableModel) -> Unit = {}
 
@@ -29,21 +33,25 @@ class ScrollableMoviesView @JvmOverloads constructor(
         binding.movies.adapter = adapter
     }
 
+    fun showShimmer() {
+        shimmerLayout.startShimmer()
+        shimmerLayout.isVisible = true
+        binding.movies.isVisible = false
+    }
+
+    fun hideShimmer() {
+        shimmerLayout.stopShimmer()
+        shimmerLayout.isVisible = false
+        binding.movies.isVisible = true
+    }
+
     fun loadMovies(title: String, movies: List<MovieScrollableModel>) {
-        hideProgress()
+        hideShimmer()
         binding.moviesTitle.text = title
         adapter.movies = movies
     }
 
     private fun onMovieClicked(movie: MovieScrollableModel) {
         clickListener(movie)
-    }
-
-    fun showProgress() {
-        context.toast("Carregando lista")
-    }
-
-    fun hideProgress() {
-        context.toast("Lista carregada")
     }
 }

@@ -18,7 +18,6 @@ class ShowCaseViewModel(
     val playingNowResponse = MutableLiveData<List<MovieShowCase>>()
     val latestMovieResponse = MutableLiveData<List<MovieShowCase>>()
     val loading = MutableLiveData<MovieListState>()
-    val bannerLoading = MutableLiveData<MovieListState>()
 
     init {
         getPopularMovies()
@@ -29,7 +28,7 @@ class ShowCaseViewModel(
 
     private fun getPopularMovies() {
         viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.ShowLoading
+            loading.value = MovieListState.PopularShowLoading
 
             val response = useCase.getPopularMovies()
 
@@ -37,13 +36,13 @@ class ShowCaseViewModel(
                 popularMovieResponse.postValue(it)
             }
 
-            loading.value = MovieListState.HideLoading
+            loading.value = MovieListState.PopularHideLoading
         }
     }
 
     private fun getLatestMovies() {
         viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.ShowLoading
+            loading.value = MovieListState.LatestShowLoading
 
             val response = useCase.getLatestMovies()
 
@@ -51,13 +50,13 @@ class ShowCaseViewModel(
                 latestMovieResponse.postValue(it)
             }
 
-            loading.value = MovieListState.HideLoading
+            loading.value = MovieListState.LatestShowLoading
         }
     }
 
     private fun getPlayingNowMovies() {
         viewModelScope.launch(Dispatchers.Main) {
-            bannerLoading.value = MovieListState.ShowLoading
+            loading.value = MovieListState.BannerShowLoading
 
             val response = useCase.getPlayingNow()
 
@@ -65,13 +64,13 @@ class ShowCaseViewModel(
                 playingNowResponse.postValue(it)
             }
 
-            bannerLoading.value = MovieListState.HideLoading
+            loading.value = MovieListState.BannerHideLoading
         }
     }
 
     private fun getTopRatedMovies() {
         viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.ShowLoading
+            loading.value = MovieListState.TopRatedShowLoading
 
             val response = useCase.getTopRatedMovies()
 
@@ -79,13 +78,19 @@ class ShowCaseViewModel(
                 topRatedResponse.postValue(it)
             }
 
-            loading.value = MovieListState.HideLoading
+            loading.value = MovieListState.TopRatedHideLoading
         }
     }
 
     sealed class MovieListState {
-        object ShowLoading : MovieListState()
-        object HideLoading : MovieListState()
+        object TopRatedShowLoading : MovieListState()
+        object TopRatedHideLoading : MovieListState()
+        object PopularShowLoading : MovieListState()
+        object PopularHideLoading : MovieListState()
+        object BannerShowLoading : MovieListState()
+        object BannerHideLoading : MovieListState()
+        object LatestShowLoading : MovieListState()
+        object LatestHideLoading : MovieListState()
     }
 
     sealed class MovieListAction {

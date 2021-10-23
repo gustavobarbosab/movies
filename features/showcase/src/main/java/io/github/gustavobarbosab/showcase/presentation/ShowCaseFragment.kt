@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
-import android.view.View
+import androidx.core.view.isInvisible
 import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
@@ -81,19 +81,14 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
     private fun observeViewModel() {
         viewModel.loading.observe(viewLifecycleOwner, {
             when (it) {
-                ShowLoading -> {
-                    // TODO anything
-                }
-                HideLoading -> {
-                    // TODO anything
-                }
-            }
-        })
-
-        viewModel.bannerLoading.observe(viewLifecycleOwner, {
-            binding.groupBannerTop.visibility = when (it) {
-                ShowLoading -> View.INVISIBLE
-                HideLoading -> View.VISIBLE
+                BannerHideLoading -> binding.groupBannerTop.isInvisible = true
+                BannerShowLoading -> binding.groupBannerTop.isInvisible = false
+                LatestHideLoading -> binding.nowPlaying.hideShimmer()
+                LatestShowLoading -> binding.nowPlaying.showShimmer()
+                PopularHideLoading -> binding.popularMovies.hideShimmer()
+                PopularShowLoading -> binding.popularMovies.showShimmer()
+                TopRatedHideLoading -> binding.topRated.hideShimmer()
+                TopRatedShowLoading -> binding.topRated.showShimmer()
             }
         })
 
