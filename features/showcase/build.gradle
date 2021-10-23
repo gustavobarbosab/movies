@@ -55,4 +55,6 @@ dependencies {
     implementation corroutinesDependency
 
     implementation lifecycleScopesDependencies.values()
+
+    implementation shimmerDependency
 }
