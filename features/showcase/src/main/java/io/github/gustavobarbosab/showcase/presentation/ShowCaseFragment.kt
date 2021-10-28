@@ -35,7 +35,7 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
 
     /**
      * Unfortunately, I get shimmer instance from "findViewById" method,
-     * because dataBinding didn't resolve Shimmer's methods.
+     * because dataBinding was not resolve Shimmer's methods.
      */
     private var shimmerTop: ShimmerFrameLayout? = null
 
