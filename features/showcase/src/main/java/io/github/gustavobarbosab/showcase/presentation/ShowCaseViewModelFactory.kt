@@ -1,7 +1,5 @@
 package io.github.gustavobarbosab.showcase.presentation
 
-class ShowCaseViewModelFactory(
-
-) {
-
+class ShowCaseViewModelFactory {
+    // TODO did not finish
 }
