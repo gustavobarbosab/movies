@@ -6,8 +6,17 @@ sealed class Result<out R> {
 }
 
 fun <R> Result<R>.isSuccess() = this is Result.Success
-fun <R> Result<R>.isError() = !isSuccess()
-fun <R> Result<R>.data() =
-    if (isSuccess()) (this as Result.Success).data
-    else null
 
+fun <R> Result<R>?.isError() = this is Result.Error
+
+inline fun <R> Result<R>.onSuccess(success: (R) -> Unit): Result<R>? {
+    if (!isSuccess())
+        return null
+
+    success((this as Result.Success).data)
+    return this
+}
+
+inline infix fun <R> Result<R>?.orError(error: (Result.Error) -> Unit) {
+    if (isError()) error(this as Result.Error)
+}

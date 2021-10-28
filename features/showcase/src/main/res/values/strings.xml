@@ -1,0 +1,7 @@
+<resources>
+    <string name="show_case_app_version">Version: %1s</string>
+    <string name="show_case_top_rated">Top Rated</string>
+    <string name="show_case_popular">Popular</string>
+    <string name="show_case_playing_now">Playing now</string>
+    <string name="show_case_generic_error">=X An error occurred</string>
+</resources>

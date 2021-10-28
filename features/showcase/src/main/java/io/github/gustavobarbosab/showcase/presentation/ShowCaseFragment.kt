@@ -50,12 +50,21 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         observeViewModel()
         setupToolbar()
         setupBanner()
-        binding.apply {
-            nowPlaying.clickListener = this@ShowCaseFragment::onItemClicked
-            popularMovies.clickListener = this@ShowCaseFragment::onItemClicked
-            topRated.clickListener = this@ShowCaseFragment::onItemClicked
-            textVersion.text = "v${BuildConfig.VERSION_NAME}"
-        }
+        setupListeners()
+        setupVersion()
+    }
+
+    private fun setupListeners() = with(binding) {
+        nowPlaying.clickListener = this@ShowCaseFragment::onItemClicked
+        popularMovies.clickListener = this@ShowCaseFragment::onItemClicked
+        topRated.clickListener = this@ShowCaseFragment::onItemClicked
+    }
+
+    private fun setupVersion() {
+        binding.textVersion.text = getString(
+            R.string.show_case_app_version,
+            BuildConfig.VERSION_NAME
+        )
     }
 
     private fun setupBanner() {
@@ -74,7 +83,9 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         applicationToolbar {
             logo(io.github.gustavobarbosab.commons.R.drawable.ic_default_icon)
             shortcutIcon(R.drawable.ic_search)
-            shortcutListener { requireContext().toast("Clicooou!") }
+            shortcutListener {
+                // TODO call search screen
+            }
         }
     }
 
@@ -92,20 +103,29 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
             }
         })
 
-        viewModel.popularMovieResponse.observe(viewLifecycleOwner, {
-            binding.popularMovies.loadMovies("Popular", it)
-        })
-
         viewModel.playingNowResponse.observe(viewLifecycleOwner, {
             bannerTopAdapter.items = it
         })
 
+        viewModel.popularMovieResponse.observe(viewLifecycleOwner, {
+            binding.popularMovies.loadMovies(
+                getString(R.string.show_case_popular),
+                it
+            )
+        })
+
         viewModel.topRatedResponse.observe(viewLifecycleOwner, {
-            binding.topRated.loadMovies("Top Rated", it)
+            binding.topRated.loadMovies(
+                getString(R.string.show_case_top_rated),
+                it
+            )
         })
 
         viewModel.latestMovieResponse.observe(viewLifecycleOwner, {
-            binding.nowPlaying.loadMovies("Now Playing", it)
+            binding.nowPlaying.loadMovies(
+                getString(R.string.show_case_playing_now),
+                it
+            )
         })
     }
 
@@ -113,7 +133,7 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         context?.toast(movie.id.toString())
         findAppNavController()
             .navigateSafely(ShowCaseFragmentDirections.actionDetailFragment()) {
-                context?.toast("Ops, houve um erro :/")
+                context?.toast(getString(R.string.show_case_generic_error))
             }
     }
 

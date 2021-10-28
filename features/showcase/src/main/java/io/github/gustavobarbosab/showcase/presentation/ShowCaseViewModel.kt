@@ -3,7 +3,8 @@ package io.github.gustavobarbosab.showcase.presentation
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.gustavobarbosab.core.domain.data
+import io.github.gustavobarbosab.core.domain.orError
+import io.github.gustavobarbosab.core.domain.onSuccess
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ class ShowCaseViewModel(
 
             val response = useCase.getPopularMovies()
 
-            response.data()?.let {
+            response.onSuccess {
                 popularMovieResponse.postValue(it)
             }
 
@@ -44,11 +45,9 @@ class ShowCaseViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             loading.value = MovieListState.LatestShowLoading
 
-            val response = useCase.getLatestMovies()
-
-            response.data()?.let {
-                latestMovieResponse.postValue(it)
-            }
+            useCase.getLatestMovies()
+                .onSuccess(latestMovieResponse::postValue)
+                .orError { }
 
             loading.value = MovieListState.LatestShowLoading
         }
@@ -58,11 +57,9 @@ class ShowCaseViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             loading.value = MovieListState.BannerShowLoading
 
-            val response = useCase.getPlayingNow()
-
-            response.data()?.let {
-                playingNowResponse.postValue(it)
-            }
+            useCase.getPlayingNow()
+                .onSuccess(playingNowResponse::postValue)
+                .orError { }
 
             loading.value = MovieListState.BannerHideLoading
         }
@@ -72,11 +69,9 @@ class ShowCaseViewModel(
         viewModelScope.launch(Dispatchers.Main) {
             loading.value = MovieListState.TopRatedShowLoading
 
-            val response = useCase.getTopRatedMovies()
-
-            response.data()?.let {
-                topRatedResponse.postValue(it)
-            }
+            useCase.getTopRatedMovies()
+                .onSuccess(topRatedResponse::postValue)
+                .orError { }
 
             loading.value = MovieListState.TopRatedHideLoading
         }
@@ -94,6 +89,6 @@ class ShowCaseViewModel(
     }
 
     sealed class MovieListAction {
-        // TODO
+        object CallSearchScreen : MovieListAction()
     }
 }
