@@ -18,6 +18,7 @@ import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModel.MovieListState.*
+import java.lang.Exception
 import javax.inject.Inject
 
 @ModuleScope
@@ -103,38 +104,41 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
             }
         })
 
-        viewModel.playingNowResponse.observe(viewLifecycleOwner, {
-            bannerTopAdapter.items = it
+        viewModel.playingNowResponse.observe(viewLifecycleOwner, { playingNowMovies ->
+            bannerTopAdapter.items = playingNowMovies
         })
 
-        viewModel.popularMovieResponse.observe(viewLifecycleOwner, {
+        viewModel.popularMovieResponse.observe(viewLifecycleOwner, { popularMovies ->
             binding.popularMovies.loadMovies(
                 getString(R.string.show_case_popular),
-                it
+                popularMovies
             )
         })
 
-        viewModel.topRatedResponse.observe(viewLifecycleOwner, {
+        viewModel.topRatedResponse.observe(viewLifecycleOwner, { topRatedMovies ->
             binding.topRated.loadMovies(
                 getString(R.string.show_case_top_rated),
-                it
+                topRatedMovies
             )
         })
 
-        viewModel.latestMovieResponse.observe(viewLifecycleOwner, {
+        viewModel.latestMovieResponse.observe(viewLifecycleOwner, { latestMovies ->
             binding.nowPlaying.loadMovies(
                 getString(R.string.show_case_playing_now),
-                it
+                latestMovies
             )
         })
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {
+        findAppNavController().navigateSafely(
+            navDirections = ShowCaseFragmentDirections.actionDetailFragment(),
+            onError = this::onLoadDetailsFail
+        )
         context?.toast(movie.id.toString())
-        findAppNavController()
-            .navigateSafely(ShowCaseFragmentDirections.actionDetailFragment()) {
-                context?.toast(getString(R.string.show_case_generic_error))
-            }
     }
 
+    private fun onLoadDetailsFail(exception: Exception) {
+        context?.toast(getString(R.string.show_case_generic_error))
+    }
 }
