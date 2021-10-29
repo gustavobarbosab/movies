@@ -9,6 +9,7 @@ import io.github.gustavobarbosab.core.domain.repository.MovieRepository
 import io.github.gustavobarbosab.core.domain.repository.SessionRepository
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCaseImpl
+import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModelFactory
 import retrofit2.Retrofit
 
 @Module
@@ -20,7 +21,8 @@ class MovieListModule {
 
     @Provides
     @ModuleScope
-    fun provideViewModel(movieUseCase: ShowCaseUseCase) = ShowCaseViewModel(movieUseCase)
+    fun provideViewModelFactory(movieUseCase: ShowCaseUseCase) =
+        ShowCaseViewModelFactory(movieUseCase)
 
     @Provides
     @ModuleScope

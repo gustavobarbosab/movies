@@ -2,6 +2,7 @@ package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
 import androidx.core.view.isInvisible
+import androidx.lifecycle.ViewModelProvider
 import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
@@ -24,6 +25,8 @@ import javax.inject.Inject
 class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
 
     @Inject
+    lateinit var viewModelFactory: ShowCaseViewModelFactory
+
     lateinit var viewModel: ShowCaseViewModel
 
     override val layoutId: Int = R.layout.fragment_movie_list
@@ -44,6 +47,9 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
             .factory()
             .create(requireAppComponent())
             .inject(this)
+
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(ShowCaseViewModel::class.java)
     }
 
     override fun initializeViews(savedInstance: Bundle?) {

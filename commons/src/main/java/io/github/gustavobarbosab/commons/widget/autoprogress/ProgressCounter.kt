@@ -17,13 +17,11 @@ class ProgressCounter(
             override fun onTick(millisUntilFinished: Long) {
                 val timeToFinish = calculate(millisUntilFinished)
                 counterListener(timeToFinish)
-                Log.d("counter", timeToFinish.toString())
             }
 
             override fun onFinish() {
                 counterListener(ONE_HUNDRED_PERCENT)
                 if (loop) startCounter()
-                Log.d("counter", "Finalizou")
             }
         }.start()
     }
