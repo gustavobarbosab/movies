@@ -1,24 +1,16 @@
 package io.github.gustavobarbosab.showcase.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.gustavobarbosab.core.domain.orError
+import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.core.domain.onSuccess
+import io.github.gustavobarbosab.core.domain.orError
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
-import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
 
-class ShowCaseViewModel(
-    private val useCase: ShowCaseUseCase
-) : ViewModel() {
+class ShowCaseViewModel(private val useCase: ShowCaseUseCase) : ViewModel() {
 
-    val popularMovieResponse = MutableLiveData<List<MovieShowCase>>()
-    val topRatedResponse = MutableLiveData<List<MovieShowCase>>()
-    val playingNowResponse = MutableLiveData<List<MovieShowCase>>()
-    val latestMovieResponse = MutableLiveData<List<MovieShowCase>>()
-    val loading = MutableLiveData<MovieListState>()
+    val states = ShowCaseViewState()
 
     init {
         getPopularMovies()
@@ -27,68 +19,54 @@ class ShowCaseViewModel(
         getTopRatedMovies()
     }
 
+    fun onSearchMovie() {
+        states.action.value = RedirectToSearch
+    }
+
+    private fun getPlayingNowMovies() {
+        viewModelScope.launchMain {
+            states.action.value = ShowBannerLoading
+
+            useCase.getPlayingNow()
+                .onSuccess(states.bannerMovies::setValue)
+                .orError { }
+
+            states.action.value = HideBannerLoading
+        }
+    }
+
     private fun getPopularMovies() {
-        viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.PopularShowLoading
+        viewModelScope.launchMain {
+            states.action.value = ShowPopularLoading
 
-            val response = useCase.getPopularMovies()
+            useCase.getPopularMovies()
+                .onSuccess(states.popularMovies::setValue)
 
-            response.onSuccess {
-                popularMovieResponse.postValue(it)
-            }
-
-            loading.value = MovieListState.PopularHideLoading
+            states.action.value = HidePopularLoading
         }
     }
 
     private fun getLatestMovies() {
-        viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.LatestShowLoading
+        viewModelScope.launchMain {
+            states.action.value = ShowLatestLoading
 
             useCase.getLatestMovies()
-                .onSuccess(latestMovieResponse::postValue)
+                .onSuccess(states.latestMovies::setValue)
                 .orError { }
 
-            loading.value = MovieListState.LatestShowLoading
-        }
-    }
-
-    private fun getPlayingNowMovies() {
-        viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.BannerShowLoading
-
-            useCase.getPlayingNow()
-                .onSuccess(playingNowResponse::postValue)
-                .orError { }
-
-            loading.value = MovieListState.BannerHideLoading
+            states.action.value = HideLatestLoading
         }
     }
 
     private fun getTopRatedMovies() {
-        viewModelScope.launch(Dispatchers.Main) {
-            loading.value = MovieListState.TopRatedShowLoading
+        viewModelScope.launchMain {
+            states.action.value = ShowTopRatedLoading
 
             useCase.getTopRatedMovies()
-                .onSuccess(topRatedResponse::postValue)
+                .onSuccess(states.topRatedMovies::setValue)
                 .orError { }
 
-            loading.value = MovieListState.TopRatedHideLoading
+            states.action.value = HideTopRatedLoading
         }
-    }
-
-    sealed class MovieListState {
-        object TopRatedShowLoading : MovieListState()
-        object TopRatedHideLoading : MovieListState()
-        object PopularShowLoading : MovieListState()
-        object PopularHideLoading : MovieListState()
-        object BannerShowLoading : MovieListState()
-        object BannerHideLoading : MovieListState()
-        object LatestShowLoading : MovieListState()
-        object LatestHideLoading : MovieListState()
-    }
-
-    sealed class MovieListAction {
-        object CallSearchScreen : MovieListAction()
     }
 }

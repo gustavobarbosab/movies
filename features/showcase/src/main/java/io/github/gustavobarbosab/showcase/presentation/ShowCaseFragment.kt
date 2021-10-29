@@ -17,8 +17,7 @@ import io.github.gustavobarbosab.showcase.BuildConfig
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
-import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModel.MovieListState.*
-import java.lang.Exception
+import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
 import javax.inject.Inject
 
 @ModuleScope
@@ -84,50 +83,40 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         applicationToolbar {
             logo(io.github.gustavobarbosab.commons.R.drawable.ic_default_icon)
             shortcutIcon(R.drawable.ic_search)
-            shortcutListener {
-                // TODO call search screen
-            }
+            shortcutListener(viewModel::onSearchMovie)
         }
     }
 
     private fun observeViewModel() {
-        viewModel.loading.observe(viewLifecycleOwner, {
+        viewModel.states.action.observe(viewLifecycleOwner, {
             when (it) {
-                BannerHideLoading -> binding.groupBannerTop.isInvisible = true
-                BannerShowLoading -> binding.groupBannerTop.isInvisible = false
-                LatestHideLoading -> binding.nowPlaying.hideShimmer()
-                LatestShowLoading -> binding.nowPlaying.showShimmer()
-                PopularHideLoading -> binding.popularMovies.hideShimmer()
-                PopularShowLoading -> binding.popularMovies.showShimmer()
-                TopRatedHideLoading -> binding.topRated.hideShimmer()
-                TopRatedShowLoading -> binding.topRated.showShimmer()
+                HideBannerLoading -> binding.groupBannerTop.isInvisible = true
+                ShowBannerLoading -> binding.groupBannerTop.isInvisible = false
+                HideLatestLoading -> binding.nowPlaying.hideShimmer()
+                ShowLatestLoading -> binding.nowPlaying.showShimmer()
+                HidePopularLoading -> binding.popularMovies.hideShimmer()
+                ShowPopularLoading -> binding.popularMovies.showShimmer()
+                HideTopRatedLoading -> binding.topRated.hideShimmer()
+                ShowTopRatedLoading -> binding.topRated.showShimmer()
+                RedirectToSearch -> context?.toast("Pesquisar")
             }
         })
 
-        viewModel.playingNowResponse.observe(viewLifecycleOwner, { playingNowMovies ->
-            bannerTopAdapter.items = playingNowMovies
-        })
+        viewModel.states.bannerMovies.observe(viewLifecycleOwner) {
+            bannerTopAdapter.items = it
+        }
 
-        viewModel.popularMovieResponse.observe(viewLifecycleOwner, { popularMovies ->
-            binding.popularMovies.loadMovies(
-                getString(R.string.show_case_popular),
-                popularMovies
-            )
-        })
+        viewModel.states.latestMovies.observe(viewLifecycleOwner) {
+            binding.nowPlaying.loadMovies(getString(R.string.show_case_playing_now), it)
+        }
 
-        viewModel.topRatedResponse.observe(viewLifecycleOwner, { topRatedMovies ->
-            binding.topRated.loadMovies(
-                getString(R.string.show_case_top_rated),
-                topRatedMovies
-            )
-        })
+        viewModel.states.popularMovies.observe(viewLifecycleOwner) {
+            binding.popularMovies.loadMovies(getString(R.string.show_case_popular), it)
+        }
 
-        viewModel.latestMovieResponse.observe(viewLifecycleOwner, { latestMovies ->
-            binding.nowPlaying.loadMovies(
-                getString(R.string.show_case_playing_now),
-                latestMovies
-            )
-        })
+        viewModel.states.topRatedMovies.observe(viewLifecycleOwner) {
+            binding.topRated.loadMovies(getString(R.string.show_case_top_rated), it)
+        }
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {
