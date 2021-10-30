@@ -31,13 +31,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <include layout="@layout/item_scrollable_movies" />
+                <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies" />
+                <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies" />
+                <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies" />
+                <include layout="@layout/item_scrollable_movies_shimmer" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </com.facebook.shimmer.ShimmerFrameLayout>
