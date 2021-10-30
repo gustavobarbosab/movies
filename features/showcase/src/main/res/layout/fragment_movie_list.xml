@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_movie_list_scene">
@@ -24,16 +24,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/bannerTop"
+            android:id="@+id/banner_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
-            app:layout_constraintBottom_toTopOf="@id/scrollableContent"
+            app:layout_constraintBottom_toTopOf="@id/scrollable_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <io.github.gustavobarbosab.commons.widget.autoprogress.AutoProgressView
-            android:id="@+id/autoProgress"
+            android:id="@+id/auto_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,57 +41,66 @@
             android:indeterminateTint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bannerTop" />
+            app:layout_constraintTop_toBottomOf="@+id/banner_top" />
 
         <androidx.core.widget.NestedScrollView
-            android:id="@+id/scrollableContent"
+            android:id="@+id/scrollable_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:fillViewport="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/autoProgress">
+            app:layout_constraintTop_toBottomOf="@id/auto_progress">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <io.github.gustavobarbosab.commons.widget.scrollablemovie.ScrollableMoviesView
-                    android:id="@+id/nowPlaying"
+                    android:id="@+id/latest_movies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/small_size"
+                    android:layout_marginTop="@dimen/large_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:title="@string/show_case_latest_title"
+                    app:tryAgainButton="@string/show_case_try_again_button"
+                    app:tryAgainMessage="@string/show_case_latest_try_again_message" />
 
                 <io.github.gustavobarbosab.commons.widget.scrollablemovie.ScrollableMoviesView
-                    android:id="@+id/topRated"
+                    android:id="@+id/top_rated"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/small_size"
+                    android:layout_marginTop="@dimen/large_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nowPlaying" />
+                    app:layout_constraintTop_toBottomOf="@+id/latest_movies"
+                    app:title="@string/show_case_top_rated_title"
+                    app:tryAgainButton="@string/show_case_try_again_button"
+                    app:tryAgainMessage="@string/show_case_top_rated_try_again_message" />
 
                 <io.github.gustavobarbosab.commons.widget.scrollablemovie.ScrollableMoviesView
                     android:id="@+id/popularMovies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/small_margin"
-                    android:layout_marginTop="@dimen/large_margin"
+                    android:layout_marginStart="@dimen/small_size"
+                    android:layout_marginTop="@dimen/large_size"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/topRated" />
+                    app:layout_constraintTop_toBottomOf="@+id/top_rated"
+                    app:title="@string/show_case_popular_title"
+                    app:tryAgainButton="@string/show_case_try_again_button"
+                    app:tryAgainMessage="@string/show_case_popular_try_again_message" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/textVersion"
+                    android:id="@+id/text_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/small_margin"
+                    android:layout_margin="@dimen/small_size"
                     android:textAlignment="center"
                     android:textAppearance="@style/Movies.Text.Tinny"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -102,6 +111,5 @@
                     tools:text="Develop by gustavo barbosa" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

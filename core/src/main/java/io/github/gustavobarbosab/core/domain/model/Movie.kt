@@ -12,4 +12,11 @@ data class Movie(
     fun setFavorite() {
         isFavorite = true
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is Movie)
+            return false
+
+        return this.id == other.id
+    }
 }

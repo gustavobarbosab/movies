@@ -14,12 +14,13 @@ class ShowCaseViewState {
     sealed class Action() {
         object ShowBannerLoading : Action()
         object HideBannerLoading : Action()
+        object ErrorLoadBanner : Action()
         object ShowLatestLoading : Action()
-        object HideLatestLoading : Action()
+        object ErrorLoadLatest : Action()
         object ShowPopularLoading : Action()
-        object HidePopularLoading : Action()
+        object ErrorLoadPopular : Action()
         object ShowTopRatedLoading : Action()
-        object HideTopRatedLoading : Action()
+        object ErrorLoadTopRated : Action()
         object RedirectToSearch : Action()
     }
 }

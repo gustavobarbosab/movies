@@ -3,56 +3,31 @@ package io.github.gustavobarbosab.core.data.repositories.movies
 import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
-import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMovieResponse
+import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
 import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.repository.MovieRepository
+import io.github.gustavobarbosab.core.result.mapTo
 
 class MovieRepositoryImpl(
-    val localDataSource: MovieLocalDataSource,
-    val remoteDataSource: MovieRemoteDataSource,
-    val mapper: MovieMapper
+    private val localDataSource: MovieLocalDataSource,
+    private val remoteDataSource: MovieRemoteDataSource,
+    private val mapper: MovieMapper
 ) : MovieRepository {
 
+    private fun mapToMovie(response: PopularMoviePagingResponse): List<Movie> =
+        response.results.map(mapper::map)
+
     override suspend fun getPopularMovies(): Result<List<Movie>> =
-        try {
-            Result.Success(
-                mapToMovie(remoteDataSource.getPopularMovies().results)
-            )
-        } catch (ex: Exception) {
-            Result.Error(ex)
-        }
+        remoteDataSource.getPopularMovies().mapTo(this::mapToMovie)
 
     override suspend fun getTopRatedMovies(): Result<List<Movie>> =
-        try {
-            Result.Success(
-                mapToMovie(remoteDataSource.getTopRatedMovies().results)
-            )
-        } catch (ex: Exception) {
-            Result.Error(ex)
-        }
+        remoteDataSource.getTopRatedMovies().mapTo(this::mapToMovie)
 
     override suspend fun getPlayingNow(): Result<List<Movie>> =
-        try {
-            Result.Success(
-                mapToMovie(remoteDataSource.getPlayingNow().results)
-            )
-        } catch (ex: Exception) {
-            Result.Error(ex)
-        }
+        remoteDataSource.getPlayingNow().mapTo(this::mapToMovie)
 
     override suspend fun getLatestMovies(): Result<List<Movie>> =
-        try {
-            Result.Success(
-                mapToMovie(remoteDataSource.getLatestMovies().results)
-            )
-        } catch (ex: Exception) {
-            Result.Error(ex)
-        }
-
-    private fun mapToMovie(movieResponse: List<PopularMovieResponse>?): List<Movie> =
-        movieResponse
-            ?.map(mapper::map)
-            ?: emptyList()
+        remoteDataSource.getLatestMovies().mapTo(this::mapToMovie)
 
 }

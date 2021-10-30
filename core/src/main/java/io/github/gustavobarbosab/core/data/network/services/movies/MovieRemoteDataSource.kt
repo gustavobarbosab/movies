@@ -1,13 +1,13 @@
 package io.github.gustavobarbosab.core.data.network.services.movies
 
-import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
+import io.github.gustavobarbosab.core.result.SafelyCall
 
-class MovieRemoteDataSource(private val movieApi: MovieApi) {
-    suspend fun getPopularMovies(): PopularMoviePagingResponse = movieApi.getPopularMovies()
+class MovieRemoteDataSource(private val movieApi: MovieApi) : SafelyCall {
+    suspend fun getPopularMovies() = safeCallOnIo(movieApi::getPopularMovies)
 
-    suspend fun getTopRatedMovies(): PopularMoviePagingResponse = movieApi.getTopRatedMovies()
+    suspend fun getTopRatedMovies() = safeCallOnIo(movieApi::getTopRatedMovies)
 
-    suspend fun getPlayingNow(): PopularMoviePagingResponse = movieApi.getPlayingNow()
+    suspend fun getPlayingNow() = safeCallOnIo(movieApi::getPlayingNow)
 
-    suspend fun getLatestMovies(): PopularMoviePagingResponse = movieApi.getLatestMovies()
+    suspend fun getLatestMovies() = safeCallOnIo(movieApi::getLatestMovies)
 }

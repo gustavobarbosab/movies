@@ -1,6 +1,7 @@
 package io.github.gustavobarbosab.commons.widget.error
 
 import android.content.Context
+import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.Button
@@ -25,19 +26,33 @@ class TryAgain @JvmOverloads constructor(
         tvMessage = findViewById(R.id.error_title)
         btTryAgain = findViewById(R.id.error_button)
         btTryAgain.setOnClickListener { btListener() }
+
+        val typedArray = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.TryAgain,
+            defStyleAttr,
+            0
+        )
+        setupAttributes(typedArray)
+        typedArray.recycle()
+    }
+
+    private fun setupAttributes(typedArray: TypedArray) {
+        val message = typedArray.getString(R.styleable.TryAgain_android_text).orEmpty()
+        val buttonText = typedArray.getString(R.styleable.TryAgain_android_button).orEmpty()
+        setMessage(message)
+        setButtonText(buttonText)
     }
 
     fun setMessage(message: String) {
         tvMessage.text = message
     }
 
-    fun configButton(text: Int, listener: () -> Unit) {
-        btTryAgain.setText(text)
+    fun buttonListener(listener: () -> Unit) {
         btListener = listener
     }
 
-    fun configButton(text: String, listener: () -> Unit) {
+    fun setButtonText(text: String) {
         btTryAgain.text = text
-        btListener = listener
     }
 }

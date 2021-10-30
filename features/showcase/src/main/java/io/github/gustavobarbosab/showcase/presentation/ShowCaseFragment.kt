@@ -61,9 +61,12 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
     }
 
     private fun setupListeners() = with(binding) {
-        nowPlaying.clickListener = this@ShowCaseFragment::onItemClicked
+        latestMovies.clickListener = this@ShowCaseFragment::onItemClicked
+        latestMovies.reloadListener(viewModel::getLatestMovies)
         popularMovies.clickListener = this@ShowCaseFragment::onItemClicked
+        popularMovies.reloadListener(viewModel::getPopularMovies)
         topRated.clickListener = this@ShowCaseFragment::onItemClicked
+        topRated.reloadListener(viewModel::getTopRatedMovies)
     }
 
     private fun setupVersion() {
@@ -75,12 +78,11 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
 
     private fun setupBanner() {
         shimmerTop = view?.findViewById(R.id.shimmer_banner_top)
-        carouselAutoScroll =
-            CarouselAutoScroll.setupWithViewPager(
-                viewLifecycleOwner,
-                binding.bannerTop,
-                binding.autoProgress
-            )
+        carouselAutoScroll = CarouselAutoScroll.setupWithViewPager(
+            viewLifecycleOwner,
+            binding.bannerTop,
+            binding.autoProgress
+        )
         binding.bannerTop.adapter = bannerTopAdapter
         binding.bannerTop.setPageTransformer(DepthPageTransformer())
     }
@@ -96,14 +98,15 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
     private fun observeViewModel() {
         viewModel.states.action.observe(viewLifecycleOwner, {
             when (it) {
-                HideBannerLoading -> binding.groupBannerTop.isInvisible = true
-                ShowBannerLoading -> binding.groupBannerTop.isInvisible = false
-                HideLatestLoading -> binding.nowPlaying.hideShimmer()
-                ShowLatestLoading -> binding.nowPlaying.showShimmer()
-                HidePopularLoading -> binding.popularMovies.hideShimmer()
+                HideBannerLoading -> bannerVisibility(invisible = true)
+                ShowBannerLoading -> bannerVisibility(invisible = false)
+                ErrorLoadBanner -> context?.toast("Erro ao carregar banner")
+                ShowLatestLoading -> binding.latestMovies.showShimmer()
+                ErrorLoadLatest -> binding.latestMovies.showTryAgain()
                 ShowPopularLoading -> binding.popularMovies.showShimmer()
-                HideTopRatedLoading -> binding.topRated.hideShimmer()
+                ErrorLoadPopular -> binding.popularMovies.showTryAgain()
                 ShowTopRatedLoading -> binding.topRated.showShimmer()
+                ErrorLoadTopRated -> binding.topRated.showTryAgain()
                 RedirectToSearch -> context?.toast("Pesquisar")
             }
         })
@@ -113,7 +116,7 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         }
 
         viewModel.states.latestMovies.observe(viewLifecycleOwner) {
-            binding.nowPlaying.loadMovies(getString(R.string.show_case_playing_now), it)
+            binding.latestMovies.loadMovies(getString(R.string.show_case_playing_now), it)
         }
 
         viewModel.states.popularMovies.observe(viewLifecycleOwner) {
@@ -123,6 +126,10 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         viewModel.states.topRatedMovies.observe(viewLifecycleOwner) {
             binding.topRated.loadMovies(getString(R.string.show_case_top_rated), it)
         }
+    }
+
+    private fun bannerVisibility(invisible: Boolean) {
+        binding.groupBannerTop.isInvisible = invisible
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {
