@@ -54,7 +54,7 @@
         <Constraint
             android:id="@+id/bannerTop"
             android:layout_width="match_parent"
-            android:layout_height="228dp"
+            android:layout_height="@dimen/show_case_banner_size"
             motion:layout_constraintBottom_toTopOf="@id/scrollableContent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
