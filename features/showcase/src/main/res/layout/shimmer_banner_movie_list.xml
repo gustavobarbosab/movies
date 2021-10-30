@@ -5,6 +5,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="228dp"
+        android:layout_height="@dimen/show_case_banner_size"
         android:background="@color/colorShimmer" />
 </com.facebook.shimmer.ShimmerFrameLayout>

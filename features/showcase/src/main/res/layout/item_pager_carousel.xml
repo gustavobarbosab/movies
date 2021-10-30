@@ -5,36 +5,34 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#4D000000">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/carousel_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            android:tint="#32000000"
+            android:tint="@color/image_shadow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_favorite"
-            tools:srcCompat="@color/colorPrimaryDark" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/movie_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="32dp"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_marginBottom="@dimen/largest_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/Movies.Text.Title"
             app:layout_constraintBottom_toBottomOf="@+id/carousel_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/carousel_image"
             app:layout_constraintVertical_bias="1.0"
-            tools:text="Nome do filme aqui..." />
+            tools:text="Nome do filme aqui" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
