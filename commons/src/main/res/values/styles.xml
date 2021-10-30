@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Movies.Text" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:lineSpacingExtra">2sp</item>
-        <item name="android:textAlignment">textStart</item>
     </style>
 
     <style name="Movies.Text.Title" parent="Movies.Text">
@@ -21,5 +21,10 @@
 
     <style name="Movies.Text.Tinny" parent="Movies.Text">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Movies.Button.Yellow" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/background_button_yellow</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 </resources>

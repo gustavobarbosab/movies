@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:background="@drawable/checkbox_color"
-            android:button="@drawable/checkbox_color"
+            android:background="@drawable/color_checkbox"
+            android:button="@drawable/color_checkbox"
             app:layout_constraintBottom_toBottomOf="@+id/movieImage"
             app:layout_constraintEnd_toEndOf="@+id/movieImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
