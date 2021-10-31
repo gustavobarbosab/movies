@@ -17,30 +17,25 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Populares" />
 
-        <com.facebook.shimmer.ShimmerFrameLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/shimmer_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/moviesTitle"
             tools:visibility="gone">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+            <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies_shimmer" />
+            <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies_shimmer" />
+            <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies_shimmer" />
+            <include layout="@layout/item_scrollable_movies_shimmer" />
 
-                <include layout="@layout/item_scrollable_movies_shimmer" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </com.facebook.shimmer.ShimmerFrameLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <io.github.gustavobarbosab.commons.widget.error.TryAgain
             android:id="@+id/try_again"

@@ -1,13 +1,9 @@
 package io.github.gustavobarbosab.showcase.presentation
 
 import android.os.Bundle
-import androidx.core.view.isInvisible
 import androidx.lifecycle.ViewModelProvider
-import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
-import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
-import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
@@ -18,44 +14,37 @@ import io.github.gustavobarbosab.showcase.BuildConfig
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentMovieListBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
+import io.github.gustavobarbosab.showcase.di.MovieListComponent
+import io.github.gustavobarbosab.showcase.di.ShowCaseInjector
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
 import javax.inject.Inject
 
 @ModuleScope
-class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
+class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjector {
 
     @Inject
     lateinit var viewModelFactory: ShowCaseViewModelFactory
 
-    lateinit var viewModel: ShowCaseViewModel
+    private lateinit var viewModel: ShowCaseViewModel
 
     override val layoutId: Int = R.layout.fragment_movie_list
 
-    private val bannerTopAdapter = PagerCarouselAdapter(this::onItemClicked)
-
-    private var carouselAutoScroll: CarouselAutoScroll? = null
-
-    /**
-     * Unfortunately, I get shimmer instance from "findViewById" method,
-     * because dataBinding was not resolve Shimmer's methods.
-     */
-    private var shimmerTop: ShimmerFrameLayout? = null
+    override var component: MovieListComponent? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        DaggerMovieListComponent
-            .factory()
-            .create(requireAppComponent())
-            .inject(this)
+        createComponent()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ShowCaseViewModel::class.java)
+    }
 
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(ShowCaseViewModel::class.java)
+    private fun createComponent() {
+        component = DaggerMovieListComponent.factory().create(requireAppComponent())
+        component?.inject(this)
     }
 
     override fun initializeViews(savedInstance: Bundle?) {
         observeViewModel()
         setupToolbar()
-        setupBanner()
         setupListeners()
         setupVersion()
     }
@@ -76,17 +65,6 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         )
     }
 
-    private fun setupBanner() {
-        shimmerTop = view?.findViewById(R.id.shimmer_banner_top)
-        carouselAutoScroll = CarouselAutoScroll.setupWithViewPager(
-            viewLifecycleOwner,
-            binding.bannerTop,
-            binding.autoProgress
-        )
-        binding.bannerTop.adapter = bannerTopAdapter
-        binding.bannerTop.setPageTransformer(DepthPageTransformer())
-    }
-
     private fun setupToolbar() {
         applicationToolbar {
             logo(io.github.gustavobarbosab.commons.R.drawable.ic_default_icon)
@@ -98,8 +76,6 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
     private fun observeViewModel() {
         viewModel.states.action.observe(viewLifecycleOwner, {
             when (it) {
-                HideBannerLoading -> bannerVisibility(invisible = true)
-                ShowBannerLoading -> bannerVisibility(invisible = false)
                 ErrorLoadBanner -> context?.toast("Erro ao carregar banner")
                 ShowLatestLoading -> binding.latestMovies.showShimmer()
                 ErrorLoadLatest -> binding.latestMovies.showTryAgain()
@@ -110,10 +86,6 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
                 RedirectToSearch -> context?.toast("Pesquisar")
             }
         })
-
-        viewModel.states.bannerMovies.observe(viewLifecycleOwner) {
-            bannerTopAdapter.items = it
-        }
 
         viewModel.states.latestMovies.observe(viewLifecycleOwner) {
             binding.latestMovies.loadMovies(getString(R.string.show_case_playing_now), it)
@@ -126,10 +98,6 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>() {
         viewModel.states.topRatedMovies.observe(viewLifecycleOwner) {
             binding.topRated.loadMovies(getString(R.string.show_case_top_rated), it)
         }
-    }
-
-    private fun bannerVisibility(invisible: Boolean) {
-        binding.groupBannerTop.isInvisible = invisible
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {

@@ -9,39 +9,15 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/fragment_movie_list_scene">
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_banner_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:constraint_referenced_ids="bannerTop,autoProgress" />
-
-        <include
-            android:id="@+id/shimmer_banner_top"
-            layout="@layout/shimmer_banner_movie_list"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/banner_top"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_banner_top"
+            android:name="io.github.gustavobarbosab.showcase.presentation.sections.BannerMoviesFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
-            app:layout_constraintBottom_toTopOf="@id/scrollable_content"
+            app:layout_constraintBottom_toTopOf="@+id/scrollable_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <io.github.gustavobarbosab.commons.widget.autoprogress.AutoProgressView
-            android:id="@+id/auto_progress"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:indeterminateTint="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner_top" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollable_content"
@@ -51,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/auto_progress">
+            app:layout_constraintTop_toBottomOf="@id/fragment_banner_top">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

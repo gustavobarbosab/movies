@@ -12,8 +12,6 @@ class ShowCaseViewState {
     val action: SingleLiveEvent<Action> = SingleLiveEvent()
 
     sealed class Action() {
-        object ShowBannerLoading : Action()
-        object HideBannerLoading : Action()
         object ErrorLoadBanner : Action()
         object ShowLatestLoading : Action()
         object ErrorLoadLatest : Action()

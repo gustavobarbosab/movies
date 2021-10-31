@@ -8,7 +8,6 @@ import android.widget.FrameLayout
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import com.facebook.shimmer.ShimmerFrameLayout
 import io.github.gustavobarbosab.commons.R
 import io.github.gustavobarbosab.commons.databinding.ComponentScrollableMoviesBinding
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.ScrollableMoviesView.ScrollableVisibilityStates.*
@@ -26,8 +25,6 @@ class ScrollableMoviesView @JvmOverloads constructor(
                 this,
                 true
             )
-
-    private var shimmerLayout = rootView.findViewById<ShimmerFrameLayout>(R.id.shimmer_layout)
 
     var adapter: ScrollableMovieAdapter
     var clickListener: (MovieScrollableModel) -> Unit = {}
@@ -56,7 +53,6 @@ class ScrollableMoviesView @JvmOverloads constructor(
     }
 
     fun showShimmer() {
-        shimmerLayout.startShimmer()
         setViewVisibilityState(ShimmerVisible)
     }
 

@@ -50,6 +50,4 @@ dependencies {
     implementation navigationDependencies.dynamicFeature
 
     testImplementation unitTestDependencies.values()
-
-    implementation shimmerDependency
 }

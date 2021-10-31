@@ -24,13 +24,11 @@ class ShowCaseViewModel(private val useCase: ShowCaseUseCase) : ViewModel(), Res
 
     private fun getBannerMovies() {
         viewModelScope.launchMain {
-            states.action.value = ShowBannerLoading
             handleResult(
                 result = useCase.getPlayingNow(),
                 onSuccess = states.bannerMovies::setValue,
                 onError = { states.action.value = ErrorLoadBanner }
             )
-            states.action.value = HideBannerLoading
         }
     }
 
