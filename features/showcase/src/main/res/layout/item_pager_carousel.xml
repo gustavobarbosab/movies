@@ -9,8 +9,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/carousel_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scaleType="fitXY"
             android:tint="@color/image_shadow"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,10 +28,9 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/Movies.Text.Title"
-            app:layout_constraintBottom_toBottomOf="@+id/carousel_image"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/carousel_image"
             app:layout_constraintVertical_bias="1.0"
             tools:text="Nome do filme aqui" />
     </androidx.constraintlayout.widget.ConstraintLayout>
