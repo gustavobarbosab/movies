@@ -16,7 +16,7 @@ class TryAgain @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val tvMessage: TextView
-    private val btTryAgain: Button
+    private val btTryAgain: TextView
     private var btListener = {}
 
     init {

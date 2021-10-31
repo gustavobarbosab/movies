@@ -3,4 +3,4 @@
     android:layout_width="110dp"
     android:layout_height="170dp"
     android:layout_margin="@dimen/small_size"
-    android:background="@color/colorPrimary" />
+    android:background="@color/colorShimmer" />
