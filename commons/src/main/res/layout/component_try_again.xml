@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
@@ -17,9 +17,11 @@
         android:layout_marginEnd="@dimen/tinny_size"
         android:gravity="center"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/error_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/error_button"

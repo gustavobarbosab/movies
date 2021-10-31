@@ -1,15 +1,17 @@
 package io.github.gustavobarbosab.showcase.presentation
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
+import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.result.ResultHandler
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
 
-class ShowCaseViewModel(private val useCase: ShowCaseUseCase) : ViewModel(), ResultHandler {
+class ShowCaseViewModel(
+    private val useCase: ShowCaseUseCase
+) : BaseViewModel<ShowCaseViewState>(), ResultHandler {
 
-    val states = ShowCaseViewState()
+    override val state = ShowCaseViewState()
 
     init {
         getPopularMovies()
@@ -19,48 +21,48 @@ class ShowCaseViewModel(private val useCase: ShowCaseUseCase) : ViewModel(), Res
     }
 
     fun onSearchMovie() {
-        states.action.value = RedirectToSearch
+        state.action.value = RedirectToSearch
     }
 
-    private fun getBannerMovies() {
+    fun getBannerMovies() {
         viewModelScope.launchMain {
             handleResult(
                 result = useCase.getPlayingNow(),
-                onSuccess = states.bannerMovies::setValue,
-                onError = { states.action.value = ErrorLoadBanner }
+                onSuccess = state.bannerMovies::setValue,
+                onError = { state.action.value = ErrorLoadBanner }
             )
         }
     }
 
     fun getPopularMovies() {
         viewModelScope.launchMain {
-            states.action.value = ShowPopularLoading
+            state.action.value = ShowPopularLoading
             handleResult(
                 result = useCase.getPopularMovies(),
-                onSuccess = states.popularMovies::setValue,
-                onError = { states.action.value = ErrorLoadPopular }
+                onSuccess = state.popularMovies::setValue,
+                onError = { state.action.value = ErrorLoadPopular }
             )
         }
     }
 
     fun getLatestMovies() {
         viewModelScope.launchMain {
-            states.action.value = ShowLatestLoading
+            state.action.value = ShowLatestLoading
             handleResult(
                 result = useCase.getLatestMovies(),
-                onSuccess = states.latestMovies::setValue,
-                onError = { states.action.value = ErrorLoadLatest }
+                onSuccess = state.latestMovies::setValue,
+                onError = { state.action.value = ErrorLoadLatest }
             )
         }
     }
 
     fun getTopRatedMovies() {
         viewModelScope.launchMain {
-            states.action.value = ShowTopRatedLoading
+            state.action.value = ShowTopRatedLoading
             handleResult(
                 result = useCase.getTopRatedMovies(),
-                onSuccess = states.topRatedMovies::setValue,
-                onError = { states.action.value = ErrorLoadTopRated }
+                onSuccess = state.topRatedMovies::setValue,
+                onError = { state.action.value = ErrorLoadTopRated }
             )
         }
     }

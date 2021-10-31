@@ -1,6 +1,8 @@
-package io.github.gustavobarbosab.showcase.presentation.sections
+package io.github.gustavobarbosab.showcase.presentation.banner
 
 import android.os.Bundle
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
@@ -11,9 +13,9 @@ import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentBannerMoviesBinding
-import io.github.gustavobarbosab.showcase.presentation.PagerCarouselAdapter
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseFragmentDirections
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModel
+import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState
 
 class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
 
@@ -36,18 +38,30 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
             binding.bannerTop,
             binding.autoProgress
         )
-        binding.bannerTop.adapter = bannerTopAdapter
-        binding.bannerTop.setPageTransformer(DepthPageTransformer())
+        binding.apply {
+            bannerTop.adapter = bannerTopAdapter
+            bannerTop.setPageTransformer(DepthPageTransformer())
+            bannerTryAgain.buttonListener(viewModel::getBannerMovies)
+        }
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        viewModel.states.bannerMovies.observe(viewLifecycleOwner) {
+        viewModel.state.bannerMovies.observe(viewLifecycleOwner) {
+            tryAgainVisibility(visible = false)
             bannerTopAdapter.items = it
         }
-        viewModel.states.action.observe(viewLifecycleOwner, {
-            // TODO
+        viewModel.state.action.observe(viewLifecycleOwner, {
+            if (it != ShowCaseViewState.Action.ErrorLoadBanner)
+                return@observe
+
+            tryAgainVisibility(visible = true)
         })
+    }
+
+    private fun tryAgainVisibility(visible: Boolean) = with(binding) {
+        bannerGroup.isGone = visible
+        bannerTryAgain.isVisible = visible
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {

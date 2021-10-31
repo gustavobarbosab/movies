@@ -74,9 +74,8 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjec
     }
 
     private fun observeViewModel() {
-        viewModel.states.action.observe(viewLifecycleOwner, {
+        viewModel.state.action.observe(viewLifecycleOwner, {
             when (it) {
-                ErrorLoadBanner -> context?.toast("Erro ao carregar banner")
                 ShowLatestLoading -> binding.latestMovies.showShimmer()
                 ErrorLoadLatest -> binding.latestMovies.showTryAgain()
                 ShowPopularLoading -> binding.popularMovies.showShimmer()
@@ -84,18 +83,20 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjec
                 ShowTopRatedLoading -> binding.topRated.showShimmer()
                 ErrorLoadTopRated -> binding.topRated.showTryAgain()
                 RedirectToSearch -> context?.toast("Pesquisar")
+                else -> {
+                }
             }
         })
 
-        viewModel.states.latestMovies.observe(viewLifecycleOwner) {
+        viewModel.state.latestMovies.observe(viewLifecycleOwner) {
             binding.latestMovies.loadMovies(getString(R.string.show_case_playing_now), it)
         }
 
-        viewModel.states.popularMovies.observe(viewLifecycleOwner) {
+        viewModel.state.popularMovies.observe(viewLifecycleOwner) {
             binding.popularMovies.loadMovies(getString(R.string.show_case_popular), it)
         }
 
-        viewModel.states.topRatedMovies.observe(viewLifecycleOwner) {
+        viewModel.state.topRatedMovies.observe(viewLifecycleOwner) {
             binding.topRated.loadMovies(getString(R.string.show_case_top_rated), it)
         }
     }
