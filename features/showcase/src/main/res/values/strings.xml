@@ -10,5 +10,5 @@
     <string name="show_case_top_rated_try_again_message">Error on load top rated movies</string>
     <string name="show_case_latest_title">Latest</string>
     <string name="show_case_latest_try_again_message">Error on load latest movies</string>
-    <string name="show_case_try_again_button">Reload</string>
+    <string name="show_case_try_again_button">Tap to reload</string>
 </resources>
