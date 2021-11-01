@@ -44,7 +44,7 @@ buildscript {
                 app          : ":app",
                 core         : ":core",
                 common       : ":commons",
-                testUtilities: ":libraries:testutilities"
+                unitTestUtilities: ":libraries:unittestutilities"
         ]
 
         def daggerVersion = "2.35.1"

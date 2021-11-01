@@ -32,7 +32,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(modulesDependencies.app)
-    testImplementation project(modulesDependencies.testUtilities)
+    testImplementation project(modulesDependencies.unitTestUtilities)
 
     implementation kotlinDependencies.jdk7
 
