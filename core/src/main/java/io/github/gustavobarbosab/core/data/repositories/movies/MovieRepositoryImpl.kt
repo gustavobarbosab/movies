@@ -4,10 +4,10 @@ import io.github.gustavobarbosab.core.data.database.movie.MovieLocalDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieMapper
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieRemoteDataSource
 import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
-import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.repository.MovieRepository
-import io.github.gustavobarbosab.core.result.mapTo
+import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
+import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
 
 class MovieRepositoryImpl(
     private val localDataSource: MovieLocalDataSource,
@@ -18,16 +18,16 @@ class MovieRepositoryImpl(
     private fun mapToMovie(response: PopularMoviePagingResponse): List<Movie> =
         response.results.map(mapper::map)
 
-    override suspend fun getPopularMovies(): Result<List<Movie>> =
-        remoteDataSource.getPopularMovies().mapTo(this::mapToMovie)
+    override suspend fun getPopularMovies(): CoroutineResult<List<Movie>> =
+        remoteDataSource.getPopularMovies().mapCoroutineResult(this::mapToMovie)
 
-    override suspend fun getTopRatedMovies(): Result<List<Movie>> =
-        remoteDataSource.getTopRatedMovies().mapTo(this::mapToMovie)
+    override suspend fun getTopRatedMovies(): CoroutineResult<List<Movie>> =
+        remoteDataSource.getTopRatedMovies().mapCoroutineResult(this::mapToMovie)
 
-    override suspend fun getPlayingNow(): Result<List<Movie>> =
-        remoteDataSource.getPlayingNow().mapTo(this::mapToMovie)
+    override suspend fun getPlayingNow(): CoroutineResult<List<Movie>> =
+        remoteDataSource.getPlayingNow().mapCoroutineResult(this::mapToMovie)
 
-    override suspend fun getLatestMovies(): Result<List<Movie>> =
-        remoteDataSource.getLatestMovies().mapTo(this::mapToMovie)
+    override suspend fun getLatestMovies(): CoroutineResult<List<Movie>> =
+        remoteDataSource.getLatestMovies().mapCoroutineResult(this::mapToMovie)
 
 }

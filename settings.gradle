@@ -6,5 +6,7 @@ include ':app',
         ':features:showcase',
         ':features:favorite_movies',
         ':features:detail',
-        ':libraries:unittestutilities'
+        ':libraries:unit_test_utilities',
+        ':libraries:coroutines_result'
+
 

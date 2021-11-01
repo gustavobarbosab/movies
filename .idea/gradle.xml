@@ -18,7 +18,8 @@
             <option value="$PROJECT_DIR$/features/favorite_movies" />
             <option value="$PROJECT_DIR$/features/showcase" />
             <option value="$PROJECT_DIR$/libraries" />
-            <option value="$PROJECT_DIR$/libraries/unittestutilities" />
+            <option value="$PROJECT_DIR$/libraries/coroutines_result" />
+            <option value="$PROJECT_DIR$/libraries/unit_test_utilities" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

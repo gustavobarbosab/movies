@@ -2,12 +2,11 @@ package io.github.gustavobarbosab.showcase.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import io.github.gustavobarbosab.testutilities.coroutines.CoroutineDispatcherRule
-import io.github.gustavobarbosab.testutilities.verifyNever
-import io.github.gustavobarbosab.testutilities.verifyOnce
+import io.github.gustavobarbosab.testutilities.mockk.verifyNever
+import io.github.gustavobarbosab.testutilities.mockk.verifyOnce
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runBlockingTest
@@ -30,7 +29,7 @@ class ShowCaseViewModelTest {
     @Test
     fun `when I can get latest movies and had success`() = dispatcherRule.runBlockingTest {
         // GIVEN
-        val expectedResult = Result.Success(emptyList<MovieShowCase>())
+        val expectedResult = io.gustavobarbosab.coroutinesresult.model.CoroutineResult.Success(emptyList<MovieShowCase>())
         coEvery { useCase.getLatestMovies() } returns expectedResult
         viewModel.state.action.observeForever(stateObserver)
         viewModel.state.latestMovies.observeForever(listObserver)
@@ -48,7 +47,7 @@ class ShowCaseViewModelTest {
     @Test
     fun `when I can get latest movies and had error`() = dispatcherRule.runBlockingTest {
         // GIVEN
-        val expectedResult = Result.Error(Exception())
+        val expectedResult = io.gustavobarbosab.coroutinesresult.model.CoroutineResult.Error(Exception())
         coEvery { useCase.getLatestMovies() } returns expectedResult
         viewModel.state.action.observeForever(stateObserver)
         viewModel.state.latestMovies.observeForever(listObserver)
@@ -70,7 +69,7 @@ class ShowCaseViewModelTest {
     @Test
     fun `when I can get top rated movies and had success`() = dispatcherRule.runBlockingTest {
         // GIVEN
-        val expectedResult = Result.Success(emptyList<MovieShowCase>())
+        val expectedResult = io.gustavobarbosab.coroutinesresult.model.CoroutineResult.Success(emptyList<MovieShowCase>())
         coEvery { useCase.getTopRatedMovies() } returns expectedResult
         viewModel.state.action.observeForever(stateObserver)
         viewModel.state.topRatedMovies.observeForever(listObserver)
@@ -88,7 +87,7 @@ class ShowCaseViewModelTest {
     @Test
     fun `when I can get top rated movies and had error`() = dispatcherRule.runBlockingTest {
         // GIVEN
-        val expectedResult = Result.Error(Exception())
+        val expectedResult = io.gustavobarbosab.coroutinesresult.model.CoroutineResult.Error(Exception())
         coEvery { useCase.getTopRatedMovies() } returns expectedResult
         viewModel.state.action.observeForever(stateObserver)
         viewModel.state.topRatedMovies.observeForever(listObserver)

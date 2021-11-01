@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.testutilities
+package io.github.gustavobarbosab.testutilities.mockk
 
 import io.mockk.MockKVerificationScope
 import io.mockk.verify

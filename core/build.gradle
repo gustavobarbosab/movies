@@ -44,6 +44,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    api project(modulesDependencies.coroutinesResult)
+
     implementation kotlinDependencies.values()
 
     implementation androidxDependencies.appCompat

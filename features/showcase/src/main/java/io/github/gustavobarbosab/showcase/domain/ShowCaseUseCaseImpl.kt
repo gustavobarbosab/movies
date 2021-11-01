@@ -1,12 +1,12 @@
 package io.github.gustavobarbosab.showcase.domain
 
-import io.github.gustavobarbosab.core.domain.Result
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.repository.MovieRepository
 import io.github.gustavobarbosab.core.domain.repository.SessionRepository
-import io.github.gustavobarbosab.core.result.mapTo
 import io.github.gustavobarbosab.showcase.domain.mapper.MovieShowCaseMapper
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
+import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
+import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
 
 class ShowCaseUseCaseImpl(
     private val movieRepository: MovieRepository,
@@ -15,45 +15,44 @@ class ShowCaseUseCaseImpl(
 
     private val mapper = MovieShowCaseMapper()
 
-    override suspend fun getPopularMovies(): Result<List<MovieShowCase>> =
+    override suspend fun getPopularMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getPopularMovies)
 
-    override suspend fun getTopRatedMovies(): Result<List<MovieShowCase>> =
+    override suspend fun getTopRatedMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getTopRatedMovies)
 
-
-    override suspend fun getPlayingNow(): Result<List<MovieShowCase>> =
+    override suspend fun getPlayingNow(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getPlayingNow)
 
-    override suspend fun getLatestMovies(): Result<List<MovieShowCase>> =
+    override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getLatestMovies)
 
-    private suspend fun fetchDataAndMerge(fetchResult: suspend () -> Result<List<Movie>>): Result<List<MovieShowCase>> {
+    private suspend fun fetchDataAndMerge(fetchResult: suspend () -> CoroutineResult<List<Movie>>): CoroutineResult<List<MovieShowCase>> {
         val result = fetchResult()
         val favorites = sessionRepository.favoriteMovies()
 
         return when (result) {
-            is Result.Error -> result
-            is Result.Success -> bookmarkFavorites(result, favorites)
+            is CoroutineResult.Error -> result
+            is CoroutineResult.Success -> bookmarkFavorites(result, favorites)
         }
     }
 
     private fun bookmarkFavorites(
-        serviceResult: Result.Success<List<Movie>>,
-        favorites: Result<List<Movie>>
-    ): Result<List<MovieShowCase>> =
+        serviceResult: CoroutineResult.Success<List<Movie>>,
+        favorites: CoroutineResult<List<Movie>>
+    ): CoroutineResult<List<MovieShowCase>> =
         when (favorites) {
-            is Result.Error -> serviceResult.mapTo { it.map(mapper::map) }
-            is Result.Success -> mergeFavoritesAndService(serviceResult, favorites)
+            is CoroutineResult.Error -> serviceResult.mapCoroutineResult { it.map(mapper::map) }
+            is CoroutineResult.Success -> mergeFavoritesAndService(serviceResult, favorites)
         }
 
     private fun mergeFavoritesAndService(
-        serviceResult: Result.Success<List<Movie>>,
-        favoriteResult: Result.Success<List<Movie>>
-    ): Result<List<MovieShowCase>> =
-        favoriteResult.mapTo {
+        serviceResult: CoroutineResult.Success<List<Movie>>,
+        favoriteResult: CoroutineResult.Success<List<Movie>>
+    ): CoroutineResult<List<MovieShowCase>> =
+        favoriteResult.mapCoroutineResult {
             val favoriteSet = it.toMutableSet()
             favoriteSet.addAll(serviceResult.data)
-            return@mapTo favoriteSet.map(mapper::map)
+            return@mapCoroutineResult favoriteSet.map(mapper::map)
         }
 }
