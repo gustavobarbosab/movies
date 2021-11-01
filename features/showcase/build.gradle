@@ -21,15 +21,18 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
-
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(modulesDependencies.app)
+    testImplementation project(modulesDependencies.testUtilities)
 
     implementation kotlinDependencies.jdk7
 
@@ -44,7 +47,9 @@ dependencies {
     implementation navigationDependencies.fragmentKtx
     implementation navigationDependencies.dynamicFeature
 
-    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.values()
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler

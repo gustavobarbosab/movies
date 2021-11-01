@@ -5,4 +5,6 @@ include ':app',
         ':features',
         ':features:showcase',
         ':features:favorite_movies',
-        ':features:detail'
+        ':features:detail',
+        ':libraries:testutilities'
+
