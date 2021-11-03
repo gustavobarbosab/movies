@@ -27,7 +27,9 @@ class ShowCaseUseCaseImpl(
     override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getLatestMovies)
 
-    private suspend fun fetchDataAndMerge(fetchResult: suspend () -> CoroutineResult<List<Movie>>): CoroutineResult<List<MovieShowCase>> {
+    private suspend fun fetchDataAndMerge(
+        fetchResult: suspend () -> CoroutineResult<List<Movie>>
+    ): CoroutineResult<List<MovieShowCase>> {
         val result = fetchResult()
         val favorites = sessionRepository.favoriteMovies()
 

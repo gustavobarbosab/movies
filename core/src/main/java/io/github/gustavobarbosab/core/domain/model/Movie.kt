@@ -8,15 +8,4 @@ data class Movie(
     val poster: String
 ) {
     var isFavorite: Boolean = false
-
-    fun setFavorite() {
-        isFavorite = true
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (other == null || other !is Movie)
-            return false
-
-        return this.id == other.id
-    }
 }
