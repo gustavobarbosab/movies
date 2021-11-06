@@ -41,11 +41,11 @@ buildscript {
         ]
 
         modulesDependencies = [
-                app          : ":app",
-                core         : ":core",
-                common       : ":commons",
+                app              : ":app",
+                core             : ":core",
+                common           : ":commons",
                 unitTestUtilities: ":libraries:unit_test_utilities",
-                coroutinesResult: ":libraries:coroutines_result"
+                coroutinesResult : ":libraries:coroutines_result"
         ]
 
         def daggerVersion = "2.35.1"
@@ -105,4 +105,24 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task incrementVersion() {
+    print("------ Generating new version ------")
+    doFirst {
+        def versionFile = file('app/version.properties')
+        if (versionFile.canRead()) {
+            def versionProperties = new Properties()
+            versionFile.withInputStream { versionProperties.load(it) }
+
+            def versionCode = versionProperties['VERSION_CODE'].toInteger() + 1
+            versionProperties['VERSION_CODE'] = versionCode.toString()
+
+            versionProperties.VERSION_NAME = newVersionName
+            versionProperties.store(versionFile.newWriter(), null)
+        } else {
+            throw new GradleException("version.properties not found")
+        }
+    }
+    print("------ Finished ------")
 }
