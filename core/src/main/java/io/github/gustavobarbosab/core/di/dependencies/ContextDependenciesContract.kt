@@ -4,6 +4,6 @@ import android.app.Application
 import android.content.Context
 
 interface ContextDependenciesContract {
-    fun provideContext(): Context
     fun provideApplication(): Application
+    fun provideContext(): Context
 }

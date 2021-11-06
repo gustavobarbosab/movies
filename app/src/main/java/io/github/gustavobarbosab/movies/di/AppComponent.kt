@@ -15,15 +15,15 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        AppModule::class,
         ContextModule::class,
+        AppModule::class,
         NetworkModule::class,
         RepositoryModule::class
     ]
 )
 interface AppComponent :
-    AppDependenciesContract,
     ContextDependenciesContract,
+    AppDependenciesContract,
     NetworkDependenciesContract,
     RepositoryDependenciesContract {
 

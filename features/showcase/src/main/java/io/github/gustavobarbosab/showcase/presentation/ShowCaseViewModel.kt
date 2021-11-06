@@ -3,12 +3,15 @@ package io.github.gustavobarbosab.showcase.presentation
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
+import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.showcase.domain.ShowCaseUseCase
+import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
+import io.gustavobarbosab.coroutinesresult.CoroutineResultHandler
 
 class ShowCaseViewModel(
     private val useCase: ShowCaseUseCase
-) : BaseViewModel<ShowCaseViewState>(), io.gustavobarbosab.coroutinesresult.CoroutineResultHandler {
+) : BaseViewModel<ShowCaseViewState>(), CoroutineResultHandler {
 
     override val state = ShowCaseViewState()
 
@@ -21,6 +24,11 @@ class ShowCaseViewModel(
 
     fun onSearchMovie() {
         state.action.value = RedirectToSearch
+    }
+
+    fun showDetails(movie: MovieScrollableModel) {
+        val movieSelected = useCase.movie((movie as MovieShowCase))
+        state.action.value = ShowMovieDetails(movieSelected)
     }
 
     fun getBannerMovies() {

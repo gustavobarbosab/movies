@@ -14,4 +14,12 @@ class MovieShowCaseMapper : Mapper<Movie, MovieShowCase> {
             input.poster,
             input.isFavorite
         )
+
+    fun unMap(input: MovieShowCase): Movie = Movie(
+        input.id,
+        input.name,
+        input.description,
+        input.imageUrl,
+        input.posterUrl,
+    ).also { it.isFavorite = input.isFavorite }
 }

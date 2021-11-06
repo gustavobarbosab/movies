@@ -6,6 +6,7 @@ import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
+import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
@@ -83,6 +84,7 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjec
                 ShowTopRatedLoading -> binding.topRated.showShimmer()
                 ErrorLoadTopRated -> binding.topRated.showTryAgain()
                 RedirectToSearch -> context?.toast("Pesquisar")
+                is ShowMovieDetails -> startDetails(it.movie)
                 else -> {
                 }
             }
@@ -102,14 +104,13 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjec
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {
-        findAppNavController().navigateSafely(
-            navDirections = ShowCaseFragmentDirections.actionDetailFragment(),
-            onError = this::onLoadDetailsFail
-        )
-        context?.toast(movie.id.toString())
+        viewModel.showDetails(movie)
     }
 
-    private fun onLoadDetailsFail(exception: Exception) {
-        context?.toast(getString(R.string.show_case_generic_error))
+    private fun startDetails(movie: Movie) {
+        val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
+        findAppNavController().navigateSafely(action) {
+            requireContext().toast(it.message.toString())
+        }
     }
 }

@@ -27,6 +27,8 @@ class ShowCaseUseCaseImpl(
     override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getLatestMovies)
 
+    override fun movie(showCase: MovieShowCase): Movie = mapper.unMap(showCase)
+
     private suspend fun fetchDataAndMerge(
         fetchResult: suspend () -> CoroutineResult<List<Movie>>
     ): CoroutineResult<List<MovieShowCase>> {

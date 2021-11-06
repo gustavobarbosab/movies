@@ -10,7 +10,7 @@
         android:name="io.github.gustavobarbosab.showcase.presentation.ShowCaseFragment">
         <action
             android:id="@+id/action_detail_fragment"
-            app:destination="@id/detailGraph"
+            app:destination="@id/detailsFragment"
             app:popUpTo="@id/fragment_show_case" />
         <argument
             android:name="SHOW_NAVBAR"
@@ -28,12 +28,15 @@
             android:defaultValue="true" />
     </fragment>
 
-
-    <include-dynamic
-        android:id="@+id/detailGraph"
-        app:graphPackage="io.github.gustavobarbosab.movies.detail"
-        app:graphResName="detail_graph"
-        app:moduleName="detail" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="io.github.gustavobarbosab.movies.detail.MovieDetailFragment"
+        android:label="Details"
+        app:moduleName="detail">
+        <argument
+            android:name="detailModel"
+            app:argType="io.github.gustavobarbosab.core.domain.model.Movie" />
+    </fragment>
 
     <fragment
         android:id="@+id/fragment_progress"

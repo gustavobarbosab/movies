@@ -9,6 +9,7 @@ import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
+import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.showcase.R
@@ -65,14 +66,13 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
     }
 
     private fun onItemClicked(movie: MovieScrollableModel) {
-        findAppNavController().navigateSafely(
-            navDirections = ShowCaseFragmentDirections.actionDetailFragment(),
-            onError = this::onLoadDetailsFail
-        )
-        context?.toast(movie.id.toString())
+        viewModel.showDetails(movie)
     }
 
-    private fun onLoadDetailsFail(exception: Exception) {
-        context?.toast(getString(R.string.show_case_generic_error))
+    private fun startDetails(movie: Movie) {
+        val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
+        findAppNavController().navigateSafely(action) {
+            requireContext().toast(it.message.toString())
+        }
     }
 }
