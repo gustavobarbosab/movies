@@ -35,7 +35,7 @@
         app:moduleName="detail_private">
         <argument
             android:name="detailModel"
-            app:argType="io.github.gustavobarbosab.core.domain.model.Movie" />
+            app:argType="io.github.gustavobarbosab.detail.domain.model.MovieDetail" />
     </fragment>
 
     <fragment

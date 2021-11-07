@@ -6,7 +6,7 @@ import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.MovieScrollableModel
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
-import io.github.gustavobarbosab.core.domain.model.Movie
+import io.github.gustavobarbosab.detail.domain.model.MovieDetail
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
@@ -107,7 +107,7 @@ class ShowCaseFragment : BaseFragment<FragmentMovieListBinding>(), ShowCaseInjec
         viewModel.showDetails(movie)
     }
 
-    private fun startDetails(movie: Movie) {
+    private fun startDetails(movie: MovieDetail) {
         val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
         findAppNavController().navigateSafely(action) {
             requireContext().toast(it.message.toString())

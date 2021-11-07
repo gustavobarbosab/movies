@@ -3,6 +3,7 @@ package io.github.gustavobarbosab.showcase.domain
 import io.github.gustavobarbosab.core.domain.model.Movie
 import io.github.gustavobarbosab.core.domain.repository.MovieRepository
 import io.github.gustavobarbosab.core.domain.repository.SessionRepository
+import io.github.gustavobarbosab.detail.domain.model.MovieDetail
 import io.github.gustavobarbosab.showcase.domain.mapper.MovieShowCaseMapper
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
@@ -27,7 +28,8 @@ class ShowCaseUseCaseImpl(
     override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         fetchDataAndMerge(movieRepository::getLatestMovies)
 
-    override fun movie(showCase: MovieShowCase): Movie = mapper.unMap(showCase)
+    override fun convertToMovieDetail(showCase: MovieShowCase): MovieDetail =
+        mapper.mapToDetail(showCase)
 
     private suspend fun fetchDataAndMerge(
         fetchResult: suspend () -> CoroutineResult<List<Movie>>

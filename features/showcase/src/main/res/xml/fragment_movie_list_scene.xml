@@ -58,7 +58,6 @@
             android:id="@+id/scrollable_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"

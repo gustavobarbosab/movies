@@ -2,6 +2,7 @@ package io.github.gustavobarbosab.showcase.domain.mapper
 
 import io.github.gustavobarbosab.core.domain.Mapper
 import io.github.gustavobarbosab.core.domain.model.Movie
+import io.github.gustavobarbosab.detail.domain.model.MovieDetail
 import io.github.gustavobarbosab.showcase.domain.model.MovieShowCase
 
 class MovieShowCaseMapper : Mapper<Movie, MovieShowCase> {
@@ -15,11 +16,12 @@ class MovieShowCaseMapper : Mapper<Movie, MovieShowCase> {
             input.isFavorite
         )
 
-    fun unMap(input: MovieShowCase): Movie = Movie(
+    fun mapToDetail(input: MovieShowCase): MovieDetail = MovieDetail(
         input.id,
         input.name,
         input.description,
         input.imageUrl,
         input.posterUrl,
-    ).also { it.isFavorite = input.isFavorite }
+        input.isFavorite
+    )
 }
