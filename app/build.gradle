@@ -59,7 +59,7 @@ android {
     dynamicFeatures = [
             ':features:showcase',
             ":features:favorite_movies",
-            ':features:detail'
+            ':features:detail:detail_private'
     ]
 }
 
@@ -68,6 +68,7 @@ dependencies {
 
     api project(modulesDependencies.core)
     api project(modulesDependencies.common)
+    api project(':features:detail:detail_public')
 
     implementation kotlinDependencies.values()
     implementation androidxDependencies.values()

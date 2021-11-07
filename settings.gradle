@@ -5,7 +5,8 @@ include ':app',
         ':features',
         ':features:showcase',
         ':features:favorite_movies',
-        ':features:detail',
+        ':features:detail:detail_private',
+        ':features:detail:detail_public',
         ':libraries:unit_test_utilities',
         ':libraries:coroutines_result'
 

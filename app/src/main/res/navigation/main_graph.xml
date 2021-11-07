@@ -32,7 +32,7 @@
         android:id="@+id/detailsFragment"
         android:name="io.github.gustavobarbosab.movies.detail.MovieDetailFragment"
         android:label="Details"
-        app:moduleName="detail">
+        app:moduleName="detail_private">
         <argument
             android:name="detailModel"
             app:argType="io.github.gustavobarbosab.core.domain.model.Movie" />
