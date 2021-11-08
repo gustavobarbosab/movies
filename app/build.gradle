@@ -66,8 +66,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(modulesDependencies.core)
-    api project(modulesDependencies.common)
+    implementation project(modulesDependencies.core)
+    implementation project(modulesDependencies.common)
+
     api project(':features:detail:detail_public')
     api project(':features:showcase:showcase_public')
 
