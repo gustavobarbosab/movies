@@ -73,7 +73,7 @@ pipeline {
                 sh "pwd"
                 echo "-------- Generate App VERSION --------"
                 script {
-                    sh "./gradlew clean bundleRelease"
+                    sh "./gradlew clean incrementVersion bundleRelease"
                 }
             }
         }
