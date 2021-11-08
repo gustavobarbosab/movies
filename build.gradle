@@ -1,3 +1,6 @@
+apply from: './local_properties.gradle'
+apply from: './increment_version.gradle'
+
 buildscript {
     ext {
         // App Configs
@@ -109,24 +112,4 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-task incrementVersion() {
-    doFirst {
-        print("------ Generating new version ------")
-        def versionFile = file('app/version.properties')
-        if (versionFile.canRead()) {
-            def versionProperties = new Properties()
-            versionFile.withInputStream { versionProperties.load(it) }
-
-            def versionCode = versionProperties['VERSION_CODE'].toInteger() + 1
-            versionProperties['VERSION_CODE'] = versionCode.toString()
-
-            versionProperties.VERSION_NAME = newVersionName
-            versionProperties.store(versionFile.newWriter(), null)
-            print("------ Finished ------")
-        } else {
-            throw new GradleException("version.properties not found")
-        }
-    }
 }

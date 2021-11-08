@@ -6,11 +6,11 @@ import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.detail.domain.model.MovieDetail
+import io.github.gustavobarbosab.movies.BuildConfig.*
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.navigateSafely
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
-import io.github.gustavobarbosab.showcase.BuildConfig
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentShowCaseBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
@@ -68,7 +68,7 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
     private fun setupVersion() {
         binding.textVersion.text = getString(
             R.string.show_case_app_version,
-            BuildConfig.VERSION_NAME
+            VERSION_NAME
         )
     }
 
