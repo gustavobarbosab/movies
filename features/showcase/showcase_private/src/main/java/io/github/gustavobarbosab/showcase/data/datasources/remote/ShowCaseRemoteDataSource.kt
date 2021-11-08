@@ -1,8 +1,9 @@
-package io.github.gustavobarbosab.core.data.network.services.movies
+package io.github.gustavobarbosab.showcase.data.datasources.remote
 
+import io.github.gustavobarbosab.core.data.network.services.movies.MovieApi
 import io.gustavobarbosab.coroutinesresult.SafelyCoroutineCall
 
-class MovieRemoteDataSource(private val movieApi: MovieApi) : SafelyCoroutineCall {
+class ShowCaseRemoteDataSource(private val movieApi: MovieApi) : SafelyCoroutineCall {
 
     suspend fun getPopularMovies() = safeCallOnIo(movieApi::getPopularMovies)
 

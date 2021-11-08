@@ -26,7 +26,7 @@ class ShowCaseViewModel(
     }
 
     fun showDetails(movie: MovieShowCase) {
-        val movieSelected = useCase.convertToMovieDetail((movie as MovieShowCase))
+        val movieSelected = useCase.convertToMovieDetail(movie)
         state.action.value = ShowMovieDetails(movieSelected)
     }
 

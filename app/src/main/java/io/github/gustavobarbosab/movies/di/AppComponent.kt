@@ -6,7 +6,6 @@ import dagger.Component
 import io.github.gustavobarbosab.core.di.dependencies.AppDependenciesContract
 import io.github.gustavobarbosab.core.di.dependencies.ContextDependenciesContract
 import io.github.gustavobarbosab.core.di.dependencies.NetworkDependenciesContract
-import io.github.gustavobarbosab.core.di.dependencies.RepositoryDependenciesContract
 import io.github.gustavobarbosab.core.di.modules.NetworkModule
 import io.github.gustavobarbosab.core.di.modules.RepositoryModule
 import io.github.gustavobarbosab.movies.MovieApplication
@@ -24,8 +23,7 @@ import javax.inject.Singleton
 interface AppComponent :
     ContextDependenciesContract,
     AppDependenciesContract,
-    NetworkDependenciesContract,
-    RepositoryDependenciesContract {
+    NetworkDependenciesContract {
 
     fun inject(application: MovieApplication)
 

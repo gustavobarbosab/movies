@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.showcase.domain
 
-import io.github.gustavobarbosab.core.domain.repository.MovieRepository
+import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
 import io.github.gustavobarbosab.core.domain.repository.SessionRepository
 import io.github.gustavobarbosab.showcase.ShowCaseMocker
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCaseImpl
@@ -19,7 +19,7 @@ class ShowCaseUseCaseImplTest {
     @get:Rule
     val dispatcherRule = CoroutineDispatcherRule()
 
-    val movieRepository = mockk<MovieRepository>()
+    val movieRepository = mockk<ShowCaseRepository>()
     val sessionRepository = mockk<SessionRepository>()
     val showCaseUseCase = ShowCaseUseCaseImpl(movieRepository, sessionRepository)
 
