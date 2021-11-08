@@ -1,14 +1,14 @@
 # 🎥 Moovie
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/gustavobarbosab/movies?style=for-the-badgee)
+![GitHub language count](https://img.shields.io/github/languages/count/gustavobarbosab/movies?style=for-the-badgee)
+![GitHub forks](https://img.shields.io/github/forks/gustavobarbosab/movies?style=for-the-badgee)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/gustavobarbosab/movies?style=for-the-badgee)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/gustavobarbosab/movies?style=for-the-badgee)
 
-🚧 EM CONSTRUÇÃO 🚧
+🚧 - EM CONSTRUÇÃO -🚧
 
-<img src="preview.gif" alt="App preview">
+<img src="preview.gif" alt="App preview" height="600">
 
 O app ainda está em desenvolvimento e tem como intuito colocar em prática algumas ferramentas e
 técnicas que estão em alta no mundo Android, além de melhorar algumas skills. A ideia é que usemos
@@ -31,7 +31,7 @@ os seguintes stack de componentes:
 
 ### 🚀 Como está estruturado o projeto?
 
-<img src="modules.jpg" alt="Modules organization">
+<img src="modules.jpg" alt="Modules organization" height="500">
 
 - Módulo app: possui a estrutura de navegação e a parte central da injeção de dependencias.
 
@@ -56,7 +56,7 @@ Observe que os módulos publicos das features precisaram ser incorporados no :ap
 é necessária para que não tenhamos dependencias circulares no projeto, inviabilizando a sua
 compilação.
 
-<img src="communication.jpg" alt="Modules connection">
+<img src="communication.jpg" alt="Modules connection"  height="500">
 
 ## 😄 Seja um dos contribuidores<br>
 
