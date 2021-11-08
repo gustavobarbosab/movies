@@ -25,6 +25,7 @@ os seguintes stack de componentes:
 - [X] Mockk
 - [X] JUnit
 - [X] Jenkins
+- [ ] Dark Mode
 - [ ] Espresso
 - [ ] Gradle KTS
 - [ ] Compose
@@ -33,18 +34,14 @@ os seguintes stack de componentes:
 
 <img src="modules.jpg" alt="Modules organization" height="500">
 
-- Módulo app: possui a estrutura de navegação e a parte central da injeção de dependencias.
-
-- Módulo core: centraliza componentes cruciais para toda a aplicação, como configurações de rede,
+- **Módulo app:** possui a estrutura de navegação e a parte central da injeção de dependencias.
+- **Módulo core:** centraliza componentes cruciais para toda a aplicação, como configurações de rede,
   banco, injeção de depêndencias, etc.
-
-- Módulo commons: possui estruturas comuns para a aplicação, como componentes, definições base,
+- **Módulo commons:** possui estruturas comuns para a aplicação, como componentes, definições base,
   estilos, etc.
-
-- Módulos de libraries: são módulos que podem ser extraídos e usados por outras aplicações, são
+- **Módulos de libraries:** são módulos que podem ser extraídos e usados por outras aplicações, são
   interessantes pois fomentam a criação de bibliotecas para a comunidade.
-
-- Módulos de features: são módulos dividos em duas partes. O modulo privado que contém as telas,
+- **Módulos de features:** são módulos dividos em duas partes. O modulo privado que contém as telas,
   regras de exibição e comunicação com banco e api. Já o módulo público contém os models, interfaces
   e o use case que poderão ser providos para outras partes do app.
 
