@@ -20,7 +20,7 @@ os seguintes stack de componentes:
 - [X] Coroutines
 - [X] ViewModel
 - [X] Single Activity
-- [X] Dagger 2 (E futuramente migrar para o HILT. Escolhi o dagger por ser mais complexo de
+- [X] Dagger 2 (futuramente migrarei para o HILT. Escolhi o dagger por ser mais complexo de
   configurar, forçando o aprendizado)
 - [X] Mockk
 - [X] JUnit
