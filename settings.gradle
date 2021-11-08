@@ -3,11 +3,10 @@ include ':app',
         ':core',
         ':commons',
         ':features',
-        ':features:showcase',
+        ':features:showcase:showcase_private',
+        ':features:showcase:showcase_public',
         ':features:favorite_movies',
         ':features:detail:detail_private',
         ':features:detail:detail_public',
         ':libraries:unit_test_utilities',
         ':libraries:coroutines_result'
-
-

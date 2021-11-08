@@ -57,7 +57,7 @@ android {
     buildFeatures.dataBinding = true
 
     dynamicFeatures = [
-            ':features:showcase',
+            ':features:showcase:showcase_private',
             ":features:favorite_movies",
             ':features:detail:detail_private'
     ]
@@ -69,6 +69,7 @@ dependencies {
     api project(modulesDependencies.core)
     api project(modulesDependencies.common)
     api project(':features:detail:detail_public')
+    api project(':features:showcase:showcase_public')
 
     implementation kotlinDependencies.values()
     implementation androidxDependencies.values()

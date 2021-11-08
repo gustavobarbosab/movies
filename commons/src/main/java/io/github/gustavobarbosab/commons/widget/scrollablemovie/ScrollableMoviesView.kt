@@ -26,12 +26,14 @@ class ScrollableMoviesView @JvmOverloads constructor(
                 true
             )
 
-    var adapter: ScrollableMovieAdapter
-    var clickListener: (MovieScrollableModel) -> Unit = {}
+    var adapter: ScrollableMovieRecyclerViewAdapter? = null
+        set(value) {
+            field = value
+            binding.moviesRecyclerView.adapter = value
+        }
+
 
     init {
-        adapter = ScrollableMovieAdapter(this::onMovieClicked)
-        binding.moviesRecyclerView.adapter = adapter
         val typedArray = context.obtainStyledAttributes(
             attrs,
             R.styleable.ScrollableMoviesView,
@@ -56,9 +58,7 @@ class ScrollableMoviesView @JvmOverloads constructor(
         setViewVisibilityState(ShimmerVisible)
     }
 
-    fun loadMovies(title: String, movies: List<MovieScrollableModel>) {
-        binding.moviesTitle.text = title
-        adapter.movies = movies
+    fun showMovieList() {
         setViewVisibilityState(RecyclerViewVisible)
     }
 
@@ -68,10 +68,6 @@ class ScrollableMoviesView @JvmOverloads constructor(
 
     fun showTryAgain() {
         setViewVisibilityState(TryAgainVisible)
-    }
-
-    private fun onMovieClicked(movie: MovieScrollableModel) {
-        clickListener(movie)
     }
 
     private fun setViewVisibilityState(state: ScrollableVisibilityStates) {
