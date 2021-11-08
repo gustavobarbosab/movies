@@ -1,10 +1,8 @@
 package io.github.gustavobarbosab.detail.domain.model
 
 import android.os.Parcelable
-import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 
-@Keep
 @Parcelize
 class MovieDetail(
     val id: Long,

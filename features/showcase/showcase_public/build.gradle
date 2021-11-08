@@ -33,6 +33,6 @@ android {
 
 dependencies {
     implementation project(modulesDependencies.core)
-    implementation project(":features:detail:detail_public")
+    implementation project(modulesDependencies.detailsPublic)
     implementation project(modulesDependencies.coroutinesResult)
 }

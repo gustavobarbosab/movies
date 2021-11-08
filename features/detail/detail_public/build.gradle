@@ -30,26 +30,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    testImplementation project(modulesDependencies.unitTestUtilities)
-
-    implementation kotlinDependencies.jdk7
-
-    implementation androidxDependencies.appCompat
-    implementation androidxDependencies.coreKtx
-    implementation androidxDependencies.constraintLayout
-    implementation androidxDependencies.viewPager2
-
-    implementation navigationDependencies.fragment
-    implementation navigationDependencies.ui
-    implementation navigationDependencies.uiKtx
-    implementation navigationDependencies.fragmentKtx
-    implementation navigationDependencies.dynamicFeature
-
-    testImplementation unitTestDependencies.values()
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2"
-    testImplementation "androidx.arch.core:core-testing:2.1.0"
-
-    implementation networkDependencies.values()
-
-    implementation corroutinesDependency
+    implementation project(modulesDependencies.core)
+    implementation project(modulesDependencies.coroutinesResult)
 }

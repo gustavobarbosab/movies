@@ -61,6 +61,11 @@ android {
             ":features:favorite_movies",
             ':features:detail:detail_private'
     ]
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 dependencies {
@@ -69,8 +74,9 @@ dependencies {
     implementation project(modulesDependencies.core)
     implementation project(modulesDependencies.common)
 
-    api project(':features:detail:detail_public')
-    api project(':features:showcase:showcase_public')
+    // Public modules
+    api project(modulesDependencies.detailsPublic)
+    api project(modulesDependencies.showCasePublic)
 
     implementation kotlinDependencies.values()
     implementation androidxDependencies.values()
