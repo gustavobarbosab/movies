@@ -30,6 +30,19 @@ os seguintes stack de componentes:
 - [ ] Gradle KTS
 - [ ] Compose
 
+### 💻  Configuração de ambiente
+
+Primeiro de tudo, você vai precisar da versão 4.1.0 (ou superior) do Android Studio.
+
+Crie uma chave de desenvolvedor na API [TheMovieDB](https://www.themoviedb.org/?language=pt-BR) para conseguir rodar o projeto.
+
+Quando você estiver com a chave, adicione ela no arquivo `local.properties` na raiz do projeto, da seguinte forma:
+
+```properties
+#TheMovieDB API KEY
+api.key= = <insert-here>
+```
+
 ### 🚀 Como está estruturado o projeto?
 
 <img src="modules.jpg" alt="Modules organization" height="500">
