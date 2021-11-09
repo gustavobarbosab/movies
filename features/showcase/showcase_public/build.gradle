@@ -1,5 +1,5 @@
 plugins {
-    id 'moovie.feature-public'
+    id 'moovie.feature-data'
 }
 
 dependencies {
