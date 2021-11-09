@@ -26,9 +26,9 @@ import javax.inject.Singleton
 interface AppComponent :
     ContextDependencies,
     CoreDependencies,
-    NetworkDependencies {
+    NetworkDependencies,
+    UseCaseDependencies{
 
-    fun provideShowCaseUseCase(): ShowCaseUseCase
 
     fun inject(application: MovieApplication)
 
