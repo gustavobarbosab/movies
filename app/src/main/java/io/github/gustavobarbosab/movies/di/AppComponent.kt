@@ -8,8 +8,8 @@ import io.github.gustavobarbosab.core.di.dependencies.NetworkDependencies
 import io.github.gustavobarbosab.core.di.modules.CoreModule
 import io.github.gustavobarbosab.core.di.modules.NetworkModule
 import io.github.gustavobarbosab.movies.MovieApplication
-import io.github.gustavobarbosab.movies.data.di.ShowCaseDataModule
 import io.github.gustavobarbosab.movies.di.module.ContextModule
+import io.github.gustavobarbosab.movies.di.module.UseCaseModule
 import javax.inject.Singleton
 
 @Singleton
@@ -18,15 +18,14 @@ import javax.inject.Singleton
         ContextModule::class,
         CoreModule::class,
         NetworkModule::class,
-        ShowCaseDataModule::class
+        UseCaseModule::class
     ]
 )
 interface AppComponent :
     ContextDependencies,
     CoreDependencies,
     NetworkDependencies,
-    UseCaseDependencies{
-
+    UseCaseDependencies {
 
     fun inject(application: MovieApplication)
 
