@@ -26,11 +26,8 @@ class MovieListModule {
 
     @Provides
     @ModuleScope
-    fun provideUseCase(
-        repository: ShowCaseRepository,
-        sessionRepository: SessionRepository
-    ): ShowCaseUseCase = ShowCaseUseCaseImpl(repository, sessionRepository)
-
+    fun provideUseCase(repository: ShowCaseRepository): ShowCaseUseCase =
+        ShowCaseUseCaseImpl(repository)
 
     @Provides
     @ModuleScope

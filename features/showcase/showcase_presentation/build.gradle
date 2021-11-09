@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation project(modulesDependencies.coroutinesResult)
-    implementation project(modulesDependencies.showCasePublic)
+    implementation project(modulesDependencies.showCaseDomain)
     implementation project(modulesDependencies.detailsDomain)
     implementation androidxDependencies.viewPager2
     implementation networkDependencies.values()

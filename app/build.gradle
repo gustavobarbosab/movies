@@ -58,7 +58,7 @@ android {
     buildFeatures.dataBinding = true
 
     dynamicFeatures = [
-            ':features:showcase:showcase_private',
+            ':features:showcase:showcase_presentation',
             ':features:favorites:favorite_presentation',
             ':features:detail:detail_presentation'
     ]

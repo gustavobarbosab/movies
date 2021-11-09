@@ -1,16 +1,12 @@
 package io.github.gustavobarbosab.showcase.usecase
 
-import io.github.gustavobarbosab.core.domain.repository.SessionRepository
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
 import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
 import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
 import io.gustavobarbosab.coroutinesresult.model.CoroutineResult.*
 
-class ShowCaseUseCaseImpl(
-    private val movieRepository: ShowCaseRepository,
-    private val sessionRepository: SessionRepository
-) : ShowCaseUseCase {
+class ShowCaseUseCaseImpl(private val movieRepository: ShowCaseRepository) : ShowCaseUseCase {
 
     private val mapper = MovieShowCaseUseCaseMapper()
 
@@ -29,19 +25,10 @@ class ShowCaseUseCaseImpl(
     private suspend fun fetchDataAndMerge(
         fetchResult: suspend () -> CoroutineResult<List<MovieShowCase>>
     ): CoroutineResult<List<MovieShowCase>> {
-        val result = fetchResult()
-        val favorites = sessionRepository.favoriteMovies().mapCoroutineResult {
-            it.map(mapper::map)
-        }
-
-        return when {
-            result is Error -> favorites
-            favorites is Error -> result
-            else -> mergeFavoritesAndService(
-                result as Success<List<MovieShowCase>>,
-                favorites as Success<List<MovieShowCase>>
-            )
-        }
+        return fetchResult()
+        //val favorites = sessionRepository.favoriteMovies().mapCoroutineResult {
+        //    it.map(mapper::map)
+        //}
     }
 
     private fun mergeFavoritesAndService(

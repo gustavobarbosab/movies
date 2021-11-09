@@ -3,8 +3,8 @@ include ':app',
         ':core',
         ':commons',
         ':features',
-        ':features:showcase:showcase_private',
-        ':features:showcase:showcase_public',
+        ':features:showcase:showcase_presentation',
+        ':features:showcase:showcase_domain',
         ':features:favorites:favorite_presentation',
         ':features:favorites:favorites_domain',
         ':features:favorites:favorites_data',
@@ -13,3 +13,4 @@ include ':app',
         ':libraries:unit_test_utilities',
         ':libraries:coroutines_result'
 include ':features:detail:detail_data'
+include ':features:showcase:showcase_data'

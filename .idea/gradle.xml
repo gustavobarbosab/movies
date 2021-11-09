@@ -24,8 +24,9 @@
             <option value="$PROJECT_DIR$/features/favorites/favorites_data" />
             <option value="$PROJECT_DIR$/features/favorites/favorites_domain" />
             <option value="$PROJECT_DIR$/features/showcase" />
-            <option value="$PROJECT_DIR$/features/showcase/showcase_private" />
-            <option value="$PROJECT_DIR$/features/showcase/showcase_public" />
+            <option value="$PROJECT_DIR$/features/showcase/showcase_data" />
+            <option value="$PROJECT_DIR$/features/showcase/showcase_domain" />
+            <option value="$PROJECT_DIR$/features/showcase/showcase_presentation" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/coroutines_result" />
             <option value="$PROJECT_DIR$/libraries/unit_test_utilities" />
