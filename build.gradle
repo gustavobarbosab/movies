@@ -53,7 +53,9 @@ buildscript {
                 showCasePublic   : ":features:showcase:showcase_public",
                 showCasePrivate  : ":features:showcase:showcase_private",
                 detailsPublic    : ":features:detail:detail_public",
-                detailsPrivate   : ":features:detail:detail_private"
+                detailsPrivate   : ":features:detail:detail_private",
+                favoritesData: ":features:favorites:favorites_data",
+                favoritesDomain: ":features:favorites:favorites_domain",
         ]
 
         def daggerVersion = "2.35.1"
