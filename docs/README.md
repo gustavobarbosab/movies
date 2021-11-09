@@ -8,11 +8,12 @@
 
 🚧 - EM CONSTRUÇÃO -🚧
 
-<img src="preview.gif" alt="App preview" height="600">
+<img src="preview.gif" alt="App preview" width="300" align="right" hspace="20">
 
 O app ainda está em desenvolvimento e tem como intuito colocar em prática algumas ferramentas e
-técnicas que estão em alta no mundo Android, além de melhorar algumas skills. A ideia é que usemos
-os seguintes stack de componentes:
+técnicas que estão em alta no mundo Android, além de melhorar algumas skills. 
+
+A ideia é que usemos os seguintes stack de componentes:
 
 - [X] Dynamic features
 - [X] Motion layout
