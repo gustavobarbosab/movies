@@ -7,11 +7,9 @@ import io.github.gustavobarbosab.core.di.dependencies.CoreDependencies
 import io.github.gustavobarbosab.core.di.dependencies.NetworkDependencies
 import io.github.gustavobarbosab.core.di.modules.CoreModule
 import io.github.gustavobarbosab.core.di.modules.NetworkModule
-import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.MovieApplication
 import io.github.gustavobarbosab.movies.data.di.ShowCaseDataModule
-import io.github.gustavobarbosab.movies.data.di.ShowCaseDependencies
-import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
+import io.github.gustavobarbosab.movies.di.module.ContextModule
 import javax.inject.Singleton
 
 @Singleton

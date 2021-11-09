@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies.di
+package io.github.gustavobarbosab.movies.di.module
 
 import android.app.Application
 import android.content.Context
