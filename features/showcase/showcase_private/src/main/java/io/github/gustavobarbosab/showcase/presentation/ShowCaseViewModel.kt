@@ -26,8 +26,9 @@ class ShowCaseViewModel(
     }
 
     fun showDetails(movie: MovieShowCase) {
-        val movieSelected = useCase.convertToMovieDetail(movie)
-        state.action.value = ShowMovieDetails(movieSelected)
+        // TODO Injetar um cara para converter esse objeto
+       // val movieSelected = useCase.convertToMovieDetail(movie)
+        //state.action.value = ShowMovieDetails(movieSelected)
     }
 
     fun getBannerMovies() {

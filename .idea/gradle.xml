@@ -16,8 +16,9 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/detail" />
-            <option value="$PROJECT_DIR$/features/detail/detail_private" />
-            <option value="$PROJECT_DIR$/features/detail/detail_public" />
+            <option value="$PROJECT_DIR$/features/detail/detail_data" />
+            <option value="$PROJECT_DIR$/features/detail/detail_domain" />
+            <option value="$PROJECT_DIR$/features/detail/detail_presentation" />
             <option value="$PROJECT_DIR$/features/favorites" />
             <option value="$PROJECT_DIR$/features/favorites/favorite_presentation" />
             <option value="$PROJECT_DIR$/features/favorites/favorites_data" />

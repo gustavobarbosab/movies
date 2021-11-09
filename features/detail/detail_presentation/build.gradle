@@ -1,0 +1,7 @@
+plugins {
+    id 'moovie.feature-presentation'
+}
+
+dependencies {
+    implementation project(modulesDependencies.detailsDomain)
+}

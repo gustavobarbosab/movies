@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
-import io.github.gustavobarbosab.detail.domain.model.MovieDetail
 import io.github.gustavobarbosab.movies.BuildConfig.*
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.findAppNavController
@@ -90,7 +89,7 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
                 ShowTopRatedLoading -> binding.topRated.showShimmer()
                 ErrorLoadTopRated -> binding.topRated.showTryAgain()
                 RedirectToSearch -> context?.toast("Pesquisar")
-                is ShowMovieDetails -> startDetails(it.movie)
+                //is ShowMovieDetails -> startDetails(it.movie)
                 else -> {
                 }
             }
@@ -116,10 +115,10 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
         viewModel.showDetails(movie)
     }
 
-    private fun startDetails(movie: MovieDetail) {
-        val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
-        findAppNavController().navigateSafely(action) {
-            requireContext().toast(it.message.toString())
-        }
+    private fun startDetails() {
+       // val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
+        //findAppNavController().navigateSafely(action) {
+         //   requireContext().toast(it.message.toString())
+        //}
     }
 }

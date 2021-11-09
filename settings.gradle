@@ -8,7 +8,8 @@ include ':app',
         ':features:favorites:favorite_presentation',
         ':features:favorites:favorites_domain',
         ':features:favorites:favorites_data',
-        ':features:detail:detail_private',
-        ':features:detail:detail_public',
+        ':features:detail:detail_presentation',
+        ':features:detail:detail_domain',
         ':libraries:unit_test_utilities',
         ':libraries:coroutines_result'
+include ':features:detail:detail_data'

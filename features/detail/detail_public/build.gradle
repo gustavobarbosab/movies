@@ -1,7 +1,0 @@
-plugins {
-    id 'moovie.feature-data'
-}
-
-dependencies {
-    implementation project(modulesDependencies.coroutinesResult)
-}

@@ -52,8 +52,8 @@ buildscript {
                 coroutinesResult : ":libraries:coroutines_result",
                 showCasePublic   : ":features:showcase:showcase_public",
                 showCasePrivate  : ":features:showcase:showcase_private",
-                detailsPublic    : ":features:detail:detail_public",
-                detailsPrivate   : ":features:detail:detail_private",
+                detailsDomain    : ":features:detail:detail_domain",
+                detailsData    : ":features:detail:detail_data",
                 favoritesData: ":features:favorites:favorites_data",
                 favoritesDomain: ":features:favorites:favorites_domain",
         ]

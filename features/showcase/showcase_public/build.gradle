@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation project(modulesDependencies.detailsPublic)
+    //implementation project(modulesDependencies.detailsDomain)
     implementation project(modulesDependencies.coroutinesResult)
 }

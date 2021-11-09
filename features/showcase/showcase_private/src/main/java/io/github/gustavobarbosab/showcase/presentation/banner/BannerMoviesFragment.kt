@@ -4,17 +4,13 @@ import android.os.Bundle
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
-import io.github.gustavobarbosab.detail.domain.model.MovieDetail
-import io.github.gustavobarbosab.movies.extension.findAppNavController
-import io.github.gustavobarbosab.movies.extension.navigateSafely
+import io.github.gustavobarbosab.detail.MovieDetail
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentBannerMoviesBinding
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.github.gustavobarbosab.showcase.presentation.ShowCaseFragmentDirections
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewModel
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState
 
@@ -70,9 +66,9 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
     }
 
     private fun startDetails(movie: MovieDetail) {
-        val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
-        findAppNavController().navigateSafely(action) {
-            requireContext().toast(it.message.toString())
-        }
+    //    val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
+    //    findAppNavController().navigateSafely(action) {
+    //        requireContext().toast(it.message.toString())
+    //    }
     }
 }

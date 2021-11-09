@@ -60,7 +60,7 @@ android {
     dynamicFeatures = [
             ':features:showcase:showcase_private',
             ':features:favorites:favorite_presentation',
-            ':features:detail:detail_private'
+            ':features:detail:detail_presentation'
     ]
 
     packagingOptions {
@@ -75,11 +75,9 @@ dependencies {
     implementation project(modulesDependencies.core)
     implementation project(modulesDependencies.common)
 
-    // Data modules
-    api project(modulesDependencies.detailsPublic)
-    api project(modulesDependencies.showCasePublic)
-
+    // Modules data
     implementation project(modulesDependencies.favoritesData)
+    implementation project(modulesDependencies.detailsData)
 
     implementation kotlinDependencies.values()
     implementation androidxDependencies.values()

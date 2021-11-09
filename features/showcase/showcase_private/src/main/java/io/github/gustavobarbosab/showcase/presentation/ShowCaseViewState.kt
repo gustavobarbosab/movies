@@ -2,7 +2,6 @@ package io.github.gustavobarbosab.showcase.presentation
 
 import androidx.lifecycle.MutableLiveData
 import io.github.gustavobarbosab.commons.livedata.SingleLiveEvent
-import io.github.gustavobarbosab.detail.domain.model.MovieDetail
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 
 class ShowCaseViewState {
@@ -21,6 +20,6 @@ class ShowCaseViewState {
         object ShowTopRatedLoading : Action()
         object ErrorLoadTopRated : Action()
         object RedirectToSearch : Action()
-        class ShowMovieDetails(val movie: MovieDetail) : Action()
+        //class ShowMovieDetails(val movie: io.github.gustavobarbosab.movies.detail.MovieDetail) : Action()
     }
 }
