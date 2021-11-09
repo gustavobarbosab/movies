@@ -17,10 +17,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAppWrapper() = AppConfigWrapper()
-
-    @Provides
-    @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         appConfigWrapper: AppConfigWrapper

@@ -52,5 +52,4 @@ dependencies {
 
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
-    kapt daggerDependencies.processor
 }

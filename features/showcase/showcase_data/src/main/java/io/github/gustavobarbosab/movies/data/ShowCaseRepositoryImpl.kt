@@ -1,14 +1,16 @@
-package io.github.gustavobarbosab.showcase.data
+package io.github.gustavobarbosab.movies.data
 
 import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
-import io.github.gustavobarbosab.showcase.data.datasources.local.ShowCaseLocalDataSource
-import io.github.gustavobarbosab.showcase.data.datasources.remote.ShowCaseRemoteDataSource
+import io.github.gustavobarbosab.core.di.scope.ModuleScope
+import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalDataSource
+import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
 import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
+import javax.inject.Inject
 
-class ShowCaseRepositoryImpl(
+class ShowCaseRepositoryImpl @Inject constructor(
     private val localDataSource: ShowCaseLocalDataSource,
     private val remoteDataSource: ShowCaseRemoteDataSource,
     private val mapper: ShowCaseRepositoryMapper

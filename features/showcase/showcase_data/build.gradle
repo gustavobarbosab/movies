@@ -1,7 +1,11 @@
 plugins {
     id 'moovie.feature-data'
+    id 'kotlin-kapt'
 }
 
 dependencies {
+    api project(modulesDependencies.coroutinesResult)
     implementation project(modulesDependencies.showCaseDomain)
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
 }

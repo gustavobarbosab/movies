@@ -1,9 +1,9 @@
-package io.github.gustavobarbosab.core.di.dependencies
+package io.github.gustavobarbosab.movies.di
 
 import android.app.Application
 import android.content.Context
 
-interface ContextDependenciesContract {
+interface ContextDependencies {
     fun provideApplication(): Application
     fun provideContext(): Context
 }

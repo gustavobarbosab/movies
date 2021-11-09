@@ -75,9 +75,15 @@ dependencies {
     implementation project(modulesDependencies.core)
     implementation project(modulesDependencies.common)
 
-    // Modules data
+    // Modules
+    implementation project(modulesDependencies.showCaseData)
+    implementation project(modulesDependencies.showCaseDomain)
+
     implementation project(modulesDependencies.favoritesData)
+    implementation project(modulesDependencies.favoritesDomain)
+
     implementation project(modulesDependencies.detailsData)
+    implementation project(modulesDependencies.detailsDomain)
 
     implementation kotlinDependencies.values()
     implementation androidxDependencies.values()
@@ -86,7 +92,6 @@ dependencies {
 
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
-    kapt daggerDependencies.processor
 
     implementation networkDependencies.values()
 

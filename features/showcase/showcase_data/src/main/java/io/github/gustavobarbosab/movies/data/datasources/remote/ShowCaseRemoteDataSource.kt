@@ -1,9 +1,12 @@
-package io.github.gustavobarbosab.showcase.data.datasources.remote
+package io.github.gustavobarbosab.movies.data.datasources.remote
 
 import io.github.gustavobarbosab.core.data.network.services.movies.MovieApi
 import io.gustavobarbosab.coroutinesresult.SafelyCoroutineCall
+import javax.inject.Inject
 
-class ShowCaseRemoteDataSource(private val movieApi: MovieApi) : SafelyCoroutineCall {
+class ShowCaseRemoteDataSource @Inject constructor(
+    private val movieApi: MovieApi
+) : SafelyCoroutineCall {
 
     suspend fun getPopularMovies() = safeCallOnIo(movieApi::getPopularMovies)
 

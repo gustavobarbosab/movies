@@ -1,11 +1,11 @@
 package io.github.gustavobarbosab.showcase.di
 
 import dagger.Component
-import io.github.gustavobarbosab.core.di.scope.ModuleScope
+import io.github.gustavobarbosab.core.di.scope.FeatureScope
 import io.github.gustavobarbosab.movies.di.AppComponent
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseFragment
 
-@ModuleScope
+@FeatureScope
 @Component(
     modules = [MovieListModule::class],
     dependencies = [AppComponent::class]

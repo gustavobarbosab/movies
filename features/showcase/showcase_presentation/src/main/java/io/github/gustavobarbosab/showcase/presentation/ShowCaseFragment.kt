@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
+import io.github.gustavobarbosab.core.di.scope.FeatureScope
 import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.BuildConfig.*
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
@@ -20,8 +21,8 @@ import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.
 import io.github.gustavobarbosab.showcase.presentation.movielist.MovieListAdapter
 import javax.inject.Inject
 
-@ModuleScope
-class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInjector {
+@FeatureScope
+class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInjector{
 
     @Inject
     lateinit var viewModelFactory: ShowCaseViewModelFactory
@@ -43,8 +44,8 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
     }
 
     private fun createComponent() {
-        component = DaggerMovieListComponent.factory().create(requireAppComponent())
-        component?.inject(this)
+       component = DaggerMovieListComponent.factory().create(requireAppComponent())
+       component?.inject(this)
     }
 
     override fun initializeViews(savedInstance: Bundle?) {
