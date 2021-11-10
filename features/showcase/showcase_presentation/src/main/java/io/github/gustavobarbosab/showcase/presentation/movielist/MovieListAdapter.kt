@@ -19,7 +19,6 @@ class MovieListAdapter(
         val movie = movieList[position]
         root.setOnClickListener { clickListener(movie) }
         movieImage.loadImage(movie.imageUrl)
-        likeMovie.isChecked = movie.isFavorite
     }
 
     override fun getItemCount(): Int = movieList.size
