@@ -6,13 +6,13 @@ import javax.inject.Inject
 
 class ShowCaseRemoteDataSource @Inject constructor(
     private val movieApi: MovieApi
-) : SafelyCoroutineCall {
+) : SafelyCoroutineCall() {
 
-    suspend fun getPopularMovies() = safeCallOnIo(movieApi::getPopularMovies)
+    suspend fun getPopularMovies() = safeCallIo(movieApi::getPopularMovies)
 
-    suspend fun getTopRatedMovies() = safeCallOnIo(movieApi::getTopRatedMovies)
+    suspend fun getTopRatedMovies() = safeCallIo(movieApi::getTopRatedMovies)
 
-    suspend fun getPlayingNow() = safeCallOnIo(movieApi::getPlayingNow)
+    suspend fun getPlayingNow() = safeCallIo(movieApi::getPlayingNow)
 
-    suspend fun getLatestMovies() = safeCallOnIo(movieApi::getLatestMovies)
+    suspend fun getLatestMovies() = safeCallIo(movieApi::getLatestMovies)
 }

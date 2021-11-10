@@ -6,14 +6,14 @@ import io.gustavobarbosab.coroutinesresult.model.CoroutineResult.Error
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-interface SafelyCoroutineCall {
+open class SafelyCoroutineCall {
 
-    suspend fun <T> safeCallOnIo(call: suspend () -> T): CoroutineResult<T> =
+    suspend fun <T> safeCallIo(call: suspend () -> T): CoroutineResult<T> =
         withContext(Dispatchers.IO) {
             return@withContext handleCall(call)
         }
 
-    suspend fun <T> safeCallOnMain(call: suspend () -> T): CoroutineResult<T> =
+    suspend fun <T> safeCallMain(call: suspend () -> T): CoroutineResult<T> =
         withContext(Dispatchers.Main) {
             return@withContext handleCall(call)
         }
