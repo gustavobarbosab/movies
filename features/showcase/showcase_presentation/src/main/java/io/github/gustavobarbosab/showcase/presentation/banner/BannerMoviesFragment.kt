@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.carousel.CarouselAutoScroll
 import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
-import io.github.gustavobarbosab.detail.MovieDetail
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentBannerMoviesBinding
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
@@ -63,12 +62,5 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
 
     private fun onItemClicked(movie: MovieShowCase) {
         viewModel.showDetails(movie)
-    }
-
-    private fun startDetails(movie: MovieDetail) {
-    //    val action = ShowCaseFragmentDirections.actionDetailFragment(movie)
-    //    findAppNavController().navigateSafely(action) {
-    //        requireContext().toast(it.message.toString())
-    //    }
     }
 }
