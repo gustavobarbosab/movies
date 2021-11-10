@@ -1,7 +1,10 @@
 plugins {
     id 'moovie.feature-data'
+    id 'kotlin-kapt'
 }
 
 dependencies {
     implementation project(modulesDependencies.detailsDomain)
+    implementation daggerDependencies.dagger
+    kapt daggerDependencies.compiler
 }

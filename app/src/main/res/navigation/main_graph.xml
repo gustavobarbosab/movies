@@ -32,14 +32,18 @@
         android:id="@+id/detailsFragment"
         android:name="io.github.gustavobarbosab.movies.detail.MovieDetailFragment"
         android:label="Details"
-        app:moduleName="detail_private">
+        app:moduleName="detail_presentation">
         <argument
             android:name="detailModel"
-            app:argType="io.github.gustavobarbosab.movies.detail.data.MovieDetailArg" />
+            app:argType="io.github.gustavobarbosab.movies.navigation.detail.MovieDetailArg" />
     </fragment>
 
     <fragment
         android:id="@+id/fragment_progress"
         android:name="io.github.gustavobarbosab.movies.featuredownload.FeatureLoadingFragment"
-        android:label="ProgressFragment" />
+        android:label="ProgressFragment">
+        <argument
+            android:name="SHOW_NAVBAR"
+            android:defaultValue="true" />
+    </fragment>
 </navigation>

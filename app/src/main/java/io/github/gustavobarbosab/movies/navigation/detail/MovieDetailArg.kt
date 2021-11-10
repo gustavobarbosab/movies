@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies.detail.data
+package io.github.gustavobarbosab.movies.navigation.detail
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

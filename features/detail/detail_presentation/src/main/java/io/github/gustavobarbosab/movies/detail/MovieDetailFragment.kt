@@ -19,6 +19,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             title("Details")
             backButton(true)
         }
-        //requireContext().toast(args.detailModel.name)
+        requireContext().toast(args.detailModel.name)
     }
 }
