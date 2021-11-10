@@ -4,9 +4,9 @@ import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMo
 import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalDataSource
 import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
+import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
 import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
 import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
-import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
 import javax.inject.Inject
 
 class ShowCaseRepositoryImpl @Inject constructor(
@@ -29,5 +29,4 @@ class ShowCaseRepositoryImpl @Inject constructor(
 
     override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         remoteDataSource.getLatestMovies().mapCoroutineResult(this::mapToMovie)
-
 }
