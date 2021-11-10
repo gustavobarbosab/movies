@@ -9,7 +9,6 @@ import io.github.gustavobarbosab.core.di.modules.CoreModule
 import io.github.gustavobarbosab.core.di.modules.NetworkModule
 import io.github.gustavobarbosab.movies.MovieApplication
 import io.github.gustavobarbosab.movies.di.module.ContextModule
-import io.github.gustavobarbosab.movies.di.module.NavigationModule
 import io.github.gustavobarbosab.movies.di.module.UseCaseModule
 import javax.inject.Singleton
 
@@ -19,16 +18,14 @@ import javax.inject.Singleton
         ContextModule::class,
         CoreModule::class,
         NetworkModule::class,
-        UseCaseModule::class,
-        NavigationModule::class
+        UseCaseModule::class
     ]
 )
 interface AppComponent :
     ContextDependencies,
     CoreDependencies,
     NetworkDependencies,
-    UseCaseDependencies,
-    NavigationDependencies {
+    UseCaseDependencies {
 
     fun inject(application: MovieApplication)
 

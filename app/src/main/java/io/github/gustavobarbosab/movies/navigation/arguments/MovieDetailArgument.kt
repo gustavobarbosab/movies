@@ -1,10 +1,10 @@
-package io.github.gustavobarbosab.movies.navigation.detail
+package io.github.gustavobarbosab.movies.navigation.arguments
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class MovieDetailArg(
+class MovieDetailArgument(
     val id: Long,
     val name: String,
     val description: String,

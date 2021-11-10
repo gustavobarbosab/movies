@@ -8,8 +8,9 @@ import io.github.gustavobarbosab.core.di.scope.FeatureScope
 import io.github.gustavobarbosab.detail.MovieDetail
 import io.github.gustavobarbosab.movies.BuildConfig.VERSION_NAME
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
+import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
-import io.github.gustavobarbosab.movies.navigation.MovieBaseNavigation
+import io.github.gustavobarbosab.movies.navigation.directions.ShowCaseDirectionsWrapper
 import io.github.gustavobarbosab.showcase.R
 import io.github.gustavobarbosab.showcase.databinding.FragmentShowCaseBinding
 import io.github.gustavobarbosab.showcase.di.DaggerMovieListComponent
@@ -25,9 +26,6 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
 
     @Inject
     lateinit var viewModelFactory: ShowCaseViewModelFactory
-
-    @Inject
-    lateinit var detailsNavigation: MovieBaseNavigation<MovieDetail>
 
     private lateinit var viewModel: ShowCaseViewModel
 
@@ -118,7 +116,8 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
         viewModel.showDetails(movie)
     }
 
-    private fun startDetails(details: MovieDetail) {
-        detailsNavigation.startNewFlow(this, details)
+    private fun startDetails(detail: MovieDetail) {
+        val navDirections = ShowCaseDirectionsWrapper.actionDetailFragment(detail)
+        findAppNavController().navigate(navDirections)
     }
 }
