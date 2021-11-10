@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.movies.data.di
 
 import dagger.Module
 import dagger.Provides
-import io.github.gustavobarbosab.movies.data.ShowCaseRepositoryImpl
+import io.github.gustavobarbosab.movies.data.repository.ShowCaseRepositoryImpl
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCaseImpl
 

@@ -1,7 +1,6 @@
-package io.github.gustavobarbosab.movies.data
+package io.github.gustavobarbosab.movies.data.repository
 
 import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
-import io.github.gustavobarbosab.core.di.scope.ModuleScope
 import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalDataSource
 import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase

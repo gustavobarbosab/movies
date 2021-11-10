@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.movies.data
+package io.github.gustavobarbosab.movies.data.repository
 
 import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
 import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMovieResponse
