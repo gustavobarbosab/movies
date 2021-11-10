@@ -4,7 +4,7 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
-import io.github.gustavobarbosab.commons.widget.MovieToolbar
+import io.github.gustavobarbosab.commons.widget.toolbar.MovieToolbar
 import io.github.gustavobarbosab.movies.MainActivity
 import io.github.gustavobarbosab.movies.MovieApplication
 import java.lang.Exception

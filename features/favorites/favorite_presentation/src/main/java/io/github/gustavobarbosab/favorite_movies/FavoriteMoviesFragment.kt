@@ -11,8 +11,7 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
 
     override fun initializeViews(savedInstance: Bundle?) {
         applicationToolbar {
-            title("Favoritos")
-            backButton(false)
+            title = "Favoritos"
         }
     }
 }

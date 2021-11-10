@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.dynamicfeatures.fragment.ui.AbstractProgressFragment
+import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.movies.databinding.FragmentBasicLoadingBinding
+import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.featuredownload.FeatureLoadingState.FeatureLoadingAction
 
 class FeatureLoadingFragment : AbstractProgressFragment() {
@@ -28,6 +30,14 @@ class FeatureLoadingFragment : AbstractProgressFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(FeatureLoadingViewModel::class.java)
         observeState()
+        configureToolbar(BackButtonType.NONE)
+    }
+
+    private fun configureToolbar(backButton: BackButtonType) {
+        applicationToolbar {
+            title = "Download"
+            backButtonType = backButton
+        }
     }
 
     override fun onCancelled() {
@@ -50,11 +60,16 @@ class FeatureLoadingFragment : AbstractProgressFragment() {
         viewModel.state.action.observe(viewLifecycleOwner) {
             when (it) {
                 is FeatureLoadingAction.UpdateDownloadProgress -> updateProgress(it.progress)
-                FeatureLoadingAction.DownloadCanceled -> updateMessage("Download canceled :(")
-                FeatureLoadingAction.DownloadFailed -> updateMessage("Ops... Download failed =X")
                 FeatureLoadingAction.DownloadStarted -> updateMessage("Download started...")
+                FeatureLoadingAction.DownloadCanceled -> downloadProblem("Download canceled :(")
+                FeatureLoadingAction.DownloadFailed -> downloadProblem("Ops... Download failed =X")
             }
         }
+    }
+
+    private fun downloadProblem(message: String) {
+        configureToolbar(BackButtonType.CLOSE)
+        updateMessage(message)
     }
 
     private fun updateMessage(message: String) {

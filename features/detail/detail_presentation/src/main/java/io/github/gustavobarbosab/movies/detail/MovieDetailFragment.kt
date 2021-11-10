@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.navigation.fragment.navArgs
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
+import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.detail.R
 import io.github.gustavobarbosab.detail.databinding.FragmentMovieDetailBinding
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
@@ -16,8 +17,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
     override fun initializeViews(savedInstance: Bundle?) {
         applicationToolbar {
-            title("Details")
-            backButton(true)
+            title = "Details"
+            backButtonType = BackButtonType.ARROW
         }
         requireContext().toast(args.detailModel.name)
     }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
+import io.github.gustavobarbosab.commons.widget.toolbar.buttons.ShortcutButtonType
 import io.github.gustavobarbosab.core.di.scope.FeatureScope
 import io.github.gustavobarbosab.detail.MovieDetail
 import io.github.gustavobarbosab.movies.BuildConfig.VERSION_NAME
@@ -74,9 +75,9 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
 
     private fun setupToolbar() {
         applicationToolbar {
-            logo(io.github.gustavobarbosab.commons.R.drawable.ic_default_icon)
-            shortcutIcon(R.drawable.ic_search)
-            shortcutListener(viewModel::onSearchMovie)
+            showLogo()
+            shortcutType = ShortcutButtonType.SEARCH
+            shortcutListener = viewModel::onSearchMovie
         }
     }
 
