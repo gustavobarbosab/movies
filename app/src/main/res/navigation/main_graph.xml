@@ -39,7 +39,7 @@
         app:moduleName="detail_presentation">
         <argument
             android:name="detailModel"
-            app:argType="io.github.gustavobarbosab.movies.navigation.arguments.MovieDetailArgument" />
+            app:argType="io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument" />
     </fragment>
 
     <fragment

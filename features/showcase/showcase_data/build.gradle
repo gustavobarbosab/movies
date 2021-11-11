@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation project(modulesDependencies.coroutinesResult)
+    api project(modulesDependencies.coroutinesResult)
     implementation project(modulesDependencies.showCaseDomain)
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
