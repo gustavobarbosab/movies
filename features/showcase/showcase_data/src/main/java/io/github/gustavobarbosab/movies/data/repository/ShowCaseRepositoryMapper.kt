@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 class ShowCaseRepositoryMapper @Inject constructor(
     private val configWrapper: AppConfigWrapper
-) : Mapper<PopularMoviePagingResponse, List<MovieShowCase>> {
+) : Mapper<PopularMoviePagingResponse?, List<MovieShowCase>> {
 
-    override fun map(input: PopularMoviePagingResponse): List<MovieShowCase>  =
-        input.results.map(this::mapToShowCase)
+    override fun map(input: PopularMoviePagingResponse?): List<MovieShowCase>  =
+        input?.results?.map(this::mapToShowCase) ?: emptyList()
 
     private fun mapToShowCase(input: PopularMovieResponse) =
         MovieShowCase(

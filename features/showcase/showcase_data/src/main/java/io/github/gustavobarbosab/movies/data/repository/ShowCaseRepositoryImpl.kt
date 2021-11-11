@@ -4,7 +4,7 @@ import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalData
 import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
-import io.gustavobarbosab.coroutinesresult.SimpleResponse
+import io.gustavobarbosab.coroutinesresult.CoroutineResult
 import javax.inject.Inject
 
 class ShowCaseRepositoryImpl @Inject constructor(
@@ -13,15 +13,15 @@ class ShowCaseRepositoryImpl @Inject constructor(
     private val mapper: ShowCaseRepositoryMapper
 ) : ShowCaseRepository {
 
-    override suspend fun getPopularMovies(): SimpleResponse<List<MovieShowCase>> =
+    override suspend fun getPopularMovies(): CoroutineResult<List<MovieShowCase>> =
         remoteDataSource.getPopularMovies().map(mapper::map)
 
-    override suspend fun getTopRatedMovies(): SimpleResponse<List<MovieShowCase>> =
+    override suspend fun getTopRatedMovies(): CoroutineResult<List<MovieShowCase>> =
         remoteDataSource.getTopRatedMovies().map(mapper::map)
 
-    override suspend fun getPlayingNow(): SimpleResponse<List<MovieShowCase>> =
+    override suspend fun getPlayingNow(): CoroutineResult<List<MovieShowCase>> =
         remoteDataSource.getPlayingNow().map(mapper::map)
 
-    override suspend fun getLatestMovies(): SimpleResponse<List<MovieShowCase>> =
+    override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
         remoteDataSource.getLatestMovies().map(mapper::map)
 }

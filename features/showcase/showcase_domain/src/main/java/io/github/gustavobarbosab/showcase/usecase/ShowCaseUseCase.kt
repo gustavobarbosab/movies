@@ -1,11 +1,11 @@
 package io.github.gustavobarbosab.showcase.usecase
 
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.gustavobarbosab.coroutinesresult.SimpleResponse
+import io.gustavobarbosab.coroutinesresult.CoroutineResult
 
 interface ShowCaseUseCase {
-    suspend fun getPopularMovies(): SimpleResponse<List<MovieShowCase>>
-    suspend fun getTopRatedMovies(): SimpleResponse<List<MovieShowCase>>
-    suspend fun getPlayingNow(): SimpleResponse<List<MovieShowCase>>
-    suspend fun getLatestMovies(): SimpleResponse<List<MovieShowCase>>
+    suspend fun getPopularMovies(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getTopRatedMovies(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getPlayingNow(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>>
 }
