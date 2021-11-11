@@ -1,9 +1,11 @@
 package io.github.gustavobarbosab.core.network.coroutine
 
 import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.ExternalErrorData
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okio.Timeout
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Converter
@@ -46,9 +48,11 @@ internal class CoroutineResultCall<S : Any>(
                         }
                     }
                     if (errorBody != null) {
+                        val errorMessage = getErrorMessage(errorBody.toString())
+                        val error = ExternalErrorData(code, errorMessage)
                         callback.onResponse(
                             this@CoroutineResultCall,
-                            Response.success(CoroutineResult.ExternalError(errorBody, code))
+                            Response.success(CoroutineResult.ExternalError(error))
                         )
                     } else {
                         callback.onResponse(
@@ -84,4 +88,11 @@ internal class CoroutineResultCall<S : Any>(
     override fun request(): Request = delegate.request()
 
     override fun timeout(): Timeout = delegate.timeout()
+
+    private fun getErrorMessage(body: String): String = try {
+        JSONObject(body).getString("message_value").orEmpty()
+    } catch (e: Exception) {
+        //TODO get default message
+        ""
+    }
 }

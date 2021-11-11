@@ -11,7 +11,7 @@ sealed class CoroutineResult<out T : Any> {
      * Deve ser emitido em casos de erros que nao estejam ligados a aplicação
      * Ex: erro de servidor, erro na base de dados, etc
      */
-    data class ExternalError<T : Any>(val data: T, val code: Int) : CoroutineResult<T>()
+    data class ExternalError(val error: ExternalErrorData) : CoroutineResult<Nothing>()
 
     /**
      * Deve ser emitido quando houver erros internos
@@ -24,25 +24,10 @@ sealed class CoroutineResult<out T : Any> {
      */
     data class UnknownError(val error: Throwable?) : CoroutineResult<Nothing>()
 
-
-//    fun <NT : Any, NU : Any> map(
-//        successMapper: (T) -> NT,
-//        externalErrorMapper: (T) -> T
-//    ): CoroutineResult<NT, NU> {
-//        return when (this) {
-//            is Success -> Success(successMapper(data))
-//            is ExternalError -> ExternalError(externalErrorMapper(data), code)
-//            is InternalError -> this
-//            is UnknownError -> this
-//        }
-//    }
-
-    fun <NT : Any> map(
-        mapper: (T?) -> NT
-    ): CoroutineResult<NT> {
+    fun <NT : Any> map(mapper: (T?) -> NT): CoroutineResult<NT> {
         return when (this) {
             is Success -> Success(mapper(data))
-            is ExternalError -> ExternalError(mapper(data), code)
+            is ExternalError -> this
             is InternalError -> this
             is UnknownError -> this
         }

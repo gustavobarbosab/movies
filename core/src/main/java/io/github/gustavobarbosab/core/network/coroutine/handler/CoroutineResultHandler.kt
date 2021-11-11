@@ -1,4 +1,7 @@
-package io.gustavobarbosab.coroutinesresult
+package io.github.gustavobarbosab.core.network.coroutine.handler
+
+import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.ExternalErrorData
 
 interface CoroutineResultHandler {
 
@@ -13,15 +16,15 @@ interface CoroutineResultHandler {
         }
     }
 
-    fun <T : Any> handleResult(
+    fun <T : Any, U> handleResult(
         result: CoroutineResult<T>,
         onSuccess: (T?) -> Unit,
-        onExternalError: (T?, Int) -> Unit,
+        onExternalError: (ExternalErrorData) -> Unit,
         onError: () -> Unit,
     ) {
         when (result) {
             is CoroutineResult.Success -> onSuccess(result.data)
-            is CoroutineResult.ExternalError -> onExternalError(result.data, result.code)
+            is CoroutineResult.ExternalError -> onExternalError(result.error)
             else -> onError()
         }
     }
