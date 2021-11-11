@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.movies.data.datasources.local
 
-import io.github.gustavobarbosab.core.data.database.movie.MovieDao
+import io.github.gustavobarbosab.core.database.MovieDao
 import javax.inject.Inject
 
 class ShowCaseLocalDataSource @Inject constructor(

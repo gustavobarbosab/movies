@@ -1,8 +1,8 @@
 package io.github.gustavobarbosab.movies.data.repository
 
-import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
-import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMovieResponse
-import io.github.gustavobarbosab.core.domain.Mapper
+import io.github.gustavobarbosab.core.config.AppConfigWrapper
+import io.github.gustavobarbosab.core.network.services.movies.dto.PopularMovieResponse
+import io.github.gustavobarbosab.core.contracts.Mapper
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import javax.inject.Inject
 

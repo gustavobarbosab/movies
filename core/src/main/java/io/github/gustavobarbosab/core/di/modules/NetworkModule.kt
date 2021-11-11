@@ -3,8 +3,8 @@ package io.github.gustavobarbosab.core.di.modules
 import dagger.Module
 import dagger.Provides
 import io.github.gustavobarbosab.core.BuildConfig
-import io.github.gustavobarbosab.core.data.config.AppConfigWrapper
-import io.github.gustavobarbosab.core.data.network.interceptor.AuthInterceptor
+import io.github.gustavobarbosab.core.config.AppConfigWrapper
+import io.github.gustavobarbosab.core.network.interceptor.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

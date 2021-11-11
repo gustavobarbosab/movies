@@ -1,6 +1,6 @@
-package io.github.gustavobarbosab.core.data.network.services.movies
+package io.github.gustavobarbosab.core.network.services.movies
 
-import io.github.gustavobarbosab.core.data.network.services.movies.dto.PopularMoviePagingResponse
+import io.github.gustavobarbosab.core.network.services.movies.dto.PopularMoviePagingResponse
 import retrofit2.http.GET
 
 interface MovieApi {

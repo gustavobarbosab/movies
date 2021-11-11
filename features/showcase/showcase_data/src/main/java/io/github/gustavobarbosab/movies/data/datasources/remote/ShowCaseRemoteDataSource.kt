@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.movies.data.datasources.remote
 
-import io.github.gustavobarbosab.core.data.network.services.movies.MovieApi
+import io.github.gustavobarbosab.core.network.services.movies.MovieApi
 import io.gustavobarbosab.coroutinesresult.SafelyCoroutineCall
 import javax.inject.Inject
 

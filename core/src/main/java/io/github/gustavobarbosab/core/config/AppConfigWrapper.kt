@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.core.data.config
+package io.github.gustavobarbosab.core.config
 
 import io.github.gustavobarbosab.core.BuildConfig
 

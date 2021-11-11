@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.core.data.network.services.movies.dto
+package io.github.gustavobarbosab.core.network.services.movies.dto
 
 import com.squareup.moshi.Json
 
