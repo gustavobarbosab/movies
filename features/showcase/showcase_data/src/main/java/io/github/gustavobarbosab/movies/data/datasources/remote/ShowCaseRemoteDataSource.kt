@@ -1,18 +1,27 @@
 package io.github.gustavobarbosab.movies.data.datasources.remote
 
 import io.github.gustavobarbosab.core.network.services.movies.MovieApi
-import io.gustavobarbosab.coroutinesresult.SafelyCoroutineCall
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ShowCaseRemoteDataSource @Inject constructor(
     private val movieApi: MovieApi
-) : SafelyCoroutineCall() {
+) {
 
-    suspend fun getPopularMovies() = safeCallIo(movieApi::getPopularMovies)
+    suspend fun getPopularMovies() = withContext(Dispatchers.IO) {
+        return@withContext movieApi.getPopularMovies()
+    }
 
-    suspend fun getTopRatedMovies() = safeCallIo(movieApi::getTopRatedMovies)
+    suspend fun getTopRatedMovies() = withContext(Dispatchers.IO) {
+        return@withContext movieApi.getTopRatedMovies()
+    }
 
-    suspend fun getPlayingNow() = safeCallIo(movieApi::getPlayingNow)
+    suspend fun getPlayingNow() = withContext(Dispatchers.IO) {
+        return@withContext movieApi.getPlayingNow()
+    }
 
-    suspend fun getLatestMovies() = safeCallIo(movieApi::getLatestMovies)
+    suspend fun getLatestMovies() = withContext(Dispatchers.IO) {
+        return@withContext movieApi.getLatestMovies()
+    }
 }

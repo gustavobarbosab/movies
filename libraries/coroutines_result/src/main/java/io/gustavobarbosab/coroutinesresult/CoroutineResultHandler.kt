@@ -1,17 +1,28 @@
 package io.gustavobarbosab.coroutinesresult
 
-import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
-
 interface CoroutineResultHandler {
 
-    fun <T> handleResult(
-        result: CoroutineResult<T>,
+    fun <T : Any> handleResult(
+        result: Response<T, Nothing>,
         onSuccess: (T) -> Unit,
-        onError: (Exception) -> Unit
+        onError: () -> Unit
     ) {
         when (result) {
-            is CoroutineResult.Success -> onSuccess(result.data)
-            is CoroutineResult.Error -> onError(result.exception)
+            is Response.Success -> onSuccess(result.data)
+            else -> onError()
+        }
+    }
+
+    fun <T : Any, U : Any> handleResult(
+        result: Response<T, U>,
+        onSuccess: (T) -> Unit,
+        onExternalError: (U, Int) -> Unit,
+        onError: () -> Unit,
+    ) {
+        when (result) {
+            is Response.Success -> onSuccess(result.data)
+            is Response.ExternalError -> onExternalError(result.data, result.code)
+            else -> onError()
         }
     }
 }

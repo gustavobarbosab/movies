@@ -6,6 +6,7 @@ plugins {
 dependencies {
     api project(modulesDependencies.coroutinesResult)
     implementation project(modulesDependencies.showCaseDomain)
+    implementation corroutinesDependency
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
 }

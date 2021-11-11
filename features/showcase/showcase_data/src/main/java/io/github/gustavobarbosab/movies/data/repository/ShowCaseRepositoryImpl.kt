@@ -1,12 +1,10 @@
 package io.github.gustavobarbosab.movies.data.repository
 
-import io.github.gustavobarbosab.core.network.services.movies.dto.PopularMoviePagingResponse
 import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalDataSource
 import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
-import io.gustavobarbosab.coroutinesresult.extensions.mapCoroutineResult
-import io.gustavobarbosab.coroutinesresult.model.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.SimpleResponse
 import javax.inject.Inject
 
 class ShowCaseRepositoryImpl @Inject constructor(
@@ -15,18 +13,15 @@ class ShowCaseRepositoryImpl @Inject constructor(
     private val mapper: ShowCaseRepositoryMapper
 ) : ShowCaseRepository {
 
-    private fun mapToMovie(response: PopularMoviePagingResponse): List<MovieShowCase> =
-        response.results.map(mapper::map)
+    override suspend fun getPopularMovies(): SimpleResponse<List<MovieShowCase>> =
+        remoteDataSource.getPopularMovies().map(mapper::map)
 
-    override suspend fun getPopularMovies(): CoroutineResult<List<MovieShowCase>> =
-        remoteDataSource.getPopularMovies().mapCoroutineResult(this::mapToMovie)
+    override suspend fun getTopRatedMovies(): SimpleResponse<List<MovieShowCase>> =
+        remoteDataSource.getTopRatedMovies().map(mapper::map)
 
-    override suspend fun getTopRatedMovies(): CoroutineResult<List<MovieShowCase>> =
-        remoteDataSource.getTopRatedMovies().mapCoroutineResult(this::mapToMovie)
+    override suspend fun getPlayingNow(): SimpleResponse<List<MovieShowCase>> =
+        remoteDataSource.getPlayingNow().map(mapper::map)
 
-    override suspend fun getPlayingNow(): CoroutineResult<List<MovieShowCase>> =
-        remoteDataSource.getPlayingNow().mapCoroutineResult(this::mapToMovie)
-
-    override suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>> =
-        remoteDataSource.getLatestMovies().mapCoroutineResult(this::mapToMovie)
+    override suspend fun getLatestMovies(): SimpleResponse<List<MovieShowCase>> =
+        remoteDataSource.getLatestMovies().map(mapper::map)
 }
