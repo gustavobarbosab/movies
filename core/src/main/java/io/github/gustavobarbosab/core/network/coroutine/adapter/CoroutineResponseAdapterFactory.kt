@@ -1,6 +1,5 @@
 package io.github.gustavobarbosab.core.network.coroutine.adapter
 
-import io.github.gustavobarbosab.core.network.coroutine.CoroutineResponseAdapter
 import io.gustavobarbosab.coroutinesresult.CoroutineResult
 import retrofit2.Call
 import retrofit2.CallAdapter

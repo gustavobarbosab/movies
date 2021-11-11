@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.core.network.coroutine.adapter
+package io.github.gustavobarbosab.core.network.coroutine
 
 import io.gustavobarbosab.coroutinesresult.CoroutineResult
 import io.gustavobarbosab.coroutinesresult.ExternalErrorData
