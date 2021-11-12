@@ -8,11 +8,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.google.android.play.core.splitcompat.SplitCompat
+import io.github.gustavobarbosab.commons.widget.progress.MoovieLoading
 
 abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract val layoutId: Int
     lateinit var binding: T
+    private lateinit var loading: MoovieLoading
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,16 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loading = MoovieLoading(viewLifecycleOwner)
         initializeViews(savedInstanceState)
+    }
+
+    fun showLoading() {
+        loading.showLoading(childFragmentManager)
+    }
+
+    fun hideLoading() {
+        loading.hideLoading()
     }
 
     abstract fun initializeViews(savedInstance: Bundle?)
