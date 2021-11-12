@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.showcase.presentation
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
-import io.github.gustavobarbosab.detail.model.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*
@@ -28,13 +28,12 @@ class ShowCaseViewModel(
 
     fun showDetails(movie: MovieShowCase) {
         // TODO extrair para mapper
-        val movieSelected = MovieDetail(
+        val movieSelected = MovieDetailDomain(
             movie.id,
             movie.name,
             movie.description,
             movie.imageUrl,
-            movie.posterUrl,
-            movie.isFavorite
+            movie.posterUrl
         )
         state.action.value = ShowMovieDetails(movieSelected)
     }

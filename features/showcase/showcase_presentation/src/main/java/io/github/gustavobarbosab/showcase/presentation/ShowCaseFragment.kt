@@ -6,7 +6,7 @@ import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.ShortcutButtonType
 import io.github.gustavobarbosab.core.di.scope.FeatureScope
-import io.github.gustavobarbosab.detail.model.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.movies.BuildConfig.VERSION_NAME
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
@@ -120,7 +120,7 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
         viewModel.showDetails(movie)
     }
 
-    private fun startDetails(detail: MovieDetail) {
+    private fun startDetails(detail: MovieDetailDomain) {
         val navDirection = ShowCaseDetailDirection(detail).createDirection()
         navigation.navigate(
             origin = this,

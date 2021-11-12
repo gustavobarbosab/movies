@@ -1,15 +1,22 @@
 package io.github.gustavobarbosab.movies.navigation.arguments.detail
 
 import io.github.gustavobarbosab.core.contracts.Mapper
-import io.github.gustavobarbosab.detail.model.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 
-class MovieDetailMapper : Mapper<MovieDetail, MovieDetailArgument> {
-    override fun map(input: MovieDetail) = MovieDetailArgument(
+class MovieDetailMapper : Mapper<MovieDetailDomain, MovieDetailArgument> {
+    override fun map(input: MovieDetailDomain) = MovieDetailArgument(
         input.id,
         input.name,
         input.description,
         input.imageUrl,
-        input.poster,
-        input.favorite
+        input.poster
+    )
+
+    fun map(input: MovieDetailArgument) = MovieDetailDomain(
+        input.id,
+        input.name,
+        input.description,
+        input.imageUrl,
+        input.poster
     )
 }

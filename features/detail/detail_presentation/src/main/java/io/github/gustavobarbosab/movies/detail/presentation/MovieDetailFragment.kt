@@ -10,10 +10,11 @@ import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.detail.R
 import io.github.gustavobarbosab.detail.databinding.FragmentMovieDetailBinding
+import io.github.gustavobarbosab.movies.detail.di.DaggerDetailComponent
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewActions
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
-import io.github.gustavobarbosab.movies.navigation.MoovieNavigation
+import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import javax.inject.Inject
 
 class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
@@ -23,17 +24,25 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private val args: MovieDetailFragmentArgs by navArgs()
 
     @Inject
-    lateinit var navigation: MoovieNavigation
-
-    @Inject
     lateinit var viewModelFactory: MovieDetailViewModelFactory
 
     private lateinit var viewModel: MovieDetailViewModel
 
     override fun initializeViews(savedInstance: Bundle?) {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
+        DaggerDetailComponent
+            .factory()
+            .create(requireAppComponent())
+            .inject(this)
+
+        setupViewModel()
         setupToolbar()
         observeStates()
+        binding.movieFab.setOnClickListener { viewModel.favoriteMovie() }
+    }
+
+    private fun setupViewModel() {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieDetailViewModel::class.java)
+        viewModel.init(args.detailModel)
     }
 
     private fun setupToolbar() = applicationToolbar {
@@ -44,17 +53,17 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     private fun observeStates() = with(viewModel.state) {
         movie.observe(viewLifecycleOwner) { movieDetail ->
             binding.moviePoster.loadImage(movieDetail.poster)
-            binding.movieName.text = movieDetail.name
+            binding.movieName.text = movieDetail.title
             binding.movieDescription.text = movieDetail.description
         }
 
         actions.observe(viewLifecycleOwner) {
             when (it) {
-                ViewActions.FavoriteMovieFailure -> requireContext().toast("Houve uma falha ao favoritar o filme")
-                ViewActions.FavoriteMovieSuccess -> requireContext().toast("Filme adicionado aos favoritos")
-                ViewActions.HideLoading -> Snackbar.make(binding.root,"Hide Loading", Snackbar.LENGTH_SHORT).show()
+                ViewActions.FavoriteMovieFailure -> favoriteMovieFailure()
+                ViewActions.FavoriteMovieSuccess -> favoriteMovieSuccess()
+                ViewActions.HideLoading -> hideLoading()
                 ViewActions.SearchFavoriteMoviesFailure -> searchFavoriteMoviesFailure()
-                ViewActions.ShowLoading -> Snackbar.make(binding.root,"Show Loading", Snackbar.LENGTH_SHORT).show()
+                ViewActions.ShowLoading -> showLoading()
             }
         }
 
@@ -67,7 +76,23 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
         }
     }
 
+    private fun showLoading() {
+        Snackbar.make(binding.root, "Show Loading", Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun hideLoading() {
+        Snackbar.make(binding.root, "Hide Loading", Snackbar.LENGTH_SHORT).show()
+    }
+
     private fun searchFavoriteMoviesFailure() {
 
+    }
+
+    private fun favoriteMovieSuccess() {
+        requireContext().toast("Filme adicionado aos favoritos")
+    }
+
+    private fun favoriteMovieFailure() {
+        requireContext().toast("Houve uma falha ao favoritar o filme")
     }
 }

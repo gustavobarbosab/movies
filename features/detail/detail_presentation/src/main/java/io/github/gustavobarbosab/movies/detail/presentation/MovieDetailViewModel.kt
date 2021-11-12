@@ -4,21 +4,25 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
-import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.detail.usecase.MovieDetailUseCase
+import io.github.gustavobarbosab.movies.detail.model.DetailModel
+import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewActions
+import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument
+import javax.inject.Inject
 
-class MovieDetailViewModel(
+class MovieDetailViewModel @Inject constructor(
     private val movieDetailUseCase: MovieDetailUseCase
 ) : BaseViewModel<DetailMovieViewModelState>(), CoroutineResultHandler {
 
     override val state: DetailMovieViewModelState = DetailMovieViewModelState()
+    private val mapper = DetailPresentationMapper()
 
-    private lateinit var movieSelected: MovieDetail
+    private lateinit var movieSelected: DetailModel
 
-    fun init(movie: MovieDetail) {
-        movieSelected = movie
+    fun init(movie: MovieDetailArgument) {
+        movieSelected = mapper.map(movie)
         state.movie.value = movieSelected
         handleFavoriteState()
     }
@@ -27,7 +31,7 @@ class MovieDetailViewModel(
         viewModelScope.launchMain {
             state.actions.value = ViewActions.ShowLoading
             handleResult(
-                movieDetailUseCase.isMovieFavorite(movieSelected),
+                movieDetailUseCase.isMovieFavorite(movieSelected.id),
                 this@MovieDetailViewModel::searchFavoritesSuccess,
                 this@MovieDetailViewModel::searchFavoritesFailure
             )
@@ -36,7 +40,8 @@ class MovieDetailViewModel(
     }
 
     private fun searchFavoritesSuccess(result: Boolean?) {
-        state.favoriteButtonState.value = if (result == true) ButtonState.Filled else ButtonState.Outline
+        val newState = if (result == true) ButtonState.Filled else ButtonState.Outline
+        state.favoriteButtonState.value = newState
     }
 
     private fun searchFavoritesFailure() {
@@ -46,8 +51,9 @@ class MovieDetailViewModel(
     fun favoriteMovie() {
         viewModelScope.launchMain {
             state.actions.value = ViewActions.ShowLoading
+            val detailDomain = mapper.map(movieSelected)
             handleResult(
-                movieDetailUseCase.favoriteMovie(movieSelected),
+                movieDetailUseCase.favoriteMovie(detailDomain),
                 this@MovieDetailViewModel::favoriteMovieSuccess,
                 this@MovieDetailViewModel::favoriteMovieFailure
             )

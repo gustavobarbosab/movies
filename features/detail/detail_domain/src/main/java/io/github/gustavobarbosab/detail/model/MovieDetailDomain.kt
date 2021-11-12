@@ -1,10 +1,9 @@
 package io.github.gustavobarbosab.detail.model
 
-data class MovieDetail(
+data class MovieDetailDomain(
     val id: Long,
     val name: String,
     val description: String,
     val imageUrl: String,
-    val poster: String,
-    val favorite: Boolean
+    val poster: String
 )
