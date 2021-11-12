@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.movies.navigation.directions.showcase
 
 import androidx.navigation.NavDirections
-import io.github.gustavobarbosab.detail.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailMapper
 import io.github.gustavobarbosab.movies.navigation.directions.DirectionAdapter
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseFragmentDirections

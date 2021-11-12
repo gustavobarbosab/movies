@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.movies.navigation.directions.favorites
 
 import androidx.navigation.NavDirections
-import io.github.gustavobarbosab.detail.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.favorite_movies.FavoriteMoviesFragmentDirections
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailMapper
 import io.github.gustavobarbosab.movies.navigation.directions.DirectionAdapter

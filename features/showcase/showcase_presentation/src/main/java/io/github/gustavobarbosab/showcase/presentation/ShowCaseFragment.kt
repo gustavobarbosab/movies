@@ -6,10 +6,9 @@ import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.ShortcutButtonType
 import io.github.gustavobarbosab.core.di.scope.FeatureScope
-import io.github.gustavobarbosab.detail.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.movies.BuildConfig.VERSION_NAME
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
-import io.github.gustavobarbosab.movies.extension.findAppNavController
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.navigation.MoovieNavigation
 import io.github.gustavobarbosab.movies.navigation.directions.showcase.ShowCaseDetailDirection

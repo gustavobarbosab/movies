@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="io.github.gustavobarbosab.movies.detail.MovieDetailFragment"
+        android:name="io.github.gustavobarbosab.movies.detail.presentation.MovieDetailFragment"
         android:label="Details"
         app:moduleName="detail_presentation">
         <argument

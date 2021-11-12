@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.showcase.presentation
 
 import androidx.lifecycle.MutableLiveData
 import io.github.gustavobarbosab.commons.livedata.SingleLiveEvent
-import io.github.gustavobarbosab.detail.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 
 class ShowCaseViewState {

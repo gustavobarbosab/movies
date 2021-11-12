@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.showcase.presentation
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
-import io.github.gustavobarbosab.detail.MovieDetail
+import io.github.gustavobarbosab.detail.model.MovieDetail
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.presentation.ShowCaseViewState.Action.*

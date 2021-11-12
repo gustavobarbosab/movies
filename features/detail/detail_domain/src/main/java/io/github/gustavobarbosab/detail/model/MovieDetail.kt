@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.detail
+package io.github.gustavobarbosab.detail.model
 
 data class MovieDetail(
     val id: Long,
