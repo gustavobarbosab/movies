@@ -22,7 +22,7 @@ sealed class CoroutineResult<out T : Any> {
     /**
      * Usado quando o erro não se enquadra nos anteriores
      */
-    data class UnknownError(val error: Throwable?) : CoroutineResult<Nothing>()
+    data class UnknownError(val error: Throwable? = null) : CoroutineResult<Nothing>()
 
     fun <NT : Any> map(mapper: (T?) -> NT): CoroutineResult<NT> {
         return when (this) {

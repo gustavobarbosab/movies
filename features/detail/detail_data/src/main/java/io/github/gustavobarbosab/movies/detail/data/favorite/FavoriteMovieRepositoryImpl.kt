@@ -14,8 +14,9 @@ class FavoriteMovieRepositoryImpl @Inject constructor() : FavoriteMovieRepositor
     override suspend fun isMovieFavorite(id: Long): CoroutineResult<Boolean> =
         withContext(Dispatchers.IO) {
             runBlocking {
-                delay(5000)
-                return@runBlocking CoroutineResult.Success(false)
+                delay(3000)
+                var ret = CoroutineResult.Success(false)
+                return@runBlocking ret
             }
         }
 
@@ -23,7 +24,7 @@ class FavoriteMovieRepositoryImpl @Inject constructor() : FavoriteMovieRepositor
     override suspend fun likeMovie(movie: MovieDetailDomain): CoroutineResult<Unit> =
         withContext(Dispatchers.IO) {
             runBlocking {
-                delay(5000)
+                delay(3000)
                 return@runBlocking CoroutineResult.Success(Unit)
             }
         }
@@ -31,7 +32,7 @@ class FavoriteMovieRepositoryImpl @Inject constructor() : FavoriteMovieRepositor
     override suspend fun dislikeMovie(movie: MovieDetailDomain): CoroutineResult<Unit> =
         withContext(Dispatchers.IO) {
             runBlocking {
-                delay(5000)
+                delay(3000)
                 return@runBlocking CoroutineResult.Success(Unit)
             }
         }

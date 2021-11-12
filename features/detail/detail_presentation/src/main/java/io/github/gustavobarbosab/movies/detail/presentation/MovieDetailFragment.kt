@@ -3,16 +3,15 @@ package io.github.gustavobarbosab.movies.detail.presentation
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import io.github.gustavobarbosab.commons.extension.toast
+import com.google.android.material.snackbar.Snackbar
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
-import io.github.gustavobarbosab.commons.widget.progress.MoovieProgressDialogFragment
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.detail.R
 import io.github.gustavobarbosab.detail.databinding.FragmentMovieDetailBinding
 import io.github.gustavobarbosab.movies.detail.di.DaggerDetailComponent
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
-import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewActions
+import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewAction
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import javax.inject.Inject
@@ -59,11 +58,12 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
         actions.observe(viewLifecycleOwner) {
             when (it) {
-                ViewActions.FavoriteMovieFailure -> favoriteMovieFailure()
-                ViewActions.FavoriteMovieSuccess -> favoriteMovieSuccess()
-                ViewActions.SearchFavoriteMoviesFailure -> searchFavoriteMoviesFailure()
-                ViewActions.HideLoading -> hideLoading()
-                ViewActions.ShowLoading -> showLoading()
+                ViewAction.HideLoading -> hideLoading()
+                ViewAction.ShowLoading -> showLoading()
+                ViewAction.StartScreenFailure -> showSnackBar("Não conseguimos buscar seu histórico de filmes favoritos :(")
+                ViewAction.FavoriteMovieFailure -> showSnackBar("Ops... tivemos um problema =(")
+                ViewAction.MovieUnliked -> showSnackBar("Filme removido dos favoritos")
+                ViewAction.MovieLiked -> showSnackBar("Filme adicionado aos favoritos")
             }
         }
 
@@ -76,15 +76,11 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
         }
     }
 
-    private fun searchFavoriteMoviesFailure() {
-
-    }
-
-    private fun favoriteMovieSuccess() {
-        requireContext().toast("Filme adicionado aos favoritos")
-    }
-
-    private fun favoriteMovieFailure() {
-        requireContext().toast("Houve uma falha ao favoritar o filme")
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            binding.root,
+            message,
+            Snackbar.LENGTH_SHORT
+        ).show()
     }
 }

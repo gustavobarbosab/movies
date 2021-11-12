@@ -8,14 +8,15 @@ class DetailMovieViewModelState {
 
     val movie = MutableLiveData<DetailModel>()
     val favoriteButtonState = MutableLiveData<ButtonState>()
-    val actions: MutableLiveData<ViewActions> = SingleLiveEvent()
+    val actions: MutableLiveData<ViewAction> = SingleLiveEvent()
 
-    sealed class ViewActions() {
-        object ShowLoading : ViewActions()
-        object HideLoading : ViewActions()
-        object FavoriteMovieSuccess : ViewActions()
-        object FavoriteMovieFailure : ViewActions()
-        object SearchFavoriteMoviesFailure : ViewActions()
+    sealed class ViewAction() {
+        object ShowLoading : ViewAction()
+        object HideLoading : ViewAction()
+        object MovieLiked : ViewAction()
+        object MovieUnliked : ViewAction()
+        object FavoriteMovieFailure : ViewAction()
+        object StartScreenFailure : ViewAction()
     }
 
     sealed class ButtonState {
