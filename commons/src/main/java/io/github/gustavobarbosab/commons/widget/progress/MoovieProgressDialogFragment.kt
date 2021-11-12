@@ -18,6 +18,7 @@ class MoovieProgressDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        isCancelable = false
         binding = FragmentMoovieProgressBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,5 +30,13 @@ class MoovieProgressDialogFragment : DialogFragment() {
             setCanceledOnTouchOutside(false)
             requestWindowFeature(Window.FEATURE_NO_TITLE)
         }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

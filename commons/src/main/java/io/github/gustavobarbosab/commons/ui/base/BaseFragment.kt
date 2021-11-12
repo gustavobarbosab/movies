@@ -14,7 +14,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract val layoutId: Int
     lateinit var binding: T
-    private lateinit var loading: MoovieLoading
+    private val loading = MoovieLoading()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loading = MoovieLoading(viewLifecycleOwner)
         initializeViews(savedInstanceState)
     }
 
@@ -41,7 +40,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     fun hideLoading() {
-        loading.hideLoading()
+        loading.hideLoading(childFragmentManager)
     }
 
     abstract fun initializeViews(savedInstance: Bundle?)

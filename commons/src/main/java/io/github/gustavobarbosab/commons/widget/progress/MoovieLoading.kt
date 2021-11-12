@@ -1,43 +1,24 @@
 package io.github.gustavobarbosab.commons.widget.progress
 
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 
-class MoovieLoading(private var lifecycleOwner: LifecycleOwner?) {
-
-    private var lastProgress: MoovieProgressDialogFragment? = null
-
-    init {
-        lifecycleOwner?.lifecycle?.addObserver(object : LifecycleEventObserver {
-            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-                if (event == Lifecycle.Event.ON_DESTROY) {
-                    hideLoading()
-                    lifecycleOwner = null
-                }
-            }
-        })
-    }
+class MoovieLoading {
 
     fun showLoading(fragmentManager: FragmentManager) {
-        if (isProgressShowing()) {
-            return
-        }
-
-        lastProgress = MoovieProgressDialogFragment()
-        lastProgress?.show(fragmentManager, TAG)
+        hideLoading(fragmentManager)
+        MoovieProgressDialogFragment().show(fragmentManager, TAG)
     }
 
-    private fun isProgressShowing(): Boolean =
-        lastProgress?.isVisible == true
-
-    fun hideLoading() {
-        lastProgress?.dismissAllowingStateLoss()
-        lastProgress = null
+    fun hideLoading(fragmentManager: FragmentManager) {
+        fragmentManager.findFragmentByTag(TAG)
+            ?.let { (it as DialogFragment).dismissAllowingStateLoss() }
     }
 
     companion object {
-        private const val TAG = "TAG"
+        private const val TAG = "TAG_LOADING"
     }
 }
