@@ -27,7 +27,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/colorShimmer"
-            android:minHeight="150dp"
+            android:scaleType="fitXY"
+            android:minHeight="200dp"
             android:tint="@color/image_shadow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/very_large_size"
             android:layout_marginBottom="@dimen/very_large_size"
-            android:src="@drawable/ic_star_outline"
+            android:src="@drawable/ic_heart_outline"
             app:fabSize="mini"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

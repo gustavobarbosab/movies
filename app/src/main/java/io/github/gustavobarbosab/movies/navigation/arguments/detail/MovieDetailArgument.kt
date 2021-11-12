@@ -11,6 +11,5 @@ class MovieDetailArgument(
     val name: String,
     val description: String,
     val imageUrl: String,
-    val poster: String,
-    val favorite: Boolean
-): Parcelable
+    val poster: String
+) : Parcelable

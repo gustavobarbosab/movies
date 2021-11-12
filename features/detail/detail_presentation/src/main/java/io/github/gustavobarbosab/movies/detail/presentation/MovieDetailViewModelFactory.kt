@@ -2,10 +2,11 @@ package io.github.gustavobarbosab.movies.detail.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.github.gustavobarbosab.detail.usecase.MovieDetailUseCase
+import io.github.gustavobarbosab.detail.usecase.DetailUseCase
+import javax.inject.Inject
 
-class MovieDetailViewModelFactory(
-    private val movieDetailUseCase: MovieDetailUseCase
+class MovieDetailViewModelFactory @Inject constructor(
+    private val movieDetailUseCase: DetailUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =

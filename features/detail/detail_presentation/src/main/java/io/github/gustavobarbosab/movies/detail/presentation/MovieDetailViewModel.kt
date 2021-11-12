@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
-import io.github.gustavobarbosab.detail.usecase.MovieDetailUseCase
+import io.github.gustavobarbosab.detail.usecase.DetailUseCase
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
@@ -13,7 +13,7 @@ import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailA
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
-    private val movieDetailUseCase: MovieDetailUseCase
+    private val movieDetailUseCase: DetailUseCase
 ) : BaseViewModel<DetailMovieViewModelState>(), CoroutineResultHandler {
 
     override val state: DetailMovieViewModelState = DetailMovieViewModelState()
@@ -61,11 +61,13 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    private fun favoriteMovieSuccess(nothing: Nothing?) {
+    private fun favoriteMovieSuccess(nothing: Any?) {
         state.actions.value = ViewActions.FavoriteMovieSuccess
+        state.favoriteButtonState.value = ButtonState.Filled
     }
 
     private fun favoriteMovieFailure() {
         state.actions.value = ViewActions.FavoriteMovieFailure
+        state.favoriteButtonState.value = ButtonState.Outline
     }
 }

@@ -9,7 +9,7 @@ import io.github.gustavobarbosab.core.di.modules.NetworkModule
 import io.github.gustavobarbosab.movies.MovieApplication
 import io.github.gustavobarbosab.movies.di.module.ApplicationModule
 import io.github.gustavobarbosab.movies.di.module.ContextModule
-import io.github.gustavobarbosab.movies.di.module.UseCaseModule
+import io.github.gustavobarbosab.movies.di.module.DataModule
 import javax.inject.Singleton
 
 @Singleton
@@ -19,7 +19,7 @@ import javax.inject.Singleton
         ApplicationModule::class,
         CoreModule::class,
         NetworkModule::class,
-        UseCaseModule::class
+        DataModule::class
     ]
 )
 interface AppComponent :

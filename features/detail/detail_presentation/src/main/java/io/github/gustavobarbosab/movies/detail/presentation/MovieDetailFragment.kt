@@ -69,8 +69,8 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
         favoriteButtonState.observe(viewLifecycleOwner) {
             val newImage = when (it) {
-                ButtonState.Filled -> R.drawable.ic_star_filled
-                ButtonState.Outline -> R.drawable.ic_star_outline
+                ButtonState.Filled -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_filled
+                ButtonState.Outline -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_outline
             }
             binding.movieFab.setImageResource(newImage)
         }
