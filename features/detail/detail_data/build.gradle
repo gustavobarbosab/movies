@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     implementation project(modulesDependencies.detailsDomain)
+    implementation project(modulesDependencies.coroutinesResult)
+    implementation corroutinesDependency
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
 }

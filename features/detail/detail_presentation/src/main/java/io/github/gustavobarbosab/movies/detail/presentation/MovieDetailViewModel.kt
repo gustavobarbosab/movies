@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
-import io.github.gustavobarbosab.detail.usecase.DetailUseCase
+import io.github.gustavobarbosab.detail.usecase.FavoriteMovieUseCase
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
@@ -13,7 +13,7 @@ import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailA
 import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
-    private val movieDetailUseCase: DetailUseCase
+    private val movieDetailUseCase: FavoriteMovieUseCase
 ) : BaseViewModel<DetailMovieViewModelState>(), CoroutineResultHandler {
 
     override val state: DetailMovieViewModelState = DetailMovieViewModelState()
@@ -22,6 +22,9 @@ class MovieDetailViewModel @Inject constructor(
     private lateinit var movieSelected: DetailModel
 
     fun init(movie: MovieDetailArgument) {
+        if (this::movieSelected.isInitialized)
+            return
+
         movieSelected = mapper.map(movie)
         state.movie.value = movieSelected
         handleFavoriteState()
