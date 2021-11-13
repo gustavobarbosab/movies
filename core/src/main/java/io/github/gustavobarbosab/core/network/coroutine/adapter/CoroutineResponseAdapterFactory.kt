@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.core.network.coroutine.adapter
 
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit

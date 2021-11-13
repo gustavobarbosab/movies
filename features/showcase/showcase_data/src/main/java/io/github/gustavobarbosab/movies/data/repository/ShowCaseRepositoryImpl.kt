@@ -4,7 +4,7 @@ import io.github.gustavobarbosab.movies.data.datasources.local.ShowCaseLocalData
 import io.github.gustavobarbosab.movies.data.datasources.remote.ShowCaseRemoteDataSource
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 import javax.inject.Inject
 
 class ShowCaseRepositoryImpl @Inject constructor(

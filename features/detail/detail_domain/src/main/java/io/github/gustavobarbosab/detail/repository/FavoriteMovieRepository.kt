@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.detail.repository
 
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 
 interface FavoriteMovieRepository {
     suspend fun isMovieFavorite(id: Long): SuspendResult<Boolean>

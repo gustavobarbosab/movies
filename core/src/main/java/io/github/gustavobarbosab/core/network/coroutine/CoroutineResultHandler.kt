@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.core.network.coroutine
 
-import io.gustavobarbosab.coroutinesresult.SuspendResult
-import io.gustavobarbosab.coroutinesresult.ExternalErrorData
+import io.gustavobarbosab.suspendresult.SuspendResult
+import io.gustavobarbosab.suspendresult.ExternalErrorData
 
 interface CoroutineResultHandler {
 

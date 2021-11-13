@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.showcase.usecase
 
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.showcase.repository.ShowCaseRepository
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 
 class ShowCaseUseCaseImpl(private val movieRepository: ShowCaseRepository) : ShowCaseUseCase {
 

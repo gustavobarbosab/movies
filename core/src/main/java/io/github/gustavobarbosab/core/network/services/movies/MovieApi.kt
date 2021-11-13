@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.core.network.services.movies
 
 import io.github.gustavobarbosab.core.network.services.movies.dto.PopularMoviePagingResponse
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 import retrofit2.http.GET
 
 interface MovieApi {

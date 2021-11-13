@@ -1,4 +1,4 @@
-package io.gustavobarbosab.coroutinesresult
+package io.gustavobarbosab.suspendresult
 
 /**
  * Esta classe tem como propósito atender retornos de funções

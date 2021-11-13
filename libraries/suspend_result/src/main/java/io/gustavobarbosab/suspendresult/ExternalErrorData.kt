@@ -1,4 +1,4 @@
-package io.gustavobarbosab.coroutinesresult
+package io.gustavobarbosab.suspendresult
 
 data class ExternalErrorData(
     val code: Int,

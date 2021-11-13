@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.detail.usecase
 import io.github.gustavobarbosab.detail.repository.FavoriteMovieRepository
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.detail.model.MovieState
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 
 class FavoriteMovieUseCaseImpl(
     private val repository: FavoriteMovieRepository

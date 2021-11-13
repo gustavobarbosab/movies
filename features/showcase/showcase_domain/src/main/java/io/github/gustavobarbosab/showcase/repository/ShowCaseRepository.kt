@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.showcase.repository
 
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 
 interface ShowCaseRepository {
     suspend fun getPopularMovies(): SuspendResult<List<MovieShowCase>>

@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.movies.detail.data.favorite
 
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.detail.repository.FavoriteMovieRepository
-import io.gustavobarbosab.coroutinesresult.SuspendResult
+import io.gustavobarbosab.suspendresult.SuspendResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking

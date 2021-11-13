@@ -1,7 +1,7 @@
 package io.github.gustavobarbosab.core.network.coroutine.adapter
 
-import io.gustavobarbosab.coroutinesresult.SuspendResult
-import io.gustavobarbosab.coroutinesresult.ExternalErrorData
+import io.gustavobarbosab.suspendresult.SuspendResult
+import io.gustavobarbosab.suspendresult.ExternalErrorData
 import okhttp3.Request
 import okhttp3.ResponseBody
 import okio.Timeout
