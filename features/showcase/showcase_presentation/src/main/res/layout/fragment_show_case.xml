@@ -11,7 +11,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_banner_top"
-            android:name="io.github.gustavobarbosab.showcase.showcase.presentation.banner.BannerMoviesFragment"
+            android:name="io.github.gustavobarbosab.movies.showcase.presentation.banner.BannerMoviesFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
             app:layout_constraintBottom_toTopOf="@+id/scrollable_content"

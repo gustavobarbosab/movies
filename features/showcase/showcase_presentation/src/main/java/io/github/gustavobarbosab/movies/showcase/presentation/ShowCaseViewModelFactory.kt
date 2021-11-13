@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation
+package io.github.gustavobarbosab.movies.showcase.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

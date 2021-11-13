@@ -1,9 +1,9 @@
-package io.github.gustavobarbosab.showcase.showcase.di
+package io.github.gustavobarbosab.movies.showcase.di
 
 import dagger.Component
 import io.github.gustavobarbosab.core.di.scope.FeatureScope
 import io.github.gustavobarbosab.movies.di.AppComponent
-import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseFragment
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseFragment
 
 @FeatureScope
 @Component(

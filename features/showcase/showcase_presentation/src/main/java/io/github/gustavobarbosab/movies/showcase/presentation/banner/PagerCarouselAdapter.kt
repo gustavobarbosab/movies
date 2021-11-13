@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation.banner
+package io.github.gustavobarbosab.movies.showcase.presentation.banner
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

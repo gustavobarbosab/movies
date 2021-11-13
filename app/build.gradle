@@ -73,10 +73,6 @@ android {
     }
 }
 
-configurations.all {
-    resolutionStrategy { force androidxDependencies.coreKtx }
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

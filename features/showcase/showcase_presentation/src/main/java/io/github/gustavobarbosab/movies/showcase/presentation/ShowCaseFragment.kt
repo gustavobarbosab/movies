@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation
+package io.github.gustavobarbosab.movies.showcase.presentation
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -14,12 +14,12 @@ import io.github.gustavobarbosab.movies.navigation.MoovieNavigation
 import io.github.gustavobarbosab.movies.navigation.directions.showcase.ShowCaseDetailDirection
 import io.github.gustavobarbosab.movies.showcase.R
 import io.github.gustavobarbosab.movies.showcase.databinding.FragmentShowCaseBinding
-import io.github.gustavobarbosab.showcase.showcase.di.DaggerMovieListComponent
-import io.github.gustavobarbosab.showcase.showcase.di.MovieListComponent
-import io.github.gustavobarbosab.showcase.showcase.di.ShowCaseInjector
+import io.github.gustavobarbosab.movies.showcase.di.DaggerMovieListComponent
+import io.github.gustavobarbosab.movies.showcase.di.MovieListComponent
+import io.github.gustavobarbosab.movies.showcase.di.ShowCaseInjector
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseViewState.Action.*
-import io.github.gustavobarbosab.showcase.showcase.presentation.movielist.MovieListAdapter
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.Action.*
+import io.github.gustavobarbosab.movies.showcase.presentation.movielist.MovieListAdapter
 import javax.inject.Inject
 
 @FeatureScope

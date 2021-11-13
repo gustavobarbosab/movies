@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation.banner
+package io.github.gustavobarbosab.movies.showcase.presentation.banner
 
 import android.os.Bundle
 import androidx.core.view.isGone
@@ -10,8 +10,8 @@ import io.github.gustavobarbosab.commons.widget.carousel.DepthPageTransformer
 import io.github.gustavobarbosab.movies.showcase.R
 import io.github.gustavobarbosab.movies.showcase.databinding.FragmentBannerMoviesBinding
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseViewModel
-import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseViewState
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewModel
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState
 
 class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
 

@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation.movielist
+package io.github.gustavobarbosab.movies.showcase.presentation.movielist
 
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.commons.widget.scrollablemovie.ScrollableBinding

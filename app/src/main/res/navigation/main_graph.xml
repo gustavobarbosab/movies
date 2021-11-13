@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_show_case"
-        android:name="io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseFragment">
+        android:name="io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseFragment">
         <action
             android:id="@+id/action_detail_fragment"
             app:destination="@id/detailsFragment"

@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation
+package io.github.gustavobarbosab.movies.showcase.presentation
 
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
@@ -6,7 +6,7 @@ import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseViewState.Action.*
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.Action.*
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
 
 class ShowCaseViewModel(

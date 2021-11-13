@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.di
+package io.github.gustavobarbosab.movies.showcase.di
 
 interface ShowCaseInjector {
     val component: MovieListComponent?

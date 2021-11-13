@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.showcase.showcase.presentation
+package io.github.gustavobarbosab.movies.showcase.presentation
 
 import androidx.lifecycle.MutableLiveData
 import io.github.gustavobarbosab.commons.livedata.SingleLiveEvent

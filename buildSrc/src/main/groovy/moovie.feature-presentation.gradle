@@ -1,8 +1,8 @@
 plugins {
-   id 'com.android.dynamic-feature'
-   id 'kotlin-android'
-   id 'kotlin-parcelize'
-   id 'kotlin-kapt'
+    id 'com.android.dynamic-feature'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdkVersion movieConfigVersions.minSdk
         targetSdkVersion movieConfigVersions.targetSdk
-        versionCode 1
-        versionName "1.0"
     }
 
     buildFeatures.dataBinding = true
