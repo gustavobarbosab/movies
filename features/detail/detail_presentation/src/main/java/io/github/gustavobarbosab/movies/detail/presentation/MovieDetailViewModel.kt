@@ -4,10 +4,10 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
+import io.github.gustavobarbosab.movies.detail.model.DetailsButtonType
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
-import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
-import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewAction
+import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieState.ViewAction
 import io.github.gustavobarbosab.movies.favorites.domain.model.MovieState
 import io.github.gustavobarbosab.movies.favorites.domain.usecase.FavoriteMovieUseCase
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument
@@ -15,9 +15,9 @@ import javax.inject.Inject
 
 class MovieDetailViewModel @Inject constructor(
     private val favoriteUseCase: FavoriteMovieUseCase
-) : BaseViewModel<DetailMovieViewModelState>(), CoroutineResultHandler {
+) : BaseViewModel<DetailMovieState>(), CoroutineResultHandler {
 
-    override val state: DetailMovieViewModelState = DetailMovieViewModelState()
+    override val state: DetailMovieState = DetailMovieState()
     private val mapper = DetailPresentationMapper()
 
     private lateinit var movieSelected: DetailModel
@@ -47,8 +47,8 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun searchFavoriteMovieSuccess(movieState: MovieState?) {
         state.favoriteButtonState.value = when (movieState) {
-            MovieState.MovieLiked -> ButtonState.Filled
-            else -> ButtonState.Outline
+            MovieState.MovieLiked -> DetailsButtonType.Filled
+            else -> DetailsButtonType.Outline
         }
     }
 
@@ -71,12 +71,15 @@ class MovieDetailViewModel @Inject constructor(
 
     private fun favoriteMovieSuccess(movieState: MovieState?) {
         when (movieState) {
-            MovieState.MovieLiked -> updateButtonState(ButtonState.Filled, ViewAction.MovieLiked)
-            else -> updateButtonState(ButtonState.Outline, ViewAction.MovieUnliked)
+            MovieState.MovieLiked -> updateButtonState(
+                DetailsButtonType.Filled,
+                ViewAction.MovieLiked
+            )
+            else -> updateButtonState(DetailsButtonType.Outline, ViewAction.MovieUnliked)
         }
     }
 
-    private fun updateButtonState(newState: ButtonState, viewAction: ViewAction) {
+    private fun updateButtonState(newState: DetailsButtonType, viewAction: ViewAction) {
         state.favoriteButtonState.value = newState
         state.actions.value = viewAction
     }

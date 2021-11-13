@@ -1,7 +1,6 @@
 package io.github.gustavobarbosab.movies.detail.model
 
 import io.github.gustavobarbosab.core.contracts.Mapper
-import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument
 

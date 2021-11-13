@@ -10,8 +10,8 @@ import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.movies.detail.R
 import io.github.gustavobarbosab.movies.detail.databinding.FragmentMovieDetailBinding
 import io.github.gustavobarbosab.movies.detail.di.DaggerDetailComponent
-import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
-import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewAction
+import io.github.gustavobarbosab.movies.detail.model.DetailsButtonType
+import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieState.ViewAction
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import javax.inject.Inject
@@ -56,6 +56,14 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             binding.movieDescription.text = movieDetail.description
         }
 
+        favoriteButtonState.observe(viewLifecycleOwner) {
+            val newImage = when (it) {
+                DetailsButtonType.Filled -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_filled
+                DetailsButtonType.Outline -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_outline
+            }
+            binding.movieFab.setImageResource(newImage)
+        }
+
         actions.observe(viewLifecycleOwner) {
             when (it) {
                 ViewAction.HideLoading -> hideLoading()
@@ -65,14 +73,6 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
                 ViewAction.MovieUnliked -> showSnackBar("Filme removido dos favoritos")
                 ViewAction.MovieLiked -> showSnackBar("Filme adicionado aos favoritos")
             }
-        }
-
-        favoriteButtonState.observe(viewLifecycleOwner) {
-            val newImage = when (it) {
-                ButtonState.Filled -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_filled
-                ButtonState.Outline -> io.github.gustavobarbosab.commons.R.drawable.ic_heart_outline
-            }
-            binding.movieFab.setImageResource(newImage)
         }
     }
 
