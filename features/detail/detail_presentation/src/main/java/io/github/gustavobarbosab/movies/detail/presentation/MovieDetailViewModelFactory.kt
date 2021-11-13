@@ -2,7 +2,7 @@ package io.github.gustavobarbosab.movies.detail.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.github.gustavobarbosab.detail.usecase.FavoriteMovieUseCase
+import io.github.gustavobarbosab.movies.favorites.domain.usecase.FavoriteMovieUseCase
 import javax.inject.Inject
 
 class MovieDetailViewModelFactory @Inject constructor(

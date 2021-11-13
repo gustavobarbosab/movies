@@ -5,4 +5,5 @@ plugins {
 dependencies {
     implementation project(modulesDependencies.suspendResult)
     implementation project(modulesDependencies.detailsDomain)
+    implementation project(modulesDependencies.favoritesDomain)
 }

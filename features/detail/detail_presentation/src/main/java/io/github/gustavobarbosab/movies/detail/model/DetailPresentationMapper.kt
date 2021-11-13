@@ -2,6 +2,7 @@ package io.github.gustavobarbosab.movies.detail.model
 
 import io.github.gustavobarbosab.core.contracts.Mapper
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
+import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument
 
 class DetailPresentationMapper : Mapper<MovieDetailArgument, DetailModel> {
@@ -13,7 +14,7 @@ class DetailPresentationMapper : Mapper<MovieDetailArgument, DetailModel> {
         input.imageUrl
     )
 
-    fun map(input: DetailModel) = MovieDetailDomain(
+    fun map(input: DetailModel) = MovieFavorite(
         input.id,
         input.title,
         input.description,

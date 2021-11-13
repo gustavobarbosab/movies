@@ -1,7 +1,7 @@
-package io.github.gustavobarbosab.movies.detail.data.favorite
+package io.github.gustavobarbosab.movies.favorites.data
 
-import io.github.gustavobarbosab.detail.model.MovieDetailDomain
-import io.github.gustavobarbosab.detail.repository.FavoriteMovieRepository
+import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
+import io.github.gustavobarbosab.movies.favorites.domain.repository.FavoriteMovieRepository
 import io.gustavobarbosab.suspendresult.SuspendResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -21,7 +21,7 @@ class FavoriteMovieRepositoryImpl @Inject constructor() : FavoriteMovieRepositor
         }
 
 
-    override suspend fun likeMovie(movie: MovieDetailDomain): SuspendResult<Unit> =
+    override suspend fun likeMovie(movie: MovieFavorite): SuspendResult<Unit> =
         withContext(Dispatchers.IO) {
             runBlocking {
                 delay(1000)
@@ -29,7 +29,7 @@ class FavoriteMovieRepositoryImpl @Inject constructor() : FavoriteMovieRepositor
             }
         }
 
-    override suspend fun dislikeMovie(movie: MovieDetailDomain): SuspendResult<Unit> =
+    override suspend fun dislikeMovie(movie: MovieFavorite): SuspendResult<Unit> =
         withContext(Dispatchers.IO) {
             runBlocking {
                 delay(1000)

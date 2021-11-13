@@ -4,12 +4,12 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
-import io.github.gustavobarbosab.detail.model.MovieState
-import io.github.gustavobarbosab.detail.usecase.FavoriteMovieUseCase
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewAction
+import io.github.gustavobarbosab.movies.favorites.domain.model.MovieState
+import io.github.gustavobarbosab.movies.favorites.domain.usecase.FavoriteMovieUseCase
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailArgument
 import javax.inject.Inject
 
