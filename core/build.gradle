@@ -10,8 +10,6 @@ android {
     defaultConfig {
         minSdkVersion movieConfigVersions.minSdk
         targetSdkVersion movieConfigVersions.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner movieConfigVersions.testInstrumentation
         consumerProguardFiles 'consumer-rules.pro'
