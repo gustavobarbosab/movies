@@ -1,10 +1,10 @@
 package io.github.gustavobarbosab.detail.usecase
 
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
-import io.github.gustavobarbosab.detail.model.MovieUpdate
-import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.github.gustavobarbosab.detail.model.MovieState
+import io.gustavobarbosab.coroutinesresult.SuspendResult
 
 interface FavoriteMovieUseCase {
-    suspend fun updateFavoriteMovie(movie: MovieDetailDomain): CoroutineResult<MovieUpdate>
-    suspend fun isMovieFavorite(id: Long): CoroutineResult<Boolean>
+    suspend fun updateFavoriteMovie(movie: MovieDetailDomain): SuspendResult<MovieState>
+    suspend fun isMovieFavorite(id: Long): SuspendResult<MovieState>
 }

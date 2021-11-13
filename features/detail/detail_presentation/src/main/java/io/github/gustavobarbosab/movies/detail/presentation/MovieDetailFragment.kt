@@ -7,8 +7,8 @@ import com.google.android.material.snackbar.Snackbar
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
-import io.github.gustavobarbosab.detail.R
-import io.github.gustavobarbosab.detail.databinding.FragmentMovieDetailBinding
+import io.github.gustavobarbosab.movies.detail.R
+import io.github.gustavobarbosab.movies.detail.databinding.FragmentMovieDetailBinding
 import io.github.gustavobarbosab.movies.detail.di.DaggerDetailComponent
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ButtonState
 import io.github.gustavobarbosab.movies.detail.presentation.DetailMovieViewModelState.ViewAction

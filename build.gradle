@@ -6,8 +6,8 @@ buildscript {
         // App Configs
         movieConfigVersions = [
                 minSdk             : 21,
-                targetSdk          : 30,
-                compileSdk         : 30,
+                targetSdk          : 31,
+                compileSdk         : 31,
                 buildTools         : "30.0.2",
                 testInstrumentation: "androidx.test.runner.AndroidJUnitRunner"
         ]
@@ -29,10 +29,10 @@ buildscript {
         ]
 
         androidxDependencies = [
-                appCompat       : "androidx.appcompat:appcompat:1.1.0",
-                coreKtx         : "androidx.core:core-ktx:1.2.0",
+                appCompat       : "androidx.appcompat:appcompat:1.3.1",
+                coreKtx         : "androidx.core:core-ktx:1.7.0",
                 constraintLayout: "androidx.constraintlayout:constraintlayout:2.1.1",
-                recyclerView    : "androidx.recyclerview:recyclerview:1.1.0",
+                recyclerView    : "androidx.recyclerview:recyclerview:1.2.1",
                 viewPager2      : "androidx.viewpager2:viewpager2:1.0.0"
         ]
 
@@ -49,7 +49,7 @@ buildscript {
                 core             : ":core",
                 common           : ":commons",
                 unitTestUtilities: ":libraries:unit_test_utilities",
-                coroutinesResult : ":libraries:coroutines_result",
+                suspendResult : ":libraries:suspend_result",
                 showCaseDomain   : ":features:showcase:showcase_domain",
                 showCaseData  : ":features:showcase:showcase_data",
                 detailsDomain    : ":features:detail:detail_domain",
@@ -58,7 +58,7 @@ buildscript {
                 favoritesDomain: ":features:favorites:favorites_domain",
         ]
 
-        def daggerVersion = "2.35.1"
+        def daggerVersion = "2.40.1"
         daggerDependencies = [
                 dagger   : "com.google.dagger:dagger:$daggerVersion",
                 compiler : "com.google.dagger:dagger-compiler:$daggerVersion",
@@ -72,7 +72,7 @@ buildscript {
                 logging : "com.squareup.okhttp3:logging-interceptor:4.9.0"
         ]
 
-        corroutinesDependency = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+        coroutinesDependency = "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
 
         def lifecycleScopesVersion = "2.2.0"
         lifecycleScopesDependencies = [
@@ -98,7 +98,7 @@ buildscript {
 
     dependencies {
         // Don't update gradle, this dependency are generating problems after update
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         classpath 'com.google.gms:google-services:4.3.10'

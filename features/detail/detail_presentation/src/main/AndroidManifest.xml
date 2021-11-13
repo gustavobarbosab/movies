@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="io.github.gustavobarbosab.detail">
+    package="io.github.gustavobarbosab.movies.detail">
 
     <dist:module
         dist:instant="false"

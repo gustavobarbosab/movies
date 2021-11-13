@@ -1,14 +1,14 @@
 package io.github.gustavobarbosab.showcase.repository
 
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.SuspendResult
 
 interface ShowCaseRepository {
-    suspend fun getPopularMovies(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getPopularMovies(): SuspendResult<List<MovieShowCase>>
 
-    suspend fun getTopRatedMovies(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getTopRatedMovies(): SuspendResult<List<MovieShowCase>>
 
-    suspend fun getPlayingNow(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getPlayingNow(): SuspendResult<List<MovieShowCase>>
 
-    suspend fun getLatestMovies(): CoroutineResult<List<MovieShowCase>>
+    suspend fun getLatestMovies(): SuspendResult<List<MovieShowCase>>
 }

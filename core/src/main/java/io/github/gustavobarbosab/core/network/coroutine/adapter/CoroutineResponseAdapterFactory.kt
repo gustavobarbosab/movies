@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.core.network.coroutine.adapter
 
-import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.SuspendResult
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
@@ -28,7 +28,7 @@ class CoroutineResponseAdapterFactory : CallAdapter.Factory() {
         // get the response type inside the `Call` type
         val responseType = getParameterUpperBound(0, returnType)
         // if the response type is not ApiResponse then we can't handle this type, so we return null
-        if (getRawType(responseType) != CoroutineResult::class.java) {
+        if (getRawType(responseType) != SuspendResult::class.java) {
             return null
         }
 

@@ -46,7 +46,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(modulesDependencies.coroutinesResult)
+    implementation project(':libraries:suspend_result')
 
     implementation kotlinDependencies.values()
 
@@ -57,7 +57,7 @@ dependencies {
 
     implementation networkDependencies.values()
 
-    implementation corroutinesDependency
+    implementation coroutinesDependency
 
     implementation playCoreDependencies.values()
 

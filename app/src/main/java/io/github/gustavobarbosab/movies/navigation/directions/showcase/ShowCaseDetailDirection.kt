@@ -4,7 +4,7 @@ import androidx.navigation.NavDirections
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.movies.navigation.arguments.detail.MovieDetailMapper
 import io.github.gustavobarbosab.movies.navigation.directions.DirectionAdapter
-import io.github.gustavobarbosab.showcase.presentation.ShowCaseFragmentDirections
+import io.github.gustavobarbosab.showcase.showcase.presentation.ShowCaseFragmentDirections
 
 class ShowCaseDetailDirection(private val detail: MovieDetailDomain) : DirectionAdapter {
 

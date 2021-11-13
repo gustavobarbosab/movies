@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    implementation project(modulesDependencies.coroutinesResult)
+    implementation project(modulesDependencies.suspendResult)
 }

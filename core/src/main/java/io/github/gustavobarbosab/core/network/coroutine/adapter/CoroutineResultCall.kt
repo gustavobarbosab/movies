@@ -1,6 +1,6 @@
 package io.github.gustavobarbosab.core.network.coroutine.adapter
 
-import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.SuspendResult
 import io.gustavobarbosab.coroutinesresult.ExternalErrorData
 import okhttp3.Request
 import okhttp3.ResponseBody
@@ -15,9 +15,9 @@ import java.io.IOException
 internal class CoroutineResultCall<S : Any>(
     private val delegate: Call<S>,
     private val errorConverter: Converter<ResponseBody, S>
-) : Call<CoroutineResult<S>> {
+) : Call<SuspendResult<S>> {
 
-    override fun enqueue(callback: Callback<CoroutineResult<S>>) {
+    override fun enqueue(callback: Callback<SuspendResult<S>>) {
         return delegate.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
                 val body = response.body()
@@ -28,13 +28,13 @@ internal class CoroutineResultCall<S : Any>(
                     if (body != null) {
                         callback.onResponse(
                             this@CoroutineResultCall,
-                            Response.success(CoroutineResult.Success(body))
+                            Response.success(SuspendResult.Success(body))
                         )
                     } else {
                         // Response is successful but the body is null
                         callback.onResponse(
                             this@CoroutineResultCall,
-                            Response.success(CoroutineResult.Success(null))
+                            Response.success(SuspendResult.Success(null))
                         )
                     }
                 } else {
@@ -52,12 +52,12 @@ internal class CoroutineResultCall<S : Any>(
                         val error = ExternalErrorData(code, errorMessage)
                         callback.onResponse(
                             this@CoroutineResultCall,
-                            Response.success(CoroutineResult.ExternalError(error))
+                            Response.success(SuspendResult.ExternalError(error))
                         )
                     } else {
                         callback.onResponse(
                             this@CoroutineResultCall,
-                            Response.success(CoroutineResult.UnknownError(null))
+                            Response.success(SuspendResult.UnknownError(null))
                         )
                     }
                 }
@@ -65,8 +65,8 @@ internal class CoroutineResultCall<S : Any>(
 
             override fun onFailure(call: Call<S>, throwable: Throwable) {
                 val networkResponse = when (throwable) {
-                    is IOException -> CoroutineResult.InternalError(throwable)
-                    else -> CoroutineResult.UnknownError(throwable)
+                    is IOException -> SuspendResult.InternalError(throwable)
+                    else -> SuspendResult.UnknownError(throwable)
                 }
                 callback.onResponse(this@CoroutineResultCall, Response.success(networkResponse))
             }
@@ -81,7 +81,7 @@ internal class CoroutineResultCall<S : Any>(
 
     override fun cancel() = delegate.cancel()
 
-    override fun execute(): Response<CoroutineResult<S>> {
+    override fun execute(): Response<SuspendResult<S>> {
         throw UnsupportedOperationException("CoroutineResult doesn't support execute")
     }
 

@@ -1,10 +1,10 @@
 package io.github.gustavobarbosab.detail.repository
 
 import io.github.gustavobarbosab.detail.model.MovieDetailDomain
-import io.gustavobarbosab.coroutinesresult.CoroutineResult
+import io.gustavobarbosab.coroutinesresult.SuspendResult
 
 interface FavoriteMovieRepository {
-    suspend fun isMovieFavorite(id: Long): CoroutineResult<Boolean>
-    suspend fun likeMovie(movie: MovieDetailDomain): CoroutineResult<Unit>
-    suspend fun dislikeMovie(movie: MovieDetailDomain): CoroutineResult<Unit>
+    suspend fun isMovieFavorite(id: Long): SuspendResult<Boolean>
+    suspend fun likeMovie(movie: MovieDetailDomain): SuspendResult<Unit>
+    suspend fun dislikeMovie(movie: MovieDetailDomain): SuspendResult<Unit>
 }

@@ -4,9 +4,9 @@ plugins {
 }
 
 dependencies {
-    api project(modulesDependencies.coroutinesResult)
+    api project(modulesDependencies.suspendResult)
     implementation project(modulesDependencies.showCaseDomain)
-    implementation corroutinesDependency
+    implementation coroutinesDependency
     implementation daggerDependencies.dagger
     kapt daggerDependencies.compiler
 }

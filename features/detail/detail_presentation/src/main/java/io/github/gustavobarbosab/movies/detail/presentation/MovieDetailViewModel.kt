@@ -4,7 +4,7 @@ import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
-import io.github.gustavobarbosab.detail.model.MovieUpdate
+import io.github.gustavobarbosab.detail.model.MovieState
 import io.github.gustavobarbosab.detail.usecase.FavoriteMovieUseCase
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper
@@ -38,16 +38,18 @@ class MovieDetailViewModel @Inject constructor(
             state.actions.value = ViewAction.ShowLoading
             handleResult(
                 favoriteUseCase.isMovieFavorite(movieSelected.id),
-                this@MovieDetailViewModel::searchFavoritesSuccess,
+                this@MovieDetailViewModel::searchFavoriteMovieSuccess,
                 this@MovieDetailViewModel::searchFavoritesFailure
             )
             state.actions.value = ViewAction.HideLoading
         }
     }
 
-    private fun searchFavoritesSuccess(result: Boolean?) {
-        val newState = if (result == true) ButtonState.Filled else ButtonState.Outline
-        state.favoriteButtonState.value = newState
+    private fun searchFavoriteMovieSuccess(movieState: MovieState?) {
+        state.favoriteButtonState.value = when (movieState) {
+            MovieState.MovieLiked -> ButtonState.Filled
+            else -> ButtonState.Outline
+        }
     }
 
     private fun searchFavoritesFailure() {
@@ -67,13 +69,16 @@ class MovieDetailViewModel @Inject constructor(
         }
     }
 
-    private fun favoriteMovieSuccess(update: MovieUpdate?) {
-        val pairResult = when (update) {
-            MovieUpdate.MovieLiked -> Pair(ButtonState.Filled, ViewAction.MovieLiked)
-            else -> Pair(ButtonState.Outline, ViewAction.MovieUnliked)
+    private fun favoriteMovieSuccess(movieState: MovieState?) {
+        when (movieState) {
+            MovieState.MovieLiked -> updateButtonState(ButtonState.Filled, ViewAction.MovieLiked)
+            else -> updateButtonState(ButtonState.Outline, ViewAction.MovieUnliked)
         }
-        state.favoriteButtonState.value = pairResult.first
-        state.actions.value = pairResult.second
+    }
+
+    private fun updateButtonState(newState: ButtonState, viewAction: ViewAction) {
+        state.favoriteButtonState.value = newState
+        state.actions.value = viewAction
     }
 
     private fun favoriteMovieFailure() {
