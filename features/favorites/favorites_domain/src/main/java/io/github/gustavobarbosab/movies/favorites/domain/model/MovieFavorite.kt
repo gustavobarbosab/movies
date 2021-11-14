@@ -5,5 +5,6 @@ class MovieFavorite(
     val name: String,
     val description: String,
     val imageUrl: String,
-    val poster: String
+    val poster: String,
+    val savedDate: String = ""
 )

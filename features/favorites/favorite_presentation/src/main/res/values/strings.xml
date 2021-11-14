@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="favorite_movie_saved_date">Salvo em: %1s</string>
+    <string name="favorites_toolbar_title">Favoritos</string>
 </resources>

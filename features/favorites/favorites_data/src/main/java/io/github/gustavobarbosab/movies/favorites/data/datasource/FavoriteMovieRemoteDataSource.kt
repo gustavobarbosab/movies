@@ -1,4 +1,6 @@
 package io.github.gustavobarbosab.movies.favorites.data.datasource
 
-class FavoriteMovieRemoteDataSource {
+import javax.inject.Inject
+
+class FavoriteMovieRemoteDataSource @Inject constructor() {
 }

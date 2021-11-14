@@ -9,6 +9,9 @@ class FavoriteMovieUseCaseImpl(
     private val repository: FavoriteMovieRepository
 ) : FavoriteMovieUseCase {
 
+    override suspend fun fetchFavorites(): SuspendResult<List<MovieFavorite>> =
+        repository.fetchFavorites()
+
     override suspend fun updateFavoriteMovie(movie: MovieFavorite): SuspendResult<MovieState> {
         val isMovieFavoriteResult = repository.isMovieFavorite(movie.id)
 
@@ -28,7 +31,9 @@ class FavoriteMovieUseCaseImpl(
     override suspend fun isMovieFavorite(id: Long): SuspendResult<MovieState> {
         val result = repository.isMovieFavorite(id)
         return when {
-            result is SuspendResult.Success<*> && result.data == true -> SuspendResult.Success(MovieState.MovieLiked)
+            result is SuspendResult.Success<*> && result.data == true -> SuspendResult.Success(
+                MovieState.MovieLiked
+            )
             result is SuspendResult.Success<*> -> SuspendResult.Success(MovieState.MovieUnliked)
             else -> SuspendResult.UnknownError()
         }

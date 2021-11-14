@@ -72,7 +72,8 @@ dependencies {
 
     testImplementation unitTestDependencies.values()
 
-    implementation roomDependencies.room
-    implementation roomDependencies.paging
+    // TODO resolve this and change to implementation again
+    api roomDependencies.runtime
+    implementation roomDependencies.ktx
     kapt roomDependencies.compiler
 }

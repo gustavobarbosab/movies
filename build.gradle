@@ -92,10 +92,13 @@ buildscript {
 
         def roomVersion = "2.3.0"
         roomDependencies = [
-                room: "androidx.room:room-runtime:$roomVersion",
+                runtime: "androidx.room:room-runtime:$roomVersion",
+                ktx: "androidx.room:room-ktx:$roomVersion",
                 compiler: "androidx.room:room-compiler:$roomVersion",
-                paging: "androidx.room:room-paging:$roomVersion"
         ]
+
+        def pagingVersion = "3.0.1"
+        pagingDependency = "androidx.paging:paging-runtime:$pagingVersion"
     }
 
     repositories {
