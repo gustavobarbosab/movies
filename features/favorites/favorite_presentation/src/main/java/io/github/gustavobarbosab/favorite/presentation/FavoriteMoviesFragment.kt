@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.favorite
+package io.github.gustavobarbosab.favorite.presentation
 
 import android.os.Bundle
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
