@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import io.github.gustavobarbosab.core.BuildConfig
 import io.github.gustavobarbosab.core.config.AppConfigWrapper
-import io.github.gustavobarbosab.core.network.coroutine.adapter.CoroutineResponseAdapterFactory
+import io.github.gustavobarbosab.core.network.adapter.CoroutineResponseAdapterFactory
 import io.github.gustavobarbosab.core.network.interceptor.AuthInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

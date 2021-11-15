@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.movies.detail.presentation
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
-import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
+import io.gustavobarbosab.suspendresult.CoroutineResultHandler
 import io.github.gustavobarbosab.movies.detail.model.DetailsButtonType
 import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailPresentationMapper

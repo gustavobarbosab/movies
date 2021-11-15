@@ -7,7 +7,7 @@ import io.github.gustavobarbosab.detail.model.MovieDetailDomain
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.Action.*
-import io.github.gustavobarbosab.core.network.coroutine.CoroutineResultHandler
+import io.gustavobarbosab.suspendresult.CoroutineResultHandler
 
 class ShowCaseViewModel(
     private val useCase: ShowCaseUseCase
