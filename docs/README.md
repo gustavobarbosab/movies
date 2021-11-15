@@ -3,8 +3,8 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/gustavobarbosab/movies?style=for-the-badgee)
 ![GitHub language count](https://img.shields.io/github/languages/count/gustavobarbosab/movies?style=for-the-badgee)
 ![GitHub forks](https://img.shields.io/github/forks/gustavobarbosab/movies?style=for-the-badgee)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/gustavobarbosab/movies?style=for-the-badgee)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/gustavobarbosab/movies?style=for-the-badgee)
+![GitHub open issues](https://img.shields.io/bitbucket/issues/gustavobarbosab/movies?style=for-the-badgee)
+![GitHub open pull requests](https://img.shields.io/bitbucket/pr-raw/gustavobarbosab/movies?style=for-the-badgee)
 
 🚧 - EM CONSTRUÇÃO -🚧
 
@@ -21,15 +21,15 @@ A ideia é que usemos os seguintes stack de componentes:
 - [X] Coroutines
 - [X] ViewModel
 - [X] Single Activity
-- [X] Dagger 2 (futuramente migrarei para o HILT. Escolhi o dagger por ser mais complexo de
-  configurar, forçando o aprendizado)
+- [X] Dagger 2
 - [X] Mockk
 - [X] JUnit
 - [X] Jenkins
-- [ ] Dark Mode
+- [ ] Paging
 - [ ] Espresso
-- [ ] Gradle KTS
 - [ ] Compose
+
+Obs: Algumas camadas ainda não estão totalmente testadas unitariamente e ainda não está configurado o CI, devido ao pouco tempo de desenvolvimento.
 
 ## 💻  Configuração de ambiente
 
@@ -41,10 +41,22 @@ Quando você estiver com a chave, adicione ela no arquivo `local.properties` na 
 
 ```properties
 #TheMovieDB API KEY
-api.key= = <insert-here>
+api.key=<insert-here>
 ```
+<br>
 
-## 🚀 Como está estruturado o projeto?
+## :house: Como foi pensada a arquitetura do projeto?
+
+O projeto segue os conceitos da clean architecture, visando maior desacoplamento, facilidade na manutenção, estrutura de pacotes e módulos com responsabilidades bem definidas, aplicação altamente testável, etc.
+
+Abaixo vemos a ligação entre as camadas da aplicação e a quais módulos cama uma pertence.
+
+Arquitetura do app            |  Clean architecture
+:-------------------------:|:-------------------------:
+<img src="architecture-dependency.jpg" alt="Architecture dependency" height="600" >  |  <img src="clean-architecture-layers.png" alt="Architecture dependency" height="600" >
+
+
+## 🚀 Quais os módulos temos no projeto?
 
 <img src="modules.jpg" alt="Modules organization" height="500">
 
@@ -52,22 +64,22 @@ api.key= = <insert-here>
 - **Módulo core:** centraliza componentes cruciais para toda a aplicação, como configurações de rede,
   banco, injeção de depêndencias, etc.
 - **Módulo commons:** possui estruturas comuns para a aplicação, como componentes, definições base,
-  estilos, etc.
+  estilos, widgets, etc.
 - **Módulos de libraries:** são módulos que podem ser extraídos e usados por outras aplicações, são
-  interessantes pois fomentam a criação de bibliotecas para a comunidade.
-- **Módulos de features:** são módulos dividos em duas partes. O modulo privado que contém as telas,
-  regras de exibição e comunicação com banco e api. Já o módulo público contém os models, interfaces
-  e o use case que poderão ser providos para outras partes do app.
+  interessantes pois fomentam a criação de bibliotecas para a comunidade Android.
+- **Módulos de features:** são módulos dividos em três partes que são explicados abaixo.
 
-## ☕ Pontos importantes:
+## 💡 Como é estruturada uma feature?
 
-O grafo das depêndencias do gradle está sendo otimizado, por ser algo novo, conforme o projeto
-evolui algumas adequações precisam ser feitas, porém hoje o projeto está seguindo o seguinte padrão.
-Observe que os módulos publicos das features precisaram ser incorporados no :app como APIs, tal ação
-é necessária para que não tenhamos dependencias circulares no projeto, inviabilizando a sua
-compilação.
+As features são divididas em três pacotes, visando um maior desacoplamento entre framework e regras de negócio. Abaixo veremos uma explicação de cada um desses módulos e como é a ligação entre eles.
 
-<img src="communication.jpg" alt="Modules connection"  height="500">
+<img src="feature-module-explanation.jpg" alt="Modules organization" height="700">
+
+## ☕ Como é a comunição entre os módulos de feature e app?
+
+A comunicação é descrita no desenho abaixo e foi pensada de modo a possibilitar que tenhamos módulos de apresentação dinâmicos.
+
+<img src="feature-communication.jpg" alt="Modules organization" height="700">
 
 ## 😄 Seja um dos contribuidores<br>
 
