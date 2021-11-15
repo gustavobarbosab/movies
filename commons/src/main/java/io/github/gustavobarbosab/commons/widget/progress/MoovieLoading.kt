@@ -5,24 +5,24 @@ import androidx.fragment.app.FragmentManager
 
 class MoovieLoading {
 
+    var lastDialogShowed: DialogFragment? = null
+
     fun showLoading(fragmentManager: FragmentManager) {
-        val dialogProgress = getFragmentProgress(fragmentManager)?.dialog
-        if (dialogProgress?.isShowing == true)
+        if (isShowingProgress())
             return
 
-        MoovieProgressDialogFragment().show(fragmentManager, TAG)
+        lastDialogShowed = MoovieProgressDialogFragment()
+        lastDialogShowed?.show(fragmentManager, TAG)
     }
 
-    fun hideLoading(fragmentManager: FragmentManager) {
-        val fragmentProgress = getFragmentProgress(fragmentManager)
-        fragmentProgress?.let {
+    fun hideLoading() {
+        lastDialogShowed?.let {
             it.dialog?.cancel()
             it.dismissAllowingStateLoss()
         }
     }
 
-    private fun getFragmentProgress(fragmentManager: FragmentManager) =
-        fragmentManager.findFragmentByTag(TAG) as? DialogFragment?
+    private fun isShowingProgress() = lastDialogShowed?.dialog?.isShowing == true
 
     companion object {
         private const val TAG = "TAG_LOADING"
