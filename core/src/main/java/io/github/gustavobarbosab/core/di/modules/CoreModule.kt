@@ -5,6 +5,7 @@ import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import io.github.gustavobarbosab.core.config.AppConfigWrapper
+import io.github.gustavobarbosab.core.config.MoovieConfig
 import io.github.gustavobarbosab.core.database.MoovieDataBase
 import io.github.gustavobarbosab.core.network.services.movies.MovieApi
 import retrofit2.Retrofit
@@ -15,7 +16,7 @@ class CoreModule {
 
     @Provides
     @Singleton
-    fun provideAppWrapper() = AppConfigWrapper()
+    fun provideAppWrapper(): MoovieConfig = AppConfigWrapper()
 
     @Provides
     @Singleton

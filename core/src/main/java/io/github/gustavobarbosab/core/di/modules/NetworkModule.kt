@@ -3,7 +3,7 @@ package io.github.gustavobarbosab.core.di.modules
 import dagger.Module
 import dagger.Provides
 import io.github.gustavobarbosab.core.BuildConfig
-import io.github.gustavobarbosab.core.config.AppConfigWrapper
+import io.github.gustavobarbosab.core.config.MoovieConfig
 import io.github.gustavobarbosab.core.network.adapter.CoroutineResponseAdapterFactory
 import io.github.gustavobarbosab.core.network.interceptor.AuthInterceptor
 import okhttp3.OkHttpClient
@@ -21,7 +21,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
-        appConfigWrapper: AppConfigWrapper
+        appConfigWrapper: MoovieConfig
     ): Retrofit =
         Retrofit
             .Builder()

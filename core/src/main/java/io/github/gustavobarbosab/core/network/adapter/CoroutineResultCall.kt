@@ -17,6 +17,7 @@ internal class CoroutineResultCall<S : Any>(
     private val errorConverter: Converter<ResponseBody, S>
 ) : Call<SuspendResult<S>> {
 
+    // TODO refatorar essa classe para melhorar a legibilidade e separamento de responsabilidades
     override fun enqueue(callback: Callback<SuspendResult<S>>) {
         return delegate.enqueue(object : Callback<S> {
             override fun onResponse(call: Call<S>, response: Response<S>) {
@@ -82,7 +83,7 @@ internal class CoroutineResultCall<S : Any>(
     override fun cancel() = delegate.cancel()
 
     override fun execute(): Response<SuspendResult<S>> {
-        throw UnsupportedOperationException("CoroutineResult doesn't support execute")
+        throw UnsupportedOperationException("SuspendResult doesn't support execute")
     }
 
     override fun request(): Request = delegate.request()
