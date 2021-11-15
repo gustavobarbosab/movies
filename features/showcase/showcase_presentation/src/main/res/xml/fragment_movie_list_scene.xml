@@ -32,7 +32,6 @@
             android:id="@+id/fragment_banner_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
-            motion:layout_constraintBottom_toTopOf="@id/scrollable_content"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +49,6 @@
             android:id="@+id/fragment_banner_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
-            motion:layout_constraintBottom_toTopOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />

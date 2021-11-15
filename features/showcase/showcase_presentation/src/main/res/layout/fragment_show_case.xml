@@ -14,7 +14,6 @@
             android:name="io.github.gustavobarbosab.movies.showcase.presentation.banner.BannerMoviesFragment"
             android:layout_width="match_parent"
             android:layout_height="@dimen/show_case_banner_size"
-            app:layout_constraintBottom_toTopOf="@+id/scrollable_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
