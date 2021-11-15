@@ -7,9 +7,4 @@ import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewModelF
 import io.github.gustavobarbosab.showcase.usecase.ShowCaseUseCase
 
 @Module
-class MovieListModule {
-
-    @Provides
-    @FeatureScope
-    fun provideViewModelFactory(movieUseCase: ShowCaseUseCase) = ShowCaseViewModelFactory(movieUseCase)
-}
+class MovieListModule

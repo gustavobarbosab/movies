@@ -9,19 +9,18 @@ import javax.inject.Inject
 
 class ShowCaseRepositoryImpl @Inject constructor(
     private val localDataSource: ShowCaseLocalDataSource,
-    private val remoteDataSource: ShowCaseRemoteDataSource,
-    private val mapper: ShowCaseRepositoryMapper
+    private val remoteDataSource: ShowCaseRemoteDataSource
 ) : ShowCaseRepository {
 
     override suspend fun getPopularMovies(): SuspendResult<List<MovieShowCase>> =
-        remoteDataSource.getPopularMovies().map(mapper::map)
+        remoteDataSource.getPopularMovies()
 
     override suspend fun getTopRatedMovies(): SuspendResult<List<MovieShowCase>> =
-        remoteDataSource.getTopRatedMovies().map(mapper::map)
+        remoteDataSource.getTopRatedMovies()
 
     override suspend fun getPlayingNow(): SuspendResult<List<MovieShowCase>> =
-        remoteDataSource.getPlayingNow().map(mapper::map)
+        remoteDataSource.getPlayingNow()
 
     override suspend fun getLatestMovies(): SuspendResult<List<MovieShowCase>> =
-        remoteDataSource.getLatestMovies().map(mapper::map)
+        remoteDataSource.getLatestMovies()
 }

@@ -18,7 +18,8 @@ import io.github.gustavobarbosab.movies.showcase.di.DaggerMovieListComponent
 import io.github.gustavobarbosab.movies.showcase.di.MovieListComponent
 import io.github.gustavobarbosab.movies.showcase.di.ShowCaseInjector
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
-import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.Action.*
+import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.ViewAction.*
+import io.github.gustavobarbosab.movies.showcase.presentation.model.ShowCaseModel
 import io.github.gustavobarbosab.movies.showcase.presentation.movielist.MovieListAdapter
 import javax.inject.Inject
 
@@ -116,7 +117,7 @@ class ShowCaseFragment : BaseFragment<FragmentShowCaseBinding>(), ShowCaseInject
         }
     }
 
-    private fun onItemClicked(movie: MovieShowCase) {
+    private fun onItemClicked(movie: ShowCaseModel) {
         viewModel.showDetails(movie)
     }
 

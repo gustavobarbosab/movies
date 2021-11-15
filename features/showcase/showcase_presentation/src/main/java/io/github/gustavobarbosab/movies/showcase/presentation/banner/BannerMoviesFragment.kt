@@ -12,6 +12,7 @@ import io.github.gustavobarbosab.movies.showcase.databinding.FragmentBannerMovie
 import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewModel
 import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState
+import io.github.gustavobarbosab.movies.showcase.presentation.model.ShowCaseModel
 
 class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
 
@@ -50,7 +51,7 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
         }
         viewModel.state.action.observe(viewLifecycleOwner, {
             when (it) {
-                ShowCaseViewState.Action.ErrorLoadBanner -> tryAgainVisibility(visible = true)
+                ShowCaseViewState.ViewAction.ErrorLoadBanner -> tryAgainVisibility(visible = true)
                 else -> {
                 }
             }
@@ -62,7 +63,7 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
         bannerTryAgain.isVisible = visible
     }
 
-    private fun onItemClicked(movie: MovieShowCase) {
+    private fun onItemClicked(movie: ShowCaseModel) {
         viewModel.showDetails(movie)
     }
 }

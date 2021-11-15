@@ -5,8 +5,4 @@ import javax.inject.Inject
 
 class ShowCaseLocalDataSource @Inject constructor(
     val movieDao: MovieDao
-) {
-    fun savePopularMovies() {
-
-    }
-}
+)
