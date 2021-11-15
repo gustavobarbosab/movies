@@ -53,7 +53,7 @@ Abaixo vemos a ligação entre as camadas da aplicação e a quais módulos cama
 
 Arquitetura do app            |  Clean architecture
 :-------------------------:|:-------------------------:
-<img src="architecture-dependency.jpg" alt="Architecture dependency" height="600" >  |  <img src="clean-architecture-layers.png" alt="Architecture dependency" >
+<img src="architecture-dependency.jpg" alt="Architecture dependency" >  |  <img src="clean-architecture-layers.png" alt="Architecture dependency" >
 
 
 ## 🚀 Quais os módulos temos no projeto?
