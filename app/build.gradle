@@ -65,6 +65,7 @@ android {
 
     lintOptions {
         checkDependencies true
+        disable 'MissingTranslation'
     }
 
     packagingOptions {

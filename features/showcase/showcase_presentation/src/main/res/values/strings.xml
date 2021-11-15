@@ -1,14 +1,11 @@
 <resources>
     <string name="show_case_app_version">Version: %1s</string>
-    <string name="show_case_top_rated">Top Rated</string>
-    <string name="show_case_popular">Popular</string>
-    <string name="show_case_playing_now">Playing now</string>
-    <string name="show_case_generic_error">An error occurred, please try again!</string>
-    <string name="show_case_popular_title">Popular</string>
-    <string name="show_case_popular_try_again_message">Error on load popular movies</string>
-    <string name="show_case_top_rated_title">Top rated</string>
-    <string name="show_case_top_rated_try_again_message">Error on load top rated movies</string>
-    <string name="show_case_latest_title">Latest</string>
-    <string name="show_case_latest_try_again_message">Error on load latest movies</string>
-    <string name="show_case_try_again_button">Tap to reload</string>
+    <string name="show_case_generic_error">Um erro ocorreu, por favor tente novamente!</string>
+    <string name="show_case_popular_title">Populares</string>
+    <string name="show_case_popular_try_again_message">Erro ao carregar os filmes populares</string>
+    <string name="show_case_top_rated_title">Melhor avaliados</string>
+    <string name="show_case_top_rated_try_again_message">Erro ao carregar os filmes melhor avaliados</string>
+    <string name="show_case_latest_title">Lançamentos</string>
+    <string name="show_case_latest_try_again_message">Erro ao carregar os últimos filmes</string>
+    <string name="show_case_try_again_button">Tentar novamente</string>
 </resources>
