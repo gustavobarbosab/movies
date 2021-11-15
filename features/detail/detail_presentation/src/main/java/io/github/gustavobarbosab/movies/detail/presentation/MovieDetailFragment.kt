@@ -45,7 +45,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
     }
 
     private fun setupToolbar() = applicationToolbar {
-        title = "Detalhes"
+        title = getString(R.string.detail_toolbar_title)
         backButtonType = BackButtonType.ARROW
     }
 
@@ -68,15 +68,15 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             when (it) {
                 ViewAction.HideLoading -> hideLoading()
                 ViewAction.ShowLoading -> showLoading()
-                ViewAction.StartScreenFailure -> showSnackBar("Não conseguimos buscar seu histórico de filmes favoritos :(")
-                ViewAction.FavoriteMovieFailure -> showSnackBar("Ops... tivemos um problema =(")
-                ViewAction.MovieUnliked -> showSnackBar("Filme removido dos favoritos")
-                ViewAction.MovieLiked -> showSnackBar("Filme adicionado aos favoritos")
+                ViewAction.StartScreenFailure -> showSnackBar(R.string.detail_start_screen_failure)
+                ViewAction.FavoriteMovieFailure -> showSnackBar(R.string.detail_load_favorites_failure)
+                ViewAction.MovieUnliked -> showSnackBar(R.string.detail_movie_unliked)
+                ViewAction.MovieLiked -> showSnackBar(R.string.detail_movie_added)
             }
         }
     }
 
-    private fun showSnackBar(message: String) {
+    private fun showSnackBar(message: Int) {
         Snackbar.make(
             binding.root,
             message,

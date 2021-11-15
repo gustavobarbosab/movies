@@ -6,7 +6,6 @@ import io.github.gustavobarbosab.movies.detail.model.DetailModel
 import io.github.gustavobarbosab.movies.detail.model.DetailsButtonType
 
 class DetailMovieState {
-
     val movie = MutableLiveData<DetailModel>()
     val favoriteButtonState = MutableLiveData<DetailsButtonType>()
     val actions: MutableLiveData<ViewAction> = SingleLiveEvent()
