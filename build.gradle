@@ -108,7 +108,6 @@ buildscript {
     }
 
     dependencies {
-        // Don't update gradle, this dependency are generating problems after update
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
