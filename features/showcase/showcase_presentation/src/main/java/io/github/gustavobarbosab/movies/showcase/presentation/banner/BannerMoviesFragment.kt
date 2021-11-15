@@ -30,9 +30,10 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
 
     override fun initializeViews(savedInstance: Bundle?) {
         carouselAutoScroll = CarouselAutoScroll.setupWithViewPager(
-            viewLifecycleOwner,
-            binding.bannerTop,
-            binding.autoProgress
+            owner = viewLifecycleOwner,
+            viewPager = binding.bannerTop,
+            autoScrollTimeMillis = 5000L,
+            autoProgressView = binding.autoProgress
         )
         binding.apply {
             bannerTop.adapter = bannerTopAdapter
@@ -48,10 +49,11 @@ class BannerMoviesFragment : BaseFragment<FragmentBannerMoviesBinding>() {
             bannerTopAdapter.items = it
         }
         viewModel.state.action.observe(viewLifecycleOwner, {
-            if (it != ShowCaseViewState.Action.ErrorLoadBanner)
-                return@observe
-
-            tryAgainVisibility(visible = true)
+            when (it) {
+                ShowCaseViewState.Action.ErrorLoadBanner -> tryAgainVisibility(visible = true)
+                else -> {
+                }
+            }
         })
     }
 

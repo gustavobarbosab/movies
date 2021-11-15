@@ -9,11 +9,11 @@ import io.github.gustavobarbosab.commons.widget.autoprogress.AutoProgressView
 class CarouselAutoScroll(
     private var owner: LifecycleOwner?,
     private var viewPager: ViewPager2?,
+    private var autoScrollTimeMillis: Long,
     private var autoProgressView: AutoProgressView? = null
 ) : LifecycleObserver, ViewPager2.OnPageChangeCallback() {
 
     var onPageChangedListener: (Int) -> Unit = {}
-    private var timeMillis = DEFAULT_TIME
     private val handler = Handler(Looper.getMainLooper())
 
     private val currentPosition: Int
@@ -44,7 +44,7 @@ class CarouselAutoScroll(
             viewPager?.setCurrentItem(nextPosition, true)
         }
         handler.removeCallbacksAndMessages(null)
-        handler.postDelayed(runnable, timeMillis)
+        handler.postDelayed(runnable, autoScrollTimeMillis)
     }
 
     override fun onPageSelected(position: Int) {
@@ -62,17 +62,18 @@ class CarouselAutoScroll(
 
     companion object {
         const val FIRST_POSITION = 0
-        const val DEFAULT_TIME = 5000L
-
-        fun setupWithViewPager(
-            owner: LifecycleOwner?,
-            viewPager: ViewPager2?
-        ) = CarouselAutoScroll(owner, viewPager)
 
         fun setupWithViewPager(
             owner: LifecycleOwner?,
             viewPager: ViewPager2?,
+            autoScrollTimeMillis: Long
+        ) = CarouselAutoScroll(owner, viewPager, autoScrollTimeMillis)
+
+        fun setupWithViewPager(
+            owner: LifecycleOwner?,
+            viewPager: ViewPager2?,
+            autoScrollTimeMillis: Long,
             autoProgressView: AutoProgressView
-        ) = CarouselAutoScroll(owner, viewPager, autoProgressView)
+        ) = CarouselAutoScroll(owner, viewPager, autoScrollTimeMillis, autoProgressView)
     }
 }
