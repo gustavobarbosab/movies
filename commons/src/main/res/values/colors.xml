@@ -7,5 +7,9 @@
     <color name="colorAccent">#F2BC28</color>
     <color name="colorShimmer">#80263238</color>
 
+    <color name="colorSuccess">#CDDC39</color>
+    <color name="colorWarning">#FF9800</color>
+    <color name="colorError">#F44336</color>
+
     <color name="image_shadow">#32000000</color>
 </resources>

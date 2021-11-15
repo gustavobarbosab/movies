@@ -4,17 +4,18 @@ import android.os.Bundle
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
+import io.github.gustavobarbosab.commons.widget.snackbar.SnackBarType
+import io.github.gustavobarbosab.commons.widget.snackbar.showSnackBar
 import io.github.gustavobarbosab.favorite.di.DaggerFavoritesComponent
 import io.github.gustavobarbosab.favorite.model.FavoriteModel
 import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.LayoutState
 import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.ViewAction
-import io.github.gustavobarbosab.movies.favorite.databinding.FragmentFavoriteMoviesBinding
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.favorite.R
+import io.github.gustavobarbosab.movies.favorite.databinding.FragmentFavoriteMoviesBinding
 import javax.inject.Inject
 
 class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
@@ -80,11 +81,17 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
     }
 
     private fun movieUnlikedSuccess() {
-        Snackbar.make(binding.root, "Filme removido =D", Snackbar.LENGTH_SHORT).show()
+        requireActivity().showSnackBar(
+            SnackBarType.Success,
+            getString(R.string.favorites_movies_unlike_success)
+        )
     }
 
     private fun unlikeMovieFailure() {
-        requireContext().toast("Falha ao remover filme dos favoritos")
+        requireActivity().showSnackBar(
+            SnackBarType.Error,
+            getString(R.string.favorites_movies_unlike_error)
+        )
     }
 
     private fun hideAllViews() {

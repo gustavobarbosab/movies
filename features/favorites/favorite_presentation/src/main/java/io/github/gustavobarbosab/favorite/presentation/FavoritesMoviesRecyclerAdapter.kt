@@ -21,7 +21,7 @@ class FavoritesMoviesRecyclerAdapter(
 
     fun removeMovie(position: Int) {
         list.removeAt(position)
-        notifyItemRangeChanged(position, list.size)
+        notifyItemRangeChanged(position, itemCount)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

@@ -6,6 +6,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
+import io.github.gustavobarbosab.commons.widget.snackbar.SnackBarType
+import io.github.gustavobarbosab.commons.widget.snackbar.showSnackBar
 import io.github.gustavobarbosab.commons.widget.toolbar.buttons.BackButtonType
 import io.github.gustavobarbosab.movies.detail.R
 import io.github.gustavobarbosab.movies.detail.databinding.FragmentMovieDetailBinding
@@ -68,19 +70,30 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             when (it) {
                 ViewAction.HideLoading -> hideLoading()
                 ViewAction.ShowLoading -> showLoading()
-                ViewAction.StartScreenFailure -> showSnackBar(R.string.detail_start_screen_failure)
-                ViewAction.FavoriteMovieFailure -> showSnackBar(R.string.detail_load_favorites_failure)
-                ViewAction.MovieUnliked -> showSnackBar(R.string.detail_movie_unliked)
-                ViewAction.MovieLiked -> showSnackBar(R.string.detail_movie_added)
+                ViewAction.StartScreenFailure -> showSnackBar(
+                    SnackBarType.Error,
+                    R.string.detail_start_screen_failure
+                )
+                ViewAction.FavoriteMovieFailure -> showSnackBar(
+                    SnackBarType.Error,
+                    R.string.detail_load_favorites_failure
+                )
+                ViewAction.MovieUnliked -> showSnackBar(
+                    SnackBarType.Success,
+                    R.string.detail_movie_unliked
+                )
+                ViewAction.MovieLiked -> showSnackBar(
+                    SnackBarType.Success,
+                    R.string.detail_movie_added
+                )
             }
         }
     }
 
-    private fun showSnackBar(message: Int) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).show()
+    private fun showSnackBar(type: SnackBarType, message: Int) {
+        requireActivity().showSnackBar(
+            type,
+            getString(message)
+        )
     }
 }
