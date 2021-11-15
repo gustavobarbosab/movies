@@ -5,7 +5,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/favorite_movie_image_min_size"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/tinny_size"
         android:background="@color/colorSecondary">
 
@@ -13,19 +13,11 @@
             android:id="@+id/movie_image"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:background="@color/colorShimmer"
-            android:scaleType="fitStart"
+            android:minWidth="90dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/guideline_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/movie_name"
@@ -34,7 +26,7 @@
             android:layout_margin="@dimen/small_size"
             android:textAppearance="@style/Movies.Text.Title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline_image"
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Incêndio na caixa d'água" />
 
@@ -45,7 +37,7 @@
             android:layout_margin="@dimen/small_size"
             android:textAppearance="@style/Movies.Text.Tinny"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline_image"
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
             app:layout_constraintTop_toBottomOf="@+id/movie_name"
             tools:text="@string/favorite_movie_saved_date" />
 
@@ -57,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/guideline_image"
+            app:layout_constraintStart_toEndOf="@+id/movie_image"
             app:layout_constraintTop_toBottomOf="@+id/movie_saved_date"
             app:srcCompat="@drawable/ic_heart_filled_yellow" />
 

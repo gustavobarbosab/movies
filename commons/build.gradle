@@ -43,6 +43,7 @@ dependencies {
     implementation coroutinesDependency
 
     implementation glideDependencies.glide
+    implementation androidxDependencies.swipeRefresh
     kapt glideDependencies.processor
 
     implementation navigationDependencies.dynamicFeature

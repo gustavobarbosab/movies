@@ -19,7 +19,7 @@ class FavoriteMovieDataMapper {
     )
 
     private fun actualDateAndTime(): String {
-        val format = SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.getDefault())
+        val format = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
         val actualDate = Date()
         return format.format(actualDate)
     }
