@@ -1,5 +1,5 @@
 apply from: './local_properties.gradle'
-apply from: './increment_version.gradle'
+apply from: './generate_new_version.gradle'
 
 buildscript {
     ext {

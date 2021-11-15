@@ -1,4 +1,4 @@
-task incrementVersion() {
+task generateNewVersion() {
     doFirst {
         print("\n------ Generating new version ------\n")
         def versionFile = file('app/version.properties')
