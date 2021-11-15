@@ -35,7 +35,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         initializeViews(savedInstanceState)
     }
 
+    abstract fun initializeViews(savedInstance: Bundle?)
+
     /**
+     *  -- ATTENTION --
      * This progress is used to improve the development velocity
      * but the best practice is use shimmer or a progress that won't
      * block user's screen.
@@ -48,5 +51,4 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         loading.hideLoading()
     }
 
-    abstract fun initializeViews(savedInstance: Bundle?)
 }

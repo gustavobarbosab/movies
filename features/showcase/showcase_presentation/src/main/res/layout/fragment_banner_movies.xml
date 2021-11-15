@@ -30,6 +30,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:indeterminate="false"
+            app:progressVelocityMillis="5000"
+            app:progressLoop="true"
             android:indeterminateTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

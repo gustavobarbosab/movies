@@ -1,7 +1,6 @@
 package io.github.gustavobarbosab.commons.widget.autoprogress
 
 import android.os.CountDownTimer
-import android.util.Log
 
 class ProgressCounter(
     val counterListener: (Int) -> Unit,
