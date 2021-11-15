@@ -75,11 +75,21 @@ As features são divididas em três pacotes, visando um maior desacoplamento ent
 
 <img src="feature-module-explanation.jpg" alt="Modules organization" height="700">
 
+Foram criados plugins gradle em groovy para cada um dos tipos de módulo.
+- moovie.feature-data
+- moovie.feature-presentation
+- moovie.feature.domain
+
 ## ☕ Como é a comunição entre os módulos de feature e app?
 
 A comunicação é descrita no desenho abaixo e foi pensada de modo a possibilitar que tenhamos módulos de apresentação dinâmicos.
 
 <img src="feature-communication.jpg" alt="Modules organization" height="700">
+
+## 🐛 Geração de versão e demais configurações gradle
+
+Para gerar novas versões e facilitar o incremento da versão por parte da ferramenta de deploy que no nosso caso é o Jenkins, foi feito uma task do gradle chamada "generateNewVersion".
+Os arquivos gradle ainda nao foram totalmente revisados e podem conter melhorias.
 
 ## 😄 Seja um dos contribuidores<br>
 
