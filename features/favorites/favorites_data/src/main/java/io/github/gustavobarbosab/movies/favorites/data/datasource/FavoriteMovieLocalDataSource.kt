@@ -44,10 +44,10 @@ class FavoriteMovieLocalDataSource @Inject constructor(
         }
     }
 
-    suspend fun unlikeMovie(movie: MovieFavorite): SuspendResult<Unit> =
+    suspend fun unlikeMovie(id: Long): SuspendResult<Unit> =
         withContext(Dispatchers.IO) {
             return@withContext try {
-                movieDao.unlikeMovie(movie.id)
+                movieDao.unlikeMovie(id)
                 SuspendResult.Success(Unit)
             } catch (e: Exception) {
                 SuspendResult.UnknownError(e)

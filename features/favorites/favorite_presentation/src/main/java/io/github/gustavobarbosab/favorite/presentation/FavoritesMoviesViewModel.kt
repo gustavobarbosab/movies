@@ -5,7 +5,8 @@ import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
 import io.github.gustavobarbosab.favorite.model.FavoriteModel
 import io.github.gustavobarbosab.favorite.model.FavoritesPresentationMapper
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.ViewAction
+import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.*
+import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.LayoutState.*
 import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
 import io.github.gustavobarbosab.movies.favorites.domain.usecase.FavoriteMovieUseCase
 import io.gustavobarbosab.suspendresult.CoroutineResultHandler
@@ -21,6 +22,7 @@ class FavoritesMoviesViewModel @Inject constructor(
 
     fun fetchFavorites() {
         viewModelScope.launchMain {
+            state.layout.value = HideAll
             state.actions.value = ViewAction.ShowLoading
             handleResult(
                 useCase.fetchFavorites(),
@@ -34,19 +36,27 @@ class FavoritesMoviesViewModel @Inject constructor(
     private fun fetchFavoritesSuccess(result: List<MovieFavorite>?) {
         val favorites = result ?: emptyList()
         val modelList = favorites.map(mapper::map)
-        state.movies.value = modelList
+        handleFavoritesList(modelList)
+    }
+
+    private fun handleFavoritesList(favorites: List<FavoriteModel>?) {
+        if (favorites.isNullOrEmpty()) {
+            state.layout.value = ShowEmptyState
+            return
+        }
+        state.movies.value = favorites.toMutableList()
+        state.layout.value = ShowRecyclerView
     }
 
     private fun fetchFavoritesFailure() {
-        state.actions.value = ViewAction.LoadFavoritesFailure
+        state.layout.value = ShowTryAgain
     }
 
-    fun unlikeMovie(favoritesModel: FavoriteModel, position: Int) {
+    fun unlikeMovie(model: FavoriteModel, position: Int) {
         viewModelScope.launchMain {
             state.actions.value = ViewAction.ShowLoading
-            val movieFavorite: MovieFavorite = mapper.map(favoritesModel)
             handleResult(
-                useCase.updateFavoriteMovie(movieFavorite),
+                useCase.unlikeMovie(model.id),
                 { unlikeMovieSuccess(position) },
                 this@FavoritesMoviesViewModel::unlikeMovieFailure
             )
@@ -57,6 +67,11 @@ class FavoritesMoviesViewModel @Inject constructor(
     private fun unlikeMovieSuccess(position: Int) {
         state.actions.value = ViewAction.MovieUnliked
         state.actions.value = ViewAction.RemoveUnlikedMovie(position)
+
+        val favoritesMovies = state.movies.value
+        if (favoritesMovies.isNullOrEmpty()) {
+            state.layout.value = ShowEmptyState
+        }
     }
 
     private fun unlikeMovieFailure() {

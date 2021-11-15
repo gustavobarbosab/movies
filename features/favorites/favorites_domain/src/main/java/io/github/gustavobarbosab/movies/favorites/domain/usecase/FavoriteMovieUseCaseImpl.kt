@@ -20,13 +20,16 @@ class FavoriteMovieUseCaseImpl(
 
         val isMovieFavorite = isMovieFavoriteResult.data == true
         if (isMovieFavorite) {
-            repository.dislikeMovie(movie)
+            repository.unlikeMovie(movie.id)
             return SuspendResult.Success(MovieState.MovieUnliked)
         }
 
         repository.likeMovie(movie)
         return SuspendResult.Success(MovieState.MovieLiked)
     }
+
+    override suspend fun unlikeMovie(id: Long): SuspendResult<Unit> =
+        repository.unlikeMovie(id)
 
     override suspend fun isMovieFavorite(id: Long): SuspendResult<MovieState> {
         val result = repository.isMovieFavorite(id)

@@ -20,6 +20,6 @@ class FavoriteMovieRepositoryImpl @Inject constructor(
     override suspend fun likeMovie(movie: MovieFavorite): SuspendResult<Unit> =
         localDataSource.likeMovie(movie)
 
-    override suspend fun dislikeMovie(movie: MovieFavorite): SuspendResult<Unit> =
-        localDataSource.unlikeMovie(movie)
+    override suspend fun unlikeMovie(id: Long): SuspendResult<Unit> =
+        localDataSource.unlikeMovie(id)
 }

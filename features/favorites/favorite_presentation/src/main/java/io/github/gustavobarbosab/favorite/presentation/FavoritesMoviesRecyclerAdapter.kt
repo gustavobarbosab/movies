@@ -14,14 +14,10 @@ class FavoritesMoviesRecyclerAdapter(
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     var list: MutableList<FavoriteModel> = mutableListOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     fun removeMovie(position: Int) {
         list.removeAt(position)
-        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, list.size)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,7 +27,7 @@ class FavoritesMoviesRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemFavoritesMoviesBinding.inflate(inflater,parent,false)
+        val binding = ItemFavoritesMoviesBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 

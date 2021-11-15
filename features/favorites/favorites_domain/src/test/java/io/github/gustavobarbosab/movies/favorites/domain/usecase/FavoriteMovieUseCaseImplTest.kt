@@ -28,7 +28,7 @@ class FavoriteMovieUseCaseImplTest {
         // GIVEN
         val movie = FavoriteMovieMocker.createMovie()
         coEvery { repository.isMovieFavorite(any()) } returns Success(true)
-        coEvery { repository.dislikeMovie(movie) } returns Success(Unit)
+        coEvery { repository.unlikeMovie(movie.id) } returns Success(Unit)
 
         // WHEN
         val result = useCase.updateFavoriteMovie(movie)
