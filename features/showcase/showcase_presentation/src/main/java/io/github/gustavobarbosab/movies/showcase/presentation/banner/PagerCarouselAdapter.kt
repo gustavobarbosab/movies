@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.movies.showcase.databinding.ItemPagerCarouselBinding
 import io.github.gustavobarbosab.movies.showcase.presentation.model.ShowCaseModel
-import io.github.gustavobarbosab.showcase.model.MovieShowCase
 
 class PagerCarouselAdapter(
     private val clickListener: (ShowCaseModel) -> Unit

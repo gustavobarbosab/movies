@@ -32,7 +32,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/colorShimmer"
-                android:minHeight="200dp"
+                android:minHeight="228dp"
                 android:scaleType="fitXY"
                 android:tint="@color/image_shadow"
                 app:layout_constraintEnd_toEndOf="parent"

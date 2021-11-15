@@ -14,6 +14,10 @@ class FavoritesMoviesRecyclerAdapter(
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     var list: MutableList<FavoriteModel> = mutableListOf()
+        set(value) {
+            field = value
+            notifyItemRangeChanged(0, value.size)
+        }
 
     fun removeMovie(position: Int) {
         list.removeAt(position)

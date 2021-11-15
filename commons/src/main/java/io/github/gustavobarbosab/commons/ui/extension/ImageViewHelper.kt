@@ -12,7 +12,6 @@ fun ImageView.loadImage(url: String) {
         .with(context)
         .load(url)
         .placeholder(ImageViewHelper.createProgress(context))
-        .centerInside()
         .into(this)
 }
 

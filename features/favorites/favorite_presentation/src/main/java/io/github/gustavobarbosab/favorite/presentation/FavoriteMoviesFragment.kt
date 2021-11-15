@@ -57,7 +57,6 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
     private fun observeState() = with(viewModel.state) {
         movies.observe(viewLifecycleOwner) {
             adapter.list = it
-            adapter.notifyDataSetChanged()
         }
 
         layout.observe(viewLifecycleOwner) {
