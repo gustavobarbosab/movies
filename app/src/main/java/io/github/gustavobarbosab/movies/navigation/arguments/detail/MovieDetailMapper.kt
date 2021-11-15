@@ -11,12 +11,4 @@ class MovieDetailMapper : Mapper<MovieDetailDomain, MovieDetailArgument> {
         input.imageUrl,
         input.poster
     )
-
-    fun map(input: MovieDetailArgument) = MovieDetailDomain(
-        input.id,
-        input.name,
-        input.description,
-        input.imageUrl,
-        input.poster
-    )
 }

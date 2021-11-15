@@ -40,6 +40,5 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val SHOW_NAVBAR = "SHOW_NAVBAR"
-        const val TOOLBAR_LOGO = "TOOLBAR_LOGO"
     }
 }

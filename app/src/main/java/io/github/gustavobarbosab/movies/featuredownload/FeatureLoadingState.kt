@@ -4,12 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import io.github.gustavobarbosab.commons.livedata.SingleLiveEvent
 
 class FeatureLoadingState {
-    val action: MutableLiveData<FeatureLoadingAction> = SingleLiveEvent()
+    val action: MutableLiveData<ViewAction> = SingleLiveEvent()
 
-    sealed class FeatureLoadingAction {
-        object DownloadStarted : FeatureLoadingAction()
-        object DownloadCanceled : FeatureLoadingAction()
-        object DownloadFailed : FeatureLoadingAction()
-        class UpdateDownloadProgress(val progress: Int) : FeatureLoadingAction()
+    sealed class ViewAction {
+        object DownloadStarted : ViewAction()
+        object DownloadCanceled : ViewAction()
+        object DownloadFailed : ViewAction()
+        class UpdateDownloadProgress(val progress: Int) : ViewAction()
     }
 }
