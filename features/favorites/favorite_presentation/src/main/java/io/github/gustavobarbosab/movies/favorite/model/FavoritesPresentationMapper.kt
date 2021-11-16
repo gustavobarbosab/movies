@@ -1,6 +1,5 @@
 package io.github.gustavobarbosab.movies.favorite.model
 
-import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
 import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
 
 class FavoritesPresentationMapper {

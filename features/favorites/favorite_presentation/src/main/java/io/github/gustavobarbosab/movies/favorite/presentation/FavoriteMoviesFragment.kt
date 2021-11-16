@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.snackbar.SnackBarType
 import io.github.gustavobarbosab.commons.widget.snackbar.showSnackBar
-import io.github.gustavobarbosab.favorite.di.DaggerFavoritesComponent
 import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
 import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.LayoutState
 import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.ViewAction
@@ -15,6 +14,7 @@ import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.favorite.R
 import io.github.gustavobarbosab.movies.favorite.databinding.FragmentFavoriteMoviesBinding
+import io.github.gustavobarbosab.movies.favorite.di.DaggerFavoritesComponent
 import javax.inject.Inject
 
 class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {

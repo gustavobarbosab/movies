@@ -3,7 +3,6 @@ package io.github.gustavobarbosab.movies.detail.presentation
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.snackbar.Snackbar
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
 import io.github.gustavobarbosab.commons.widget.snackbar.SnackBarType

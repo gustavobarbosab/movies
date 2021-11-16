@@ -33,8 +33,6 @@ dependencies {
     implementation project(modulesDependencies.core)
     implementation project(modulesDependencies.common)
 
-    implementation kotlinDependencies.jdk7
-
     implementation androidxDependencies.appCompat
     implementation androidxDependencies.coreKtx
     implementation androidxDependencies.constraintLayout
