@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.favorite.presentation
+package io.github.gustavobarbosab.movies.favorite.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,12 +1,10 @@
-package io.github.gustavobarbosab.favorite.presentation
+package io.github.gustavobarbosab.movies.favorite.presentation
 
-import android.text.Layout
 import androidx.lifecycle.MutableLiveData
 import io.github.gustavobarbosab.commons.livedata.SingleLiveEvent
-import io.github.gustavobarbosab.favorite.model.FavoriteModel
+import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
 
 class FavoritesMoviesState {
-    val movies = MutableLiveData<MutableList<FavoriteModel>>()
     val layout = MutableLiveData<LayoutState>()
     val actions = SingleLiveEvent<ViewAction>()
 
@@ -20,7 +18,7 @@ class FavoritesMoviesState {
 
     sealed class LayoutState {
         object ShowTryAgain : LayoutState()
-        object ShowRecyclerView : LayoutState()
+        class ShowRecyclerView(val list: MutableList<FavoriteModel>) : LayoutState()
         object ShowEmptyState : LayoutState()
         object HideAll : LayoutState()
     }

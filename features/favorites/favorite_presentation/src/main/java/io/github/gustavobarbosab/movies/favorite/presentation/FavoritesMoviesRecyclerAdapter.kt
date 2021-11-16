@@ -1,11 +1,11 @@
-package io.github.gustavobarbosab.favorite.presentation
+package io.github.gustavobarbosab.movies.favorite.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.gustavobarbosab.commons.ui.extension.loadImage
-import io.github.gustavobarbosab.favorite.model.FavoriteModel
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesRecyclerAdapter.ViewHolder
+import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesRecyclerAdapter.ViewHolder
 import io.github.gustavobarbosab.movies.favorite.R
 import io.github.gustavobarbosab.movies.favorite.databinding.ItemFavoritesMoviesBinding
 

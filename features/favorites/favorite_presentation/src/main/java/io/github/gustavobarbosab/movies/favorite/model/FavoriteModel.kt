@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.favorite.model
+package io.github.gustavobarbosab.movies.favorite.model
 
 data class FavoriteModel(
     val id: Long,

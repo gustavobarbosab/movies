@@ -1,8 +1,8 @@
-package io.github.gustavobarbosab.favorite.di
+package io.github.gustavobarbosab.movies.favorite.di
 
 import dagger.Component
 import io.github.gustavobarbosab.core.di.scope.FeatureScope
-import io.github.gustavobarbosab.favorite.presentation.FavoriteMoviesFragment
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoriteMoviesFragment
 import io.github.gustavobarbosab.movies.di.AppComponent
 
 @Component(

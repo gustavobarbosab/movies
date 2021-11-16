@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/fragment_favorite_movies"
-        android:name="io.github.gustavobarbosab.favorite.presentation.FavoriteMoviesFragment">
+        android:name="io.github.gustavobarbosab.movies.favorite.presentation.FavoriteMoviesFragment">
         <action
             android:id="@+id/action_detail_fragment"
             app:destination="@id/detail_fragment"

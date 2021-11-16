@@ -1,17 +1,16 @@
-package io.github.gustavobarbosab.favorite.presentation
+package io.github.gustavobarbosab.movies.favorite.presentation
 
 import android.os.Bundle
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
-import io.github.gustavobarbosab.commons.extension.toast
 import io.github.gustavobarbosab.commons.ui.base.BaseFragment
 import io.github.gustavobarbosab.commons.widget.snackbar.SnackBarType
 import io.github.gustavobarbosab.commons.widget.snackbar.showSnackBar
 import io.github.gustavobarbosab.favorite.di.DaggerFavoritesComponent
-import io.github.gustavobarbosab.favorite.model.FavoriteModel
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.LayoutState
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.ViewAction
+import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.LayoutState
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.ViewAction
 import io.github.gustavobarbosab.movies.extension.applicationToolbar
 import io.github.gustavobarbosab.movies.extension.requireAppComponent
 import io.github.gustavobarbosab.movies.favorite.R
@@ -56,15 +55,11 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
     }
 
     private fun observeState() = with(viewModel.state) {
-        movies.observe(viewLifecycleOwner) {
-            adapter.list = it
-        }
-
         layout.observe(viewLifecycleOwner) {
             when (it) {
                 LayoutState.HideAll -> hideAllViews()
                 LayoutState.ShowEmptyState -> showEmptyState()
-                LayoutState.ShowRecyclerView -> showRecyclerView()
+                is LayoutState.ShowRecyclerView -> showRecyclerView(it.list)
                 LayoutState.ShowTryAgain -> showTryAgain()
             }
         }
@@ -112,7 +107,8 @@ class FavoriteMoviesFragment : BaseFragment<FragmentFavoriteMoviesBinding>() {
         binding.favoriteMoviesRecyclerView.isGone = true
     }
 
-    private fun showRecyclerView() {
+    private fun showRecyclerView(list: MutableList<FavoriteModel>) {
+        adapter.list = list
         binding.favoriteMoviesRecyclerView.isVisible = true
         binding.favoritesEmptyState.isGone = true
         binding.favoritesTryAgain.isGone = true

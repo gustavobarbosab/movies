@@ -1,12 +1,12 @@
-package io.github.gustavobarbosab.favorite.presentation
+package io.github.gustavobarbosab.movies.favorite.presentation
 
 import androidx.lifecycle.viewModelScope
 import io.github.gustavobarbosab.commons.extension.launchMain
 import io.github.gustavobarbosab.commons.ui.base.BaseViewModel
-import io.github.gustavobarbosab.favorite.model.FavoriteModel
-import io.github.gustavobarbosab.favorite.model.FavoritesPresentationMapper
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.*
-import io.github.gustavobarbosab.favorite.presentation.FavoritesMoviesState.LayoutState.*
+import io.github.gustavobarbosab.movies.favorite.model.FavoriteModel
+import io.github.gustavobarbosab.movies.favorite.model.FavoritesPresentationMapper
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.*
+import io.github.gustavobarbosab.movies.favorite.presentation.FavoritesMoviesState.LayoutState.*
 import io.github.gustavobarbosab.movies.favorites.domain.model.MovieFavorite
 import io.github.gustavobarbosab.movies.favorites.domain.usecase.FavoriteMovieUseCase
 import io.gustavobarbosab.suspendresult.CoroutineResultHandler
@@ -17,6 +17,7 @@ class FavoritesMoviesViewModel @Inject constructor(
 ) : BaseViewModel<FavoritesMoviesState>(), CoroutineResultHandler {
 
     private val mapper = FavoritesPresentationMapper()
+    private var favoritesList = mutableListOf<FavoriteModel>()
 
     override val state: FavoritesMoviesState = FavoritesMoviesState()
 
@@ -34,18 +35,15 @@ class FavoritesMoviesViewModel @Inject constructor(
     }
 
     private fun fetchFavoritesSuccess(result: List<MovieFavorite>?) {
-        val favorites = result ?: emptyList()
-        val modelList = favorites.map(mapper::map)
-        handleFavoritesList(modelList)
-    }
+        val favorites: List<MovieFavorite> = result ?: emptyList()
+        favoritesList = favorites.map(mapper::map).toMutableList()
 
-    private fun handleFavoritesList(favorites: List<FavoriteModel>?) {
-        if (favorites.isNullOrEmpty()) {
+        if (favoritesList.isNullOrEmpty()) {
             state.layout.value = ShowEmptyState
             return
         }
-        state.movies.value = favorites.toMutableList()
-        state.layout.value = ShowRecyclerView
+
+        state.layout.value = ShowRecyclerView(favoritesList)
     }
 
     private fun fetchFavoritesFailure() {
@@ -68,8 +66,7 @@ class FavoritesMoviesViewModel @Inject constructor(
         state.actions.value = ViewAction.MovieUnliked
         state.actions.value = ViewAction.RemoveUnlikedMovie(position)
 
-        val favoritesMovies = state.movies.value
-        if (favoritesMovies.isNullOrEmpty()) {
+        if (favoritesList.isNullOrEmpty()) {
             state.layout.value = ShowEmptyState
         }
     }

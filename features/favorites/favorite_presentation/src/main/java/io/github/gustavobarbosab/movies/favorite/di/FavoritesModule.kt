@@ -1,4 +1,4 @@
-package io.github.gustavobarbosab.favorite.di
+package io.github.gustavobarbosab.movies.favorite.di
 
 import dagger.Module
 
