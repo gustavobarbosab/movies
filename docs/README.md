@@ -1,5 +1,6 @@
 # 🎥 Moovie
 
+[![Build Status](https://app.bitrise.io/app/50048ce64c66deec/status.svg?token=MDpSO3HW_N_IYCxCZcAK-w&branch=master)](https://app.bitrise.io/app/50048ce64c66deec)
 ![GitHub repo size](https://img.shields.io/github/repo-size/gustavobarbosab/movies?style=for-the-badgee)
 ![GitHub language count](https://img.shields.io/github/languages/count/gustavobarbosab/movies?style=for-the-badgee)
 ![GitHub forks](https://img.shields.io/github/forks/gustavobarbosab/movies?style=for-the-badgee)
@@ -26,8 +27,6 @@ A ideia é que usemos os seguintes stack de componentes:
 - [ ] Paging
 - [ ] Espresso
 - [ ] Compose
-
-Obs: Algumas camadas ainda não estão totalmente testadas unitariamente e ainda não está configurado o CI, devido ao pouco tempo de desenvolvimento.
 
 ## 💻  Configuração de ambiente
 
