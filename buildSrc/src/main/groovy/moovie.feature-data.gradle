@@ -27,4 +27,5 @@ android {
 
 dependencies {
     implementation project(modulesDependencies.core)
+    testImplementation unitTestDependencies.junit
 }
