@@ -31,7 +31,7 @@ Obs: Algumas camadas ainda não estão totalmente testadas unitariamente e ainda
 
 ## 💻  Configuração de ambiente
 
-Primeiro de tudo, você vai precisar da versão 4.1.0 (ou superior) do Android Studio.
+Primeiro de tudo, você vai precisar da versão 2020.3.1 (ou superior) do Android Studio e o Java 11.
 
 Crie uma chave de desenvolvedor na API [TheMovieDB](https://www.themoviedb.org/?language=pt-BR) para conseguir rodar o projeto.
 
