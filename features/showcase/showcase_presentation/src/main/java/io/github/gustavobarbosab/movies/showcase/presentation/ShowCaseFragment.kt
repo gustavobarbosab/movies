@@ -17,7 +17,6 @@ import io.github.gustavobarbosab.movies.showcase.databinding.FragmentShowCaseBin
 import io.github.gustavobarbosab.movies.showcase.di.DaggerMovieListComponent
 import io.github.gustavobarbosab.movies.showcase.di.MovieListComponent
 import io.github.gustavobarbosab.movies.showcase.di.ShowCaseInjector
-import io.github.gustavobarbosab.showcase.model.MovieShowCase
 import io.github.gustavobarbosab.movies.showcase.presentation.ShowCaseViewState.ViewAction.*
 import io.github.gustavobarbosab.movies.showcase.presentation.model.ShowCaseModel
 import io.github.gustavobarbosab.movies.showcase.presentation.movielist.MovieListAdapter
