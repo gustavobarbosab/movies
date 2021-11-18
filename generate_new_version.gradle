@@ -11,6 +11,8 @@ task generateNewVersion() {
 
             versionProperties.VERSION_NAME = newVersionName
             versionProperties.store(versionFile.newWriter(), null)
+            print("\nversion $newVersionName generated\n")
+
             print("\n------ Finished ------\n")
         } else {
             throw new GradleException("version.properties not found")
