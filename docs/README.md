@@ -26,6 +26,7 @@ A ideia é que usemos os seguintes stack de componentes:
 - [X] Mockk
 - [X] JUnit
 - [X] Jenkins / Bitrise
+- [ ] MVI
 - [ ] Paging
 - [ ] Espresso
 - [ ] Compose
