@@ -9,6 +9,8 @@
 
 <img src="preview.gif" alt="review" width="300" align="right" hspace="20">
 
+🚧 &nbsp;EM CONSTRUÇÃO 🚧 
+
 O app ainda está em desenvolvimento e tem como intuito colocar em prática algumas ferramentas e
 técnicas que estão em alta no mundo Android, além de melhorar algumas skills. 
 
