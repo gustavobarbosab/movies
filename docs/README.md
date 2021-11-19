@@ -23,7 +23,7 @@ A ideia é que usemos os seguintes stack de componentes:
 - [X] Dagger 2
 - [X] Mockk
 - [X] JUnit
-- [X] Jenkins
+- [X] Jenkins / Bitrise
 - [ ] Paging
 - [ ] Espresso
 - [ ] Compose
