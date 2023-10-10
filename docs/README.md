@@ -44,8 +44,8 @@ api.key=<insert-here>
 
 ## :house: What is the project architecture?
 
-This project follows clean architecture concepts ([see more here](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)). Another inspiration to start this project was [VMadalin project](https://github.com/vmadalin/android-modular-architecture)
-Using this architecture we have a lot of benefits such as decoupling code, ease of maintenance, good package structure, single responsibilities for each module, and a high possibility of testing the application. 
+This project follows clean architecture concepts ([see more here](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)).<br>
+Using this architecture we have a lot of benefits such as decoupling code, ease of maintenance, good package structure, single responsibilities for each module, and a high possibility of testing the application.<br>
 
 Here we can see the link between the app layers and their respective modules.
 
@@ -53,6 +53,7 @@ App architecture           |  Clean architecture
 :-------------------------:|:-------------------------:
 <img src="architecture-dependency.jpg" alt="Architecture dependency" >  |  <img src="clean-architecture-layers.png" alt="Architecture dependency" >
 
+Another inspiration to start this project was [VMadalin project](https://github.com/vmadalin/android-modular-architecture).<br>
 
 ## 🚀 What modules does the app contain?
 
