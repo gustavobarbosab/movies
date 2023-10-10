@@ -9,13 +9,12 @@
 
 <img src="preview.gif" alt="review" width="300" align="right" hspace="20">
 
-🚧 &nbsp;EM CONSTRUÇÃO 🚧 
+🚧 &nbsp;In Progress 🚧 
 
-O app ainda está em desenvolvimento e tem como intuito colocar em prática algumas ferramentas e
-técnicas que estão em alta no mundo Android, além de melhorar algumas skills. 
+This app is being developed and it has as its goal to practice new Android tools, libs, and techniques. 
+If you liked this initiative, please star it and contribute to improving it.
 
-A ideia é que usemos os seguintes stack de componentes:
-
+We are using the components below:
 - [X] Dynamic features
 - [X] Motion layout
 - [X] Navigation
@@ -31,13 +30,11 @@ A ideia é que usemos os seguintes stack de componentes:
 - [ ] Espresso
 - [ ] Compose
 
-## 💻  Configuração de ambiente
+## 💻  Environment setup:
 
-Primeiro de tudo, você vai precisar da versão 2020.3.1 (ou superior) do Android Studio e o Java 11.
-
-Crie uma chave de desenvolvedor na API [TheMovieDB](https://www.themoviedb.org/?language=pt-BR) para conseguir rodar o projeto.
-
-Quando você estiver com a chave, adicione ela no arquivo `local.properties` na raiz do projeto, da seguinte forma:
+First of all, you need Android Studio 2020.3.1 or later and JDK 11.
+Create a developer key in [TheMovieDB](https://www.themoviedb.org/?language=pt-BR) to build the project.
+When you get the key, add it in `local.properties` file, as below:
 
 ```properties
 #TheMovieDB API KEY
@@ -45,59 +42,57 @@ api.key=<insert-here>
 ```
 <br>
 
-## :house: Como foi pensada a arquitetura do projeto?
+## :house: What is the project architecture?
 
-O projeto segue os conceitos da clean architecture, visando maior desacoplamento, facilidade na manutenção, estrutura de pacotes e módulos com responsabilidades bem definidas, aplicação altamente testável, etc.
+This project follows clean architecture concepts ([see more here](https://fernandocejas.com/2018/05/07/architecting-android-reloaded/)). Another inspiration to start this project was [VMadalin project](https://github.com/vmadalin/android-modular-architecture)
+Using this architecture we have a lot of benefits such as decoupling code, ease of maintenance, good package structure, single responsibilities for each module, and a high possibility of testing the application. 
 
-Abaixo vemos a ligação entre as camadas da aplicação e a quais módulos cama uma pertence.
+Here we can see the link between the app layers and their respective modules.
 
-Arquitetura do app            |  Clean architecture
+App architecture           |  Clean architecture
 :-------------------------:|:-------------------------:
 <img src="architecture-dependency.jpg" alt="Architecture dependency" >  |  <img src="clean-architecture-layers.png" alt="Architecture dependency" >
 
 
-## 🚀 Quais os módulos temos no projeto?
+## 🚀 What modules does the app contain?
 
 <img src="modules.jpg" alt="Modules organization" height="500">
 
-- **Módulo app:** possui a estrutura de navegação e a parte central da injeção de dependencias.
-- **Módulo core:** centraliza componentes cruciais para toda a aplicação, como configurações de rede,
-  banco, injeção de depêndencias, etc.
-- **Módulo commons:** possui estruturas comuns para a aplicação, como componentes, definições base,
-  estilos, widgets, etc.
-- **Módulos de libraries:** são módulos que podem ser extraídos e usados por outras aplicações, são
-  interessantes pois fomentam a criação de bibliotecas para a comunidade Android.
-- **Módulos de features:** são módulos dividos em três partes que são explicados abaixo.
+- **App module:** App contains the structure responsible for navigation and dependency injection.
+- **Core module:** Core has the main components of the application, such as network configurations, database, dependency injection, etc.
+- **Commons module:** Coomons contains common structures such as widgets, extensions, styles, etc.
+- **Libraries modules:** Libraries are modules that can be exported as libraries to help other developers and projects.
+- **Feature modules:** Features are modules related to the presentation layer and explained better below.
 
-## 💡 Como é estruturada uma feature?
+## 💡 How is a feature organization?
 
-As features são divididas em três pacotes, visando um maior desacoplamento entre framework e regras de negócio. Abaixo veremos uma explicação de cada um desses módulos e como é a ligação entre eles.
+Features are divided into three packages, it was done to decouple the Android framework and business rules. Below we can see an explanation about each module and their links.
 
 <img src="feature-module-explanation.jpg" alt="Modules organization" height="700">
 
-Foram criados plugins gradle em groovy para cada um dos tipos de módulo.
+We have created Gradle plugins using Groovy to generalize each module configuration.
 - moovie.feature-data
 - moovie.feature-presentation
 - moovie.feature.domain
 
-## ☕ Como é a comunição entre os módulos de feature e app?
+## ☕ How does the communication between feature modules and app module?
 
-A comunicação é descrita no desenho abaixo e foi pensada de modo a possibilitar que tenhamos módulos de apresentação dinâmicos.
+The communication is done like the image below, and it was thought in a way to allow us to create dynamic modules using [Android dynamic features](https://developer.android.com/guide/playcore/feature-delivery).
 
 <img src="feature-communication.jpg" alt="Modules organization" height="700">
 
-## 🐛 Geração de versão e demais configurações gradle
+## 🐛 Generating versions and other Gradle configurations
 
-Para gerar novas versões e facilitar o incremento da versão por parte da ferramenta de deploy que no nosso caso é o Jenkins, foi feito uma task do gradle chamada "generateNewVersion".
-Os arquivos gradle ainda nao foram totalmente revisados e podem conter melhorias.
+To generate new app versions and help us increment the version code and version name, we have created a task called `generateNewVersion`. It allows tools like Jenkins to execute this Gradle task when generating a new release.
+Gradle files were not reviewed and can have a lot of ways to be improved.
 
-## 😄 Seja um dos contribuidores<br>
+## 😄 Become a contributor<br>
 
-Quer fazer parte desse projeto? Abra uma PR com sua contribuição.
+Do you wish to be part of this project? Open a pull request with your contribution.
 
-## 📝 Licença
+## 📝 License
 
-Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+This project contains licenses. Look at the file [LICENSE](LICENSE.md) for more details.
 
-[⬆ Voltar ao topo](#-moovie)<br>
+[⬆ Back to begin](#-moovie)<br>
 
